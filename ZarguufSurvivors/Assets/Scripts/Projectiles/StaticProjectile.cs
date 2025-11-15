@@ -7,13 +7,15 @@ public class StaticProjectile : MonoBehaviour
     [SerializeField]
     private float lifetime;
     private float lifeStart;
+    private float radiusCoef = 0.65f;
     IWeapon weapon;
 
     void Start()
     {
     }
 
-    public void Init(IWeapon weapon){
+    public void Init(IWeapon weapon)
+    {
         this.weapon = weapon;
         lifeStart = Time.time;
     }
@@ -22,7 +24,7 @@ public class StaticProjectile : MonoBehaviour
     {
         Init(weapon);
         transform.position = pos;
-        transform.localScale *= scale;
+        transform.localScale = new Vector3(scale, scale, scale);
     }
 
     // Update is called once per frame
@@ -32,12 +34,11 @@ public class StaticProjectile : MonoBehaviour
         {
             weapon.Kill(gameObject);
         }
+        Collider2D collider = Physics2D.OverlapCircle(transform.position, transform.localScale.x * radiusCoef, LayerMask.GetMask("Enemy Damage Receiver"));
 
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, transform.localScale.x);
-
-        if (collider != null)
+        if (collider != null && collider.TryGetComponent<Damageable>(out Damageable dmg))
         {
-            Debug.Log("Projectile hit target!");
+            dmg.Hurt(1);
         }
     }
 }

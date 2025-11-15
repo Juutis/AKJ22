@@ -11,6 +11,7 @@ public class StraightFlyingProjectile : MonoBehaviour
     private float speed;
     private float lifetime = 5;
     private float lifeStart;
+    private float radiusCoef = 0.65f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,11 +45,16 @@ public class StraightFlyingProjectile : MonoBehaviour
         Vector2 newPos2 = oldPos2 + dir * speed * Time.deltaTime;
         transform.position = new Vector3(newPos2.x, newPos2.y, transform.position.z);
 
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, transform.localScale.x);
 
-        if (collider != null)
+        Debug.DrawLine(transform.position, transform.position + Vector3.up * transform.localScale.x * radiusCoef, Color.red);
+        Debug.DrawLine(transform.position, transform.position + Vector3.down * transform.localScale.x * radiusCoef, Color.red);
+        Debug.DrawLine(transform.position, transform.position + Vector3.left * transform.localScale.x * radiusCoef, Color.red);
+        Debug.DrawLine(transform.position, transform.position + Vector3.right * transform.localScale.x * radiusCoef, Color.red);
+        Collider2D collider = Physics2D.OverlapCircle(transform.position, transform.localScale.x * radiusCoef, LayerMask.GetMask("Enemy Damage Receiver"));
+
+        if (collider != null && collider.TryGetComponent<Damageable>(out Damageable dmg))
         {
-            Debug.Log("Projectile hit target!");
+            dmg.Hurt(1);
         }
     }
 }
