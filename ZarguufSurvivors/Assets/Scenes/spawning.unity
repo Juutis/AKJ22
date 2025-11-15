@@ -514,6 +514,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1516630461709551502, guid: d0b9f023dbcd18f4b9b48941dd290719, type: 3}
+      propertyPath: levels.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516630461709551502, guid: d0b9f023dbcd18f4b9b48941dd290719, type: 3}
+      propertyPath: 'levels.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 40896bfec903d8e4fa3972415ddb6e05, type: 2}
+    - target: {fileID: 1516630461709551502, guid: d0b9f023dbcd18f4b9b48941dd290719, type: 3}
+      propertyPath: 'levels.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a9b26aa38641e245b15affcb497078e, type: 2}
     - target: {fileID: 2692861909222492771, guid: d0b9f023dbcd18f4b9b48941dd290719, type: 3}
       propertyPath: m_Name
       value: LevelManager

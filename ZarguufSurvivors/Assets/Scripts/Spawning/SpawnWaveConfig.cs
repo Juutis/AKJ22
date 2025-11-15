@@ -20,7 +20,6 @@ public class SpawnWaveConfig : ScriptableObject
     private SpawnTiming timing;
     public SpawnTiming Timing { get { return timing; } }
 
-
     [SerializeField]
     [Tooltip("Only if timing is Interval")]
     private float interval;
@@ -42,4 +41,10 @@ public enum SpawnTiming
 {
     Instant,
     Interval
+}
+public enum QueueBehavior
+{
+    WaitsForPrevious,
+    StartsWhenPreviousStarts,
+    StartsWhenLevelStarts
 }
