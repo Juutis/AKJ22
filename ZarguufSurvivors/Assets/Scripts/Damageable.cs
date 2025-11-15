@@ -17,7 +17,6 @@ public class Damageable : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Invoke("DebugHurt", Random.Range(1.0f, 3.0f));
     }
 
     public void DebugHurt()

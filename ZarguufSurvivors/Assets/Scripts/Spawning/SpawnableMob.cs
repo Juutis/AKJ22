@@ -10,7 +10,6 @@ public class SpawnableMob : MonoBehaviour
     {
         mtpEnemy = GetComponent<MoveTowardsPlayerEnemy>();
         damageable = GetComponentInChildren<Damageable>();
-        Begin();
     }
 
     public void Initialize(int mobIndex, int waveIndex, Transform parent)
