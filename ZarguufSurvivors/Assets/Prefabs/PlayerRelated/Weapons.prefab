@@ -176,11 +176,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChainLightningWeapon
   cooldown: 2
-  jumpDelay: 0
+  jumpDelay: 0.1
   projectileRange: 3
   jumpRange: 5
   jumpAmount: 3
-  lifetime: 2
+  lifetime: 0.6
   projectilePrefab: {fileID: 2341477590152459601, guid: 107607914fa1146bfa0d5e52365c1f97, type: 3}
 --- !u!1 &7318319317955456233
 GameObject:

@@ -14,7 +14,7 @@ public class ChainProjectile : MonoBehaviour
     private int jumps;
     private float jumpDelay;
     private float startTime;
-    private bool hasJumped = false;
+    private bool hasJumped;
     private Transform start;
     private Transform target;
     private float lifetime;
@@ -34,6 +34,12 @@ public class ChainProjectile : MonoBehaviour
         this.previousTargets = previousTargets;
         Debug.Log($"Init {transform.name}");
         inited = true;
+        hasJumped = false;
+    }
+
+    void OnEnable()
+    {
+        lineRenderer.SetPositions(new Vector3[] { new Vector3(9999, 9999), new Vector3(9999, 9999) });
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -61,23 +67,27 @@ public class ChainProjectile : MonoBehaviour
         if (Time.time - startTime > lifetime)
         {
             Debug.Log($"Died {transform.name}");
+
+            if (target.gameObject.TryGetComponent<Damageable>(out Damageable enemy))
+            {
+                enemy.Hurt(1);
+            }
+
             Kill();
         }
     }
 
     private void Jump()
     {
-        GameObject newProjectile = pool.Get();
-        ChainProjectile projectile = newProjectile.GetComponent<ChainProjectile>();
-
-        if (projectile == null)
-        {
-            Debug.LogError("Couldn't get ChainProjectile from pool");
-            pool.Kill(newProjectile);
-        }
+        hasJumped = true;
 
         // TODO: Closest enemy?
         Collider2D[] enemies = Physics2D.OverlapCircleAll(start.position, jumpRange, LayerMask.GetMask("Enemy Damage Receiver"));
+
+        if (enemies.Length == 0)
+        {
+            return;
+        }
 
         foreach (Collider2D enemy in enemies)
         {
@@ -90,18 +100,20 @@ public class ChainProjectile : MonoBehaviour
 
             if (enemy != null)
             {
+                GameObject newProjectile = pool.Get();
+                ChainProjectile projectile = newProjectile.GetComponent<ChainProjectile>();
+
+                if (projectile == null)
+                {
+                    Debug.LogError("Couldn't get ChainProjectile from pool");
+                    pool.Kill(newProjectile);
+                }
+
                 projectile.Init(pool, target, enemy.transform, lifetime, jumpRange, jumpDelay, jumps - 1, previousTargets);
-            }
-            else
-            {
-                Debug.Log($"No enemy, killed {transform.name}");
-                projectile.Kill();
             }
 
             break;
         }
-
-        hasJumped = true;
     }
 
     public void Kill()

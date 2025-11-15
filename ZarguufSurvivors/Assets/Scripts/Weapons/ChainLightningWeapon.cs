@@ -41,25 +41,20 @@ public class ChainLightningWeapon : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject newProjectile = pool.Get();
-        ChainProjectile projectile = newProjectile.GetComponent<ChainProjectile>();
-
-        if (projectile == null)
-        {
-            Debug.LogError("Couldn't get ChainProjectile from pool");
-            pool.Kill(newProjectile);
-        }
-
         // TODO: Closest enemy?
         Collider2D enemy = Physics2D.OverlapCircle(player.transform.position, projectileRange, LayerMask.GetMask("Enemy Damage Receiver"));
 
         if (enemy != null)
         {
+            GameObject newProjectile = pool.Get();
+            ChainProjectile projectile = newProjectile.GetComponent<ChainProjectile>();
+
+            if (projectile == null)
+            {
+                Debug.LogError("Couldn't get ChainProjectile from pool");
+                pool.Kill(newProjectile);
+            }
             projectile.Init(pool, transform, enemy.transform, lifetime, jumpRange, jumpDelay, jumpAmount, new());
-        }
-        else
-        {
-            pool.Kill(newProjectile);
         }
 
         lastShoot = Time.time;
