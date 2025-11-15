@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using Mono.Cecil.Cil;
 using UnityEngine;
 
 public class StaticProjectile : MonoBehaviour
@@ -9,9 +12,12 @@ public class StaticProjectile : MonoBehaviour
     private float lifeStart;
     private float radiusCoef = 0.65f;
     IWeapon weapon;
+    private DamageTracker damageTracker = new DamageTracker(1.0f);
+
 
     void Start()
     {
+        Invoke("CleanUpDamageTrackers", 1.0f);
     }
 
     public void Init(IWeapon weapon)
@@ -38,7 +44,72 @@ public class StaticProjectile : MonoBehaviour
 
         if (collider != null && collider.TryGetComponent<Damageable>(out Damageable dmg))
         {
-            dmg.Hurt(1);
+            if (damageTracker.CanHurt(dmg))
+            {
+                applyDamage(dmg, 1);
+            }
         }
     }
+
+    public void applyDamage(Damageable damageable, float damage)
+    {
+        damageable.Hurt(damage);
+        damageTracker.TargetDamaged(damageable);
+    }
+
+    public void CleanUpDamageTrackers()
+    {
+        damageTracker.CleanUp();
+        Invoke("CleanUpDamageTrackers", 1.0f);
+    }
+}
+
+public class DamageTracker
+{
+    private float damageTickDelay = 1.0f;
+    private Dictionary<Damageable, DamageTrackerEntry> damageTrackers = new Dictionary<Damageable, DamageTrackerEntry>();
+
+    public DamageTracker(float damageTickDelay)
+    {
+        this.damageTickDelay = damageTickDelay;
+    }
+
+    public bool CanHurt(Damageable damageable)
+    {
+        DamageTrackerEntry tracker;
+        if (damageTrackers.TryGetValue(damageable, out tracker))
+        {
+            return Time.time > tracker.DamagedAt + damageTickDelay;
+        }
+        return true;
+    }
+
+    public void TargetDamaged(Damageable damageable)
+    {
+        DamageTrackerEntry tracker;
+        if (damageTrackers.TryGetValue(damageable, out tracker))
+        {
+            tracker.DamagedAt = Time.time;
+        }
+        else
+        {
+            tracker = new DamageTrackerEntry();
+            tracker.Damageable = damageable;
+            tracker.DamagedAt = Time.time;
+            damageTrackers[damageable] = tracker;
+        }
+    }
+
+    public void CleanUp()
+    {
+        damageTrackers.Where(it => Time.time > it.Value.DamagedAt + damageTickDelay * 2.0f)
+            .Select(it => damageTrackers.Remove(it.Key));
+    }
+}
+
+public class DamageTrackerEntry
+{
+    private Dictionary<Damageable, DamageTracker> damageTrackers = new Dictionary<Damageable, DamageTracker>();
+    public float DamagedAt;
+    public Damageable Damageable;
 }
