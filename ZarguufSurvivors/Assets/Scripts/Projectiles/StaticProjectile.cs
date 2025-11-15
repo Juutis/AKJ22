@@ -109,7 +109,6 @@ public class DamageTracker
 
 public class DamageTrackerEntry
 {
-    private Dictionary<Damageable, DamageTracker> damageTrackers = new Dictionary<Damageable, DamageTracker>();
     public float DamagedAt;
     public Damageable Damageable;
 }
