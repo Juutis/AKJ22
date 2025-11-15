@@ -253,9 +253,9 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -10
+  m_SortingLayerID: -1676706221
+  m_SortingLayer: -1
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -16620,7 +16620,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000537e0f9c5336453c
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -16775,6 +16775,7 @@ MonoBehaviour:
   - {fileID: 9192125042309663246, guid: a30e6762f94a1ec49b314e683ceab5da, type: 3}
   minFramesPerSecond: 6
   maxFramesPerSecond: 8
+  sortRoot: {fileID: 0}
 --- !u!1 &1715216266
 GameObject:
   m_ObjectHideFlags: 0

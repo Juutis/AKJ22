@@ -19,4 +19,8 @@ public class EnemyConfig : ScriptableObject
     [SerializeField]
     private float maxSpeed;
     public float MaxSpeed { get { return maxSpeed; } }
+
+    [SerializeField]
+    private float colliderRadius;
+    public float ColliderRadius { get { return colliderRadius; } }
 }

@@ -7,6 +7,7 @@ public class SpawnableMob : MonoBehaviour
     private Damageable damageable;
     private SpriteAnimator spriteAnim;
     private EnemyConfig config;
+    private CircleCollider2D coll;
 
     public void SetPosition(Vector2 newPosition)
     {
@@ -18,6 +19,7 @@ public class SpawnableMob : MonoBehaviour
         mtpEnemy = GetComponent<MoveTowardsPlayerEnemy>();
         damageable = GetComponentInChildren<Damageable>();
         spriteAnim = GetComponentInChildren<SpriteAnimator>();
+        coll = GetComponent<CircleCollider2D>();
     }
 
     public void Initialize(EnemyConfig config, int mobIndex, int waveIndex, Transform parent)
@@ -29,6 +31,7 @@ public class SpawnableMob : MonoBehaviour
         mtpEnemy.Init(config);
         damageable.Init(config.Health);
         spriteAnim.Init(config.Sprites);
+        coll.radius = config.ColliderRadius;
     }
 
     public void Begin()

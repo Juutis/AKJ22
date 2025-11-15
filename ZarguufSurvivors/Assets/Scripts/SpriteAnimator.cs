@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpriteAnimator : MonoBehaviour
@@ -15,6 +16,9 @@ public class SpriteAnimator : MonoBehaviour
 
     private SpriteRenderer rend;
     private int spriteIndex;
+
+    [SerializeField]
+    private Transform sortRoot;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +37,7 @@ public class SpriteAnimator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rend.sortingOrder = -(int)(sortRoot.position.y * 100);
     }
 
     public void NextFrame()

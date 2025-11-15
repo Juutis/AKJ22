@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: -4538466838747964795, guid: 9dda325de1ffefb49878705f459fd426, type: 3}
   minSpeed: 6
   maxSpeed: 7
+  colliderRadius: 0.2
