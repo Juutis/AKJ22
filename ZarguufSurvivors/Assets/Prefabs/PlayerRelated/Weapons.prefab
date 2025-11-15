@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1698722121066331896
 Transform:
   m_ObjectHideFlags: 0
@@ -80,6 +80,7 @@ Transform:
   - {fileID: 1698722121066331896}
   - {fileID: 3577062865945107755}
   - {fileID: 2411537149256060505}
+  - {fileID: 5637747705823795167}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4421487131608594370
@@ -98,7 +99,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3577062865945107755
 Transform:
   m_ObjectHideFlags: 0
@@ -126,10 +127,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ce37e57d23cce1b8cf51139538b60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProtectionScrollWeapon
-  cooldown: 3
+  cooldown: 2
   rotateSpeed: 50
   maxProjectiles: 5
   projectileDistance: 3
+--- !u!1 &5400778452851727853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5637747705823795167}
+  - component: {fileID: 4789082344703809738}
+  m_Layer: 0
+  m_Name: Weapon5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5637747705823795167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5400778452851727853}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 757309090667288465}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4789082344703809738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5400778452851727853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b64b58a4e6d0a298029302cec5e097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChainLightningWeapon
+  cooldown: 2
+  jumpDelay: 0
+  projectileRange: 3
+  jumpRange: 5
+  jumpAmount: 3
+  lifetime: 2
+  projectilePrefab: {fileID: 2341477590152459601, guid: 107607914fa1146bfa0d5e52365c1f97, type: 3}
 --- !u!1 &7318319317955456233
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &642271008740683772
 Transform:
   m_ObjectHideFlags: 0
@@ -192,7 +244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2411537149256060505
 Transform:
   m_ObjectHideFlags: 0
