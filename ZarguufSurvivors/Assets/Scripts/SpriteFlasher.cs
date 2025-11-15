@@ -10,13 +10,13 @@ public class SpriteFlasher : MonoBehaviour
     [SerializeField]
     private Color flashColor;
     private Color origColor;
-    private float flashStarted = 0;
+    private float flashStarted = -10.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
-        origColor = rend.color;
+        origColor = new Color(0,0,0,0);
     }
 
     // Update is called once per frame
@@ -26,11 +26,11 @@ public class SpriteFlasher : MonoBehaviour
         if (t >= 0 && t <= 1.0f)
         {
             var color = Color.Lerp(origColor, flashColor, t);
-            rend.color = color;
+            rend.material.SetColor("_Color", color);
         }
         else
         {
-            rend.color = origColor;
+            rend.material.SetColor("_Color", origColor);
         }
     }
 

@@ -55,6 +55,7 @@ public class StaticProjectile : MonoBehaviour
     {
         damageable.Hurt(damage);
         damageTracker.TargetDamaged(damageable);
+        ScreenShake.Instance.Shake(1.0f);
     }
 
     public void CleanUpDamageTrackers()

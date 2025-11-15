@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     private int requiredPlayerXp = 25;
 
     private Rigidbody2D playerBody;
+    private SpriteFlasher flasher;
+    private float lastDamaged = 0;
+    private float invulnerabilityDuration = 0.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
         MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
         MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
         MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
+
+        flasher = GetComponentInChildren<SpriteFlasher>();
     }
 
     // Update is called once per frame
@@ -101,19 +106,37 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider2D)
     {
-        var spawnableMob = collider2D.GetComponent<SpawnableMob>();
-        if (spawnableMob != null) {
+        handleCollision(collider2D);
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        handleCollision(collision);
+    }
+
+    public void handleCollision(Collider2D collider)
+    {
+        var spawnableMob = collider.transform.parent.GetComponent<SpawnableMob>();
+        if (spawnableMob != null && canTakeDamage()) {
             int damage = spawnableMob.GetDamageDoneToPlayer();
             UpdatePlayerHealth(-damage);
+            ScreenShake.Instance.Shake(10.0f);
+            flasher.Flash();
+            lastDamaged = Time.time;
         }
 
-        var xpDrop = collider2D.GetComponent<XpDrop>();
+        var xpDrop = collider.GetComponent<XpDrop>();
         if (xpDrop != null)
         {
             var amount = xpDrop.XpDropAmount;
             UpdatePlayerXp(amount);
             xpDrop.Kill();
         }
+    }
+
+    private bool canTakeDamage()
+    {
+        return Time.time > lastDamaged + invulnerabilityDuration;
     }
 }
 
