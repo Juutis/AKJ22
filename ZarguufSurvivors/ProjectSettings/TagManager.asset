@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Enemy
   - Enemy Damage Receiver
-  - 
+  - FlyingEnemy
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Flying
+    uniqueID: 3365974933
     locked: 0
   - name: ForeGround
     uniqueID: 1011168851

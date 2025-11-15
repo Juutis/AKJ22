@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Level
   Name: Level 1
   spawnWaves:
-  - WaveConfig: {fileID: 11400000, guid: 406f42baab37d314aaeefe8f00cce403, type: 2}
+  - WaveConfig: {fileID: 11400000, guid: ceb78903563342045a74337fcead5e5d, type: 2}
     WaitSecondsBeforeStarting: 0
   - WaveConfig: {fileID: 11400000, guid: f80003a7a37e3db4eb5ca3dbaf5af052, type: 2}
     WaitSecondsBeforeStarting: 1

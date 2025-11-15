@@ -32,11 +32,17 @@ public class SpawnableMob : MonoBehaviour
         damageable.Init(config.Health);
         spriteAnim.Init(config.Sprites);
         coll.radius = config.ColliderRadius;
+        if (config.IsFlying)
+        {
+            gameObject.layer = LayerMask.NameToLayer("FlyingEnemy");
+            GetComponentInChildren<Renderer>().sortingLayerName = "Flying";
+        }
     }
 
     public void Begin()
     {
         // set up mob stats like health, xp drops etc based on some config
+        mtpEnemy.Begin();
     }
 
     public void Kill()
