@@ -27,9 +27,9 @@ public class WaveSpawner : MonoBehaviour
 
     public void Initialize(int index, SpawnWaveConfig waveConfig, Transform mobContainer, Transform playerTransform)
     {
-        if (waveConfig.SpawnableMob == null)
+        if (waveConfig.EnemyConfig == null)
         {
-            Debug.LogError($"Wave {waveConfig} doesn't have SpawnableMob assigned!");
+            Debug.LogError($"Wave {waveConfig} doesn't have EnemyConfig assigned!");
         }
         if (waveConfig.Amount == 0)
         {
@@ -73,7 +73,7 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
         var mob = SpawnableMobPool.main.Get();
-        mob.Initialize(amountSpawned, waveIndex, spawnContainer);
+        mob.Initialize(wave.EnemyConfig, amountSpawned, waveIndex, spawnContainer);
 
         if (wave.Formation == SpawnFormation.CircleAroundPlayer)
         {

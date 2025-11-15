@@ -5,37 +5,35 @@ public class SpawnableMob : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private MoveTowardsPlayerEnemy mtpEnemy;
     private Damageable damageable;
-
-    void Start()
-    {
-        mtpEnemy = GetComponent<MoveTowardsPlayerEnemy>();
-        damageable = GetComponentInChildren<Damageable>();
-    }
-
-    public void Initialize(int mobIndex, int waveIndex, Transform parent)
-    {
-        name = $"Mob[W{waveIndex} - {mobIndex}]";
-        transform.parent = parent;
-    }
+    private SpriteAnimator spriteAnim;
+    private EnemyConfig config;
 
     public void SetPosition(Vector2 newPosition)
     {
         transform.position = newPosition;
     }
 
+    public void Create()
+    {
+        mtpEnemy = GetComponent<MoveTowardsPlayerEnemy>();
+        damageable = GetComponentInChildren<Damageable>();
+        spriteAnim = GetComponentInChildren<SpriteAnimator>();
+    }
+
+    public void Initialize(EnemyConfig config, int mobIndex, int waveIndex, Transform parent)
+    {
+        name = $"Mob[W{waveIndex} - {mobIndex}]";
+        transform.parent = parent;
+
+        this.config = config;
+        mtpEnemy.Init(config);
+        damageable.Init(config.Health);
+        spriteAnim.Init(config.Sprites);
+    }
+
     public void Begin()
     {
         // set up mob stats like health, xp drops etc based on some config
-        if (mtpEnemy != null)
-        {
-            mtpEnemy.Init();
-            damageable.Init();
-        }
-    }
-
-    public void Hurt()
-    {
-        
     }
 
     public void Kill()

@@ -2,35 +2,22 @@ using UnityEngine;
 
 public class MoveTowardsPlayerEnemy : MonoBehaviour
 {
-    [SerializeField]
-    private float minSpeed = 3.0f;
-
-    [SerializeField]
-    private float maxSpeed = 5.0f;
-
     private float speed;
     private Rigidbody2D rb;
     private Transform target;
-    private Animator anim;
     private SpriteRenderer rend;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Init(EnemyConfig config)
     {
         rb = GetComponent<Rigidbody2D>();
         rend = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    public void Init()
-    {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        speed = Random.Range(minSpeed, maxSpeed);
+        speed = Random.Range(config.MinSpeed, config.MaxSpeed);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void FixedUpdate()

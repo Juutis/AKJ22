@@ -4,9 +4,6 @@ using UnityEngine.Events;
 public class Damageable : MonoBehaviour
 {
     [SerializeField]
-    private float maxHealth;
-
-    [SerializeField]
     private UnityEvent onDamageReceived;
 
     [SerializeField]
@@ -25,7 +22,7 @@ public class Damageable : MonoBehaviour
         Invoke("DebugHurt", Random.Range(1.0f, 3.0f));
     }
 
-    public void Init()
+    public void Init(float maxHealth)
     {
         currentHealth = maxHealth;
     }

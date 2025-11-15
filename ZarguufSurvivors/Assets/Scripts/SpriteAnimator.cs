@@ -7,7 +7,11 @@ public class SpriteAnimator : MonoBehaviour
     private List<Sprite> sprites;
 
     [SerializeField]
-    private float framesPerSecond = 6;
+    private float minFramesPerSecond = 6;
+
+    [SerializeField]
+    private float maxFramesPerSecond = 8;
+    private float frameDuration;
 
     private SpriteRenderer rend;
     private int spriteIndex;
@@ -16,7 +20,14 @@ public class SpriteAnimator : MonoBehaviour
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
-        Invoke("NextFrame", 1.0f/framesPerSecond);
+        rend.sprite = sprites[0];
+        frameDuration = Random.Range(1.0f / maxFramesPerSecond, 1.0f / minFramesPerSecond);
+        Invoke("NextFrame", Random.Range(0.0f, frameDuration));
+    }
+
+    public void Init(List<Sprite> sprites)
+    {
+        this.sprites = sprites;
     }
 
     // Update is called once per frame
@@ -32,6 +43,6 @@ public class SpriteAnimator : MonoBehaviour
             spriteIndex = 0;
         }
         rend.sprite = sprites[spriteIndex];
-        Invoke("NextFrame", 1.0f/framesPerSecond);
+        Invoke("NextFrame", frameDuration);
     }
 }

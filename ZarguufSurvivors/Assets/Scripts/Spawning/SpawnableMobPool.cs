@@ -59,6 +59,7 @@ public class SpawnableMobPool : MonoBehaviour
     {
         SpawnableMob spawnableMob = Instantiate(spawnableMobPrefab, poolContainer);
         spawnableMob.name = "SpawnableMob (fromPool)";
+        spawnableMob.Create();
         spawnableMob.gameObject.SetActive(false);
         return spawnableMob;
     }
