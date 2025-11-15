@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
@@ -10,6 +11,9 @@ public class WaveSpawner : MonoBehaviour
     private WaveStatus status = WaveStatus.None;
     public WaveStatus Status {get {return status;}}
 
+
+    private SpawnWave spawnWaveConfig;
+    public QueueBehavior QueueBehavior { get { return spawnWaveConfig.QueueBehavior; } }
     private SpawnWaveConfig wave;
 
     private Transform spawnContainer;
@@ -25,8 +29,12 @@ public class WaveSpawner : MonoBehaviour
 
     private float waitTime = 0f;
 
-    public void Initialize(int index, SpawnWaveConfig waveConfig, Transform mobContainer, Transform playerTransform)
+    private float waitBeforeStartTimer = 0f;
+
+    public void Initialize(int index, SpawnWave spawnWaveConfig, Transform mobContainer, Transform playerTransform)
     {
+        this.spawnWaveConfig = spawnWaveConfig;
+        var waveConfig = spawnWaveConfig.WaveConfig;
         if (waveConfig.EnemyConfig == null)
         {
             Debug.LogError($"Wave {waveConfig} doesn't have EnemyConfig assigned!");
@@ -50,20 +58,19 @@ public class WaveSpawner : MonoBehaviour
         SetName();
     }
 
-    public void StartWaiting(float waitTime)
+    public void StartWaiting()
     {
         status = WaveStatus.Waiting;
-        this.waitTime = waitTime;
+        waitTime = spawnWaveConfig.WaitSecondsBeforeStarting;
         SetName();
     }
 
-    public void Begin()
+    private void Begin()
     {
         isSpawning = true;
         status = WaveStatus.Spawning;
         spawnTimer = 0f;
         SetName();
-        //Debug.Log($"Started spawing '{wave.name}'");
     }
 
     private void SpawnMob()
@@ -86,7 +93,6 @@ public class WaveSpawner : MonoBehaviour
         {
             isSpawning = false;
             status = WaveStatus.Finished;
-            Debug.Log("Wave spawns finished!");
         }
         SetName();
     }
@@ -107,6 +113,14 @@ public class WaveSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (status == WaveStatus.Waiting)
+        {
+            waitBeforeStartTimer += Time.deltaTime;
+            if (waitBeforeStartTimer >= waitTime)
+            {
+                Begin();
+            }
+        }
         if (!isSpawning)
         {
             return;

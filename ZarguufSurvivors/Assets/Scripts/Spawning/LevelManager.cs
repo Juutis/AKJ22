@@ -13,21 +13,27 @@ public class LevelManager : MonoBehaviour
     }
 
     [SerializeField]
+    private List<LevelConfig> levels = new();
+
+    private int currentLevelIndex = 0;
+    private int nextLevelIndex = 0;
+
     private LevelConfig currentLevelConfig;
 
     [SerializeField]
-    private WaveSpawner waveSpawnerPrefab;
+    private WaveManager waveManagerPrefab;
 
     [SerializeField]
     private Transform waveContainer;
 
     [SerializeField]
+    private Transform parentPrefab;
+
+    [SerializeField]
     private Transform mobContainer;
 
-    private int currentWaveIndex = 0;
-    private int nextWaveIndex = 0;
-    private WaveSpawner currentWave;
-    private SpawnWave currentWaveConfig;
+
+    private Transform currentLevelParent;
 
     [SerializeField]
     private Transform playerTransform;
@@ -35,7 +41,9 @@ public class LevelManager : MonoBehaviour
     private bool started = false;
     private bool finished = false;
 
-    private float waveWaitTimer = 0f;
+    private bool waitingForLevel = false;
+
+    private float levelWaitTimer = 0f;
 
     private Timer runTimer;
 
@@ -56,9 +64,9 @@ public class LevelManager : MonoBehaviour
 
     public void Begin()
     {
-        if (currentLevelConfig == null)
+        if (levels.Count == 0)
         {
-            Debug.LogWarning("No currentLevelConfig set in LevelManager!");
+            Debug.LogWarning("No levels set in LevelManager!");
             return;
         }
         MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
@@ -70,7 +78,7 @@ public class LevelManager : MonoBehaviour
 
     public void Finish()
     {
-        Debug.Log("<color=green>All waves have been spawned!</color>");
+        Debug.Log("<color=green>All levels and waves have been spawned!</color>");
         finished = true;
     }
 
@@ -124,28 +132,36 @@ public class LevelManager : MonoBehaviour
 
         MessageBus.Publish(new GameDurationUpdatedEvent(runTimer.GetTime()));
 
-        if (currentWave == null || currentWave.Status == WaveStatus.Finished)
+        if (currentLevelConfig == null)
         {
-            currentWaveConfig = GetNextWave();
-            if (currentWaveConfig == null)
+            currentLevelConfig = GetNextLevel();
+            if (currentLevelConfig == null)
             {
                 Finish();
                 return;
             }
-            currentWave = Instantiate(waveSpawnerPrefab, waveContainer);
-            currentWave.Initialize(currentWaveIndex, currentWaveConfig.WaveConfig, mobContainer, playerTransform);
-        }
-        else if (currentWave.Status == WaveStatus.None)
-        {
-            currentWave.StartWaiting(currentWaveConfig.WaitSecondsBeforeStarting);
-            waveWaitTimer = 0f;
-        }
-        else if (currentWave.Status == WaveStatus.Waiting)
-        {
-            waveWaitTimer += Time.deltaTime;
-            if (waveWaitTimer >= currentWaveConfig.WaitSecondsBeforeStarting)
+            else
             {
-                currentWave.Begin();
+                currentLevelParent = Instantiate(parentPrefab, waveContainer);
+                var waitForSecondsInfo = $"{currentLevelConfig.WaitBeforeStartingNextLevel}s";
+                currentLevelParent.name = $"Level #{currentLevelIndex} [WAITING {waitForSecondsInfo}]";
+                waitingForLevel = true;
+                levelWaitTimer = 0f;
+            }
+        }
+        else if (waitingForLevel)
+        {
+            levelWaitTimer += Time.deltaTime;
+            if (levelWaitTimer >= currentLevelConfig.WaitBeforeStartingNextLevel)
+            {
+                waitingForLevel = false;
+                var waveManager = Instantiate(waveManagerPrefab);
+                currentLevelParent.name = $"Level #{currentLevelIndex} [SPAWNING]";
+                waveManager.Initialize(currentLevelIndex, currentLevelConfig, currentLevelParent, mobContainer, playerTransform, delegate
+                {
+                    currentLevelParent.name = $"Level #{currentLevelIndex} [FINISHED]";
+                    currentLevelConfig = null;
+                });
             }
         }
     }
@@ -175,12 +191,16 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private SpawnWave GetNextWave()
+    private LevelConfig GetNextLevel()
     {
-        SpawnWave waveConfig = currentLevelConfig.GetWave(nextWaveIndex);
-        currentWaveIndex = nextWaveIndex;
-        nextWaveIndex += 1;
-        return waveConfig;
+        if (levels.Count <= nextLevelIndex)
+        {
+            return null;
+        }
+        var level = levels[nextLevelIndex];
+        currentLevelIndex = nextLevelIndex;
+        nextLevelIndex += 1;
+        return level;
     }
 }
 

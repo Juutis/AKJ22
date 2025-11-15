@@ -23,4 +23,22 @@ public class EnemyConfig : ScriptableObject
     [SerializeField]
     private float colliderRadius;
     public float ColliderRadius { get { return colliderRadius; } }
+    
+    [SerializeField]
+    private bool isFlying;
+    public bool IsFlying { get { return isFlying; } }
+
+    [SerializeField]
+    private MoveStrategy moveStrategy;
+    public MoveStrategy MoveStrategy { get { return moveStrategy; } }
+
+    [SerializeField]
+    private float runThroughDistance;
+    public float RunThroughDistance { get { return runThroughDistance; } }
+}
+
+public enum MoveStrategy
+{
+    RUN_TOWARDS_PLAYER,
+    RUN_THROUGH,
 }

@@ -13,6 +13,8 @@ public class StraightFlyingProjectile : MonoBehaviour
     private float lifeStart;
     private float radiusCoef = 0.65f;
 
+    private DamageTracker damageTracker = new DamageTracker(100.0f);
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -49,7 +51,16 @@ public class StraightFlyingProjectile : MonoBehaviour
 
         if (collider != null && collider.TryGetComponent<Damageable>(out Damageable dmg))
         {
-            dmg.Hurt(1);
+            if (damageTracker.CanHurt(dmg))
+            {
+                applyDamage(dmg, 1);
+            }
         }
+    }
+
+    public void applyDamage(Damageable damageable, float damage)
+    {
+        damageable.Hurt(damage);
+        damageTracker.TargetDamaged(damageable);
     }
 }

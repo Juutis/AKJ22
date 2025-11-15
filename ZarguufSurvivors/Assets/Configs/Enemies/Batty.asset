@@ -18,4 +18,7 @@ MonoBehaviour:
   - {fileID: 3203004115538406449, guid: bed0f51de9a790c48b83477d84d73574, type: 3}
   minSpeed: 5
   maxSpeed: 6
-  colliderRadius: 0.2
+  colliderRadius: 0.1
+  isFlying: 1
+  moveStrategy: 1
+  runThroughDistance: 10
