@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StraightFlyingProjectile
   randomDirection: 0
-  projectileType: 2
+  projectileType: 0
 --- !u!1 &8100251189824933665
 GameObject:
   m_ObjectHideFlags: 0
