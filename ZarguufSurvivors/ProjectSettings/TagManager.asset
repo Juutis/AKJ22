@@ -47,5 +47,14 @@ TagManager:
   - name: ForeGround
     uniqueID: 1011168851
     locked: 0
+  - name: Layer3
+    uniqueID: 3190286213
+    locked: 0
+  - name: Layer4
+    uniqueID: 705979503
+    locked: 0
+  - name: ForeGroundUI
+    uniqueID: 283559525
+    locked: 0
   m_RenderingLayers:
   - Default

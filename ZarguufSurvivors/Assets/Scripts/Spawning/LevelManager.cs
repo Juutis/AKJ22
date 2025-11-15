@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +13,7 @@ public class LevelManager : MonoBehaviour
     }
 
     [SerializeField]
-    private LevelConfig currentLevel;
+    private LevelConfig currentLevelConfig;
 
     [SerializeField]
     private WaveSpawner waveSpawnerPrefab;
@@ -36,6 +37,17 @@ public class LevelManager : MonoBehaviour
 
     private float waveWaitTimer = 0f;
 
+    private Timer runTimer;
+
+    private int totalPlayerXp = 0;
+    private int currentPlayerXp = 0;
+    private int currentPlayerLevel = 1;
+    private int requiredPlayerXp = 25;
+
+    private int playerHealth = 100;
+    private int playerMaxHealth = 100;
+    private int playerKillCount = 0;
+
     void Start()
     {
         //playerTransform = Player.main.Transform;
@@ -44,7 +56,16 @@ public class LevelManager : MonoBehaviour
 
     public void Begin()
     {
+        if (currentLevelConfig == null)
+        {
+            Debug.LogWarning("No currentLevelConfig set in LevelManager!");
+            return;
+        }
+        MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
+        MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
+        MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
         started = true;
+        runTimer = new();
     }
 
     public void Finish()
@@ -53,26 +74,56 @@ public class LevelManager : MonoBehaviour
         finished = true;
     }
 
-    // used for spawning mobs, how to calculate?
     public float GetDistanceOutsideScreen()
     {
-        return 5f;
+        var camHeight = Camera.main.orthographicSize;
+        var camWidth = camHeight * Camera.main.aspect;
+        return Mathf.Max(camWidth, camHeight) * 1.41f + 1.0f;
+    }
+
+    public void UpdatePlayerXp(int xpGained)
+    {
+        currentPlayerXp += xpGained;
+        totalPlayerXp += xpGained;
+        if (currentPlayerXp >= requiredPlayerXp)
+        {
+            currentPlayerXp = 0;
+            currentPlayerLevel += 1;
+            MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
+        }
+        MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
+    }
+
+    public void UpdatePlayerHealth(int healthChange)
+    {
+        playerHealth += healthChange;
+        if (playerHealth <= 0)
+        {
+            Debug.Log("<color=red>Player died!!!</color>");
+        }
+        playerHealth = Math.Clamp(playerHealth, 0, playerMaxHealth);
+        MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
+    }
+
+    public void UpdatePlayerKillCount(int killCount)
+    {
+        playerKillCount += killCount;
+        MessageBus.Publish(new PlayerKillCountChange(playerKillCount));
     }
 
     void Update()
     {
 #if UNITY_EDITOR
-        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            var mob = GameObject.FindFirstObjectByType<SpawnableMob>();
-            if (mob != null) { mob.Kill(); }
-        }
+        DebugStuffz();
 #endif
 
         if (!started || finished)
         {
             return;
         }
+
+        MessageBus.Publish(new GameDurationUpdatedEvent(runTimer.GetTime()));
+
         if (currentWave == null || currentWave.Status == WaveStatus.Finished)
         {
             currentWaveConfig = GetNextWave();
@@ -84,29 +135,106 @@ public class LevelManager : MonoBehaviour
             currentWave = Instantiate(waveSpawnerPrefab, waveContainer);
             currentWave.Initialize(currentWaveIndex, currentWaveConfig.WaveConfig, mobContainer, playerTransform);
         }
-        else
+        else if (currentWave.Status == WaveStatus.None)
         {
-            if (currentWave.Status == WaveStatus.None)
+            currentWave.StartWaiting(currentWaveConfig.WaitSecondsBeforeStarting);
+            waveWaitTimer = 0f;
+        }
+        else if (currentWave.Status == WaveStatus.Waiting)
+        {
+            waveWaitTimer += Time.deltaTime;
+            if (waveWaitTimer >= currentWaveConfig.WaitSecondsBeforeStarting)
             {
-                currentWave.StartWaiting(currentWaveConfig.WaitSecondsBeforeStarting);
-                waveWaitTimer = 0f;
+                currentWave.Begin();
             }
-            if (currentWave.Status == WaveStatus.Waiting)
-            {
-                waveWaitTimer += Time.deltaTime;
-                if (waveWaitTimer >= currentWaveConfig.WaitSecondsBeforeStarting)
-                {
-                    currentWave.Begin();
-                }
-            }
+        }
+    }
+
+    private void DebugStuffz()
+    {
+        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            var mob = GameObject.FindFirstObjectByType<SpawnableMob>();
+            if (mob != null) { mob.Kill(); }
+        }
+        if (Keyboard.current != null && Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            UpdatePlayerXp(1);
+        }
+        if (Keyboard.current != null && Keyboard.current.oKey.wasPressedThisFrame)
+        {
+            UpdatePlayerHealth(-5);
+        }
+        if (Keyboard.current != null && Keyboard.current.iKey.wasPressedThisFrame)
+        {
+            UpdatePlayerHealth(2);
+        }
+        if (Keyboard.current != null && Keyboard.current.uKey.wasPressedThisFrame)
+        {
+            UpdatePlayerKillCount(2);
         }
     }
 
     private SpawnWave GetNextWave()
     {
-        SpawnWave waveConfig = currentLevel.GetWave(nextWaveIndex);
+        SpawnWave waveConfig = currentLevelConfig.GetWave(nextWaveIndex);
         currentWaveIndex = nextWaveIndex;
         nextWaveIndex += 1;
         return waveConfig;
+    }
+}
+
+
+public struct GameDurationUpdatedEvent : IEvent
+{
+    public double CurrentRunTime { get; }
+
+    public GameDurationUpdatedEvent(double currentTime)
+    {
+        CurrentRunTime = currentTime;
+    }
+}
+
+public struct XpUpdatedEvent : IEvent
+{
+    public int CurrentXp { get; }
+    public int RequiredXp { get; }
+
+    public XpUpdatedEvent(int currentXp, int requiredXp)
+    {
+        CurrentXp = currentXp;
+        RequiredXp = requiredXp;
+    }
+}
+
+public struct LevelGainedEvent : IEvent
+{
+    public int CurrentLevel;
+
+    public LevelGainedEvent(int currentLevel)
+    {
+        CurrentLevel = currentLevel;
+    }
+}
+
+public struct PlayerHealthChangeEvent : IEvent
+{
+    public int CurrentHealth;
+    public int MaxHealth;
+
+    public PlayerHealthChangeEvent(int currentHealth, int maxHealth)
+    {
+        CurrentHealth = currentHealth;
+        MaxHealth = maxHealth;
+    }
+}
+
+public struct PlayerKillCountChange : IEvent
+{
+    public int KillCount;
+
+    public PlayerKillCountChange(int killCount)
+    {
+        KillCount = killCount;
     }
 }

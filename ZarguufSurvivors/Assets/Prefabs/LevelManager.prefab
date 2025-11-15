@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4bbdf3d1579841448fbcccac8881d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  currentLevel: {fileID: 11400000, guid: 95d9324d74508b3489e6005583e3ce12, type: 2}
+  currentLevelConfig: {fileID: 11400000, guid: 95d9324d74508b3489e6005583e3ce12, type: 2}
   waveSpawnerPrefab: {fileID: 7577724820352989570, guid: 6ddb3125f1ae33c4682c368ca0039938, type: 3}
   waveContainer: {fileID: 2652499596382200116}
   mobContainer: {fileID: 4776621980683604702}
