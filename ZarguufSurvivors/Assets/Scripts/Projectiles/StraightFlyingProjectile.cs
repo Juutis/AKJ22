@@ -34,6 +34,7 @@ public class StraightFlyingProjectile : MonoBehaviour
 
         this.speed = speed;
         lifeStart = Time.time;
+        damageTracker = new DamageTracker(100.0f);
     }
 
     // Update is called once per frame

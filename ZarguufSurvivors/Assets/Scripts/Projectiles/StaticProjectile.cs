@@ -12,7 +12,7 @@ public class StaticProjectile : MonoBehaviour
     private float lifeStart;
     private float radiusCoef = 0.65f;
     IWeapon weapon;
-    private DamageTracker damageTracker = new DamageTracker(1.0f);
+    private DamageTracker damageTracker;
 
 
     void Start()
@@ -31,6 +31,7 @@ public class StaticProjectile : MonoBehaviour
         Init(weapon);
         transform.position = pos;
         transform.localScale = new Vector3(scale, scale, scale);
+        damageTracker = new DamageTracker(1.0f);
     }
 
     // Update is called once per frame

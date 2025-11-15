@@ -111,6 +111,7 @@ MonoBehaviour:
   minFramesPerSecond: 6
   maxFramesPerSecond: 8
   sortRoot: {fileID: 4544636700070253501}
+  loop: 1
 --- !u!114 &395084527887171406
 MonoBehaviour:
   m_ObjectHideFlags: 0
