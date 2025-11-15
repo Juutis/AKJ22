@@ -42,11 +42,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveValue.x < 0)
         {
-            playerSprite.flipY = true;
+            playerSprite.flipX = true;
         }
         else if (moveValue.x > 0)
         {
-            playerSprite.flipY = false;
+            playerSprite.flipX = false;
         }
 
         if (useRigidbody)
