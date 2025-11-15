@@ -47,7 +47,9 @@ public class StaticProjectile : MonoBehaviour
         {
             if (damageTracker.CanHurt(dmg))
             {
-                applyDamage(dmg, 1);
+                var damageToDo = 1;
+                applyDamage(dmg, damageToDo);
+                UIManager.main.ShowPoppingText($"{damageToDo}", Color.red, transform.position);
             }
         }
     }

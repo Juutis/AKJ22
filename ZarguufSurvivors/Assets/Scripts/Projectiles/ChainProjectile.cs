@@ -70,7 +70,9 @@ public class ChainProjectile : MonoBehaviour
 
             if (target.gameObject.TryGetComponent<Damageable>(out Damageable enemy))
             {
-                enemy.Hurt(1);
+                var damageToDo = 1;
+                enemy.Hurt(damageToDo);
+                UIManager.main.ShowPoppingText($"{damageToDo}", Color.red, transform.position);
             }
 
             Kill();
