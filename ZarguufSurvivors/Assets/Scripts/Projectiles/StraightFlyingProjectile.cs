@@ -45,11 +45,6 @@ public class StraightFlyingProjectile : MonoBehaviour
         Vector2 newPos2 = oldPos2 + dir * speed * Time.deltaTime;
         transform.position = new Vector3(newPos2.x, newPos2.y, transform.position.z);
 
-
-        Debug.DrawLine(transform.position, transform.position + Vector3.up * transform.localScale.x * radiusCoef, Color.red);
-        Debug.DrawLine(transform.position, transform.position + Vector3.down * transform.localScale.x * radiusCoef, Color.red);
-        Debug.DrawLine(transform.position, transform.position + Vector3.left * transform.localScale.x * radiusCoef, Color.red);
-        Debug.DrawLine(transform.position, transform.position + Vector3.right * transform.localScale.x * radiusCoef, Color.red);
         Collider2D collider = Physics2D.OverlapCircle(transform.position, transform.localScale.x * radiusCoef, LayerMask.GetMask("Enemy Damage Receiver"));
 
         if (collider != null && collider.TryGetComponent<Damageable>(out Damageable dmg))
