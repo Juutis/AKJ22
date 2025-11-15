@@ -74,10 +74,11 @@ public class LevelManager : MonoBehaviour
         finished = true;
     }
 
-    // used for spawning mobs, how to calculate?
     public float GetDistanceOutsideScreen()
     {
-        return 5f;
+        var camHeight = Camera.main.orthographicSize;
+        var camWidth = camHeight * Camera.main.aspect;
+        return Mathf.Max(camWidth, camHeight) * 1.41f + 1.0f;
     }
 
     public void UpdatePlayerXp(int xpGained)
