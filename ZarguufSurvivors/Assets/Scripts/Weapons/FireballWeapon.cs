@@ -30,7 +30,7 @@ public class FireballWeapon : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject newProjectile = Instantiate(projectilePrefab);
+        GameObject newProjectile = ProjectilePoolManager.main.GetPool(ProjectileType.Fireball).Get();
         newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, projectileSpeed);
 
         Vector2 randomPos2 = Random.insideUnitCircle.normalized * 0.2f;

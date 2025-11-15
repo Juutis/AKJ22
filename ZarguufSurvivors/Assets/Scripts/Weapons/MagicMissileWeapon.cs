@@ -6,8 +6,6 @@ public class MagicMissileWeapon : MonoBehaviour
     private float cooldown;
     [SerializeField]
     private float projectileSpeed;
-    [SerializeField]
-    private GameObject projectilePrefab;
 
     private float lastShoot;
     private PlayerMovement player;
@@ -30,7 +28,7 @@ public class MagicMissileWeapon : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject newProjectile = Instantiate(projectilePrefab);
+        GameObject newProjectile = ProjectilePoolManager.main.GetPool(ProjectileType.MagicMissile).Get();
         newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, projectileSpeed);
 
         Vector2 randomPos2 = Random.insideUnitCircle.normalized * 0.2f;

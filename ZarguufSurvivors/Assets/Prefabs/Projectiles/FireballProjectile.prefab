@@ -21,6 +21,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1835048153025202968, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
+      propertyPath: projectileType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835048153025202968, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: randomDirection
       value: 1
       objectReference: {fileID: 0}
