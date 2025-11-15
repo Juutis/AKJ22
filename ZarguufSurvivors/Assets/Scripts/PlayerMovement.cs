@@ -89,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         }
         playerHealth = Math.Clamp(playerHealth, 0, playerMaxHealth);
         MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
+        UIManager.main.ShowPoppingText($"{healthChange}", healthChange > 0 ? Color.green : Color.red, transform.position);
     }
 
     public void UpdatePlayerXp(int xpGained)
@@ -102,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
             MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
         }
         MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
+        UIManager.main.ShowPoppingText($"{xpGained}", Color.yellow, transform.position);
     }
 
     void OnTriggerEnter2D(Collider2D collider2D)
