@@ -1,0 +1,45 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "SpawnWaveConfig", menuName = "Scriptable Objects/SpawnWaveConfig")]
+public class SpawnWaveConfig : ScriptableObject
+{
+    [SerializeField]
+    private SpawnableMob spawnableMob;
+
+    public SpawnableMob SpawnableMob { get { return spawnableMob; } }
+
+    [SerializeField]
+    private SpawnFormation formation;
+    public SpawnFormation Formation {get {return formation;}}
+
+    [SerializeField]
+    private int amount = 5;
+    public int Amount {get {return amount;}}
+
+    [SerializeField]
+    private SpawnTiming timing;
+    public SpawnTiming Timing { get { return timing; } }
+
+
+    [SerializeField]
+    [Tooltip("Only if timing is Interval")]
+    private float interval;
+    public float Interval { get { return interval; } }
+
+    [SerializeField]
+    [Tooltip("Only if timing is Interval")]
+    private float amountPerInterval = 1;
+    public float AmountPerInterval { get { return amountPerInterval; } }
+
+}
+
+public enum SpawnFormation
+{
+    CircleAroundPlayer
+}
+
+public enum SpawnTiming
+{
+    Instant,
+    Interval
+}
