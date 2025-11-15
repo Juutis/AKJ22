@@ -3,10 +3,14 @@ using UnityEngine;
 public class SpawnableMob : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private MoveTowardsPlayerEnemy mtpEnemy;
+    private Damageable damageable;
 
     void Start()
     {
-        
+        mtpEnemy = GetComponent<MoveTowardsPlayerEnemy>();
+        damageable = GetComponentInChildren<Damageable>();
+        Begin();
     }
 
     public void Initialize(int mobIndex, int waveIndex, Transform parent)
@@ -23,6 +27,16 @@ public class SpawnableMob : MonoBehaviour
     public void Begin()
     {
         // set up mob stats like health, xp drops etc based on some config
+        if (mtpEnemy != null)
+        {
+            mtpEnemy.Init();
+            damageable.Init();
+        }
+    }
+
+    public void Hurt()
+    {
+        
     }
 
     public void Kill()
