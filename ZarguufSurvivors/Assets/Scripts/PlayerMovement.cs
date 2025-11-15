@@ -106,7 +106,17 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider2D)
     {
-        var spawnableMob = collider2D.GetComponent<SpawnableMob>();
+        handleCollision(collider2D);
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        handleCollision(collision);
+    }
+
+    public void handleCollision(Collider2D collider)
+    {
+        var spawnableMob = collider.transform.parent.GetComponent<SpawnableMob>();
         if (spawnableMob != null && canTakeDamage()) {
             int damage = spawnableMob.GetDamageDoneToPlayer();
             UpdatePlayerHealth(-damage);
@@ -115,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
             lastDamaged = Time.time;
         }
 
-        var xpDrop = collider2D.GetComponent<XpDrop>();
+        var xpDrop = collider.GetComponent<XpDrop>();
         if (xpDrop != null)
         {
             var amount = xpDrop.XpDropAmount;
