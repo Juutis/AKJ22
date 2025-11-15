@@ -26,8 +26,7 @@ public class ProtectionScrollWeapon : MonoBehaviour
         lastShoot = 0;
         player = transform.parent.GetComponent<PlayerMovement>();
 
-        pool = ProjectilePoolManager.main.GetPool(ProjectileType.ProtectionScroll);
-        pool.SetContainer(transform);
+        MoveContainer();
     }
 
     // Update is called once per frame
@@ -37,20 +36,32 @@ public class ProtectionScrollWeapon : MonoBehaviour
         {
             Shoot();
         }
-        
+
         transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
     }
 
     private void Shoot()
     {
+        lastShoot = Time.time;
         GameObject newProjectile = pool.Get();
         StaticProjectile projectile = newProjectile.GetComponent<StaticProjectile>();
-        projectiles.Add(projectile);
 
-        for (int i = 0; i < projectiles.Count; i++) {
-            projectiles[i].transform.position = player.transform.position + Quaternion.Euler(0, 0, 360 / projectiles.Count * i) * Vector2.up * projectileDistance;
+        if (projectile == null) {
+            Debug.LogError("Couldn't get a projectile");
+            return;
         }
 
-        lastShoot = Time.time;
+        projectiles.Add(projectile);
+
+        for (int i = 0; i < projectiles.Count; i++)
+        {
+            projectiles[i].transform.position = player.transform.position + Quaternion.Euler(0, 0, 360 / projectiles.Count * i) * Vector2.up * projectileDistance;
+        }
+    }
+
+    private void MoveContainer()
+    {
+        pool = ProjectilePoolManager.main.GetPool(ProjectileType.ProtectionScroll);
+        pool.SetContainer(transform);
     }
 }

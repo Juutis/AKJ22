@@ -55,13 +55,20 @@ public class ProjectilePool : MonoBehaviour
     }
 
     public void SetContainer(Transform container)
-    {
-        foreach (Transform t in currentPool)
-        {
-            t.parent = container;
+    { 
+        List<GameObject> initializedObjects = new();
+
+        for (int i = 0; i < objectsToInitializeAtStart; i += 1)
+        { 
+            initializedObjects.Add(pool.Get());
         }
 
         currentPool = container;
+
+        foreach (GameObject obj in initializedObjects)
+        { 
+            pool.Release(obj);
+        }
     }
 
     public void Kill(GameObject projectile)
@@ -72,7 +79,7 @@ public class ProjectilePool : MonoBehaviour
     private GameObject CreateItem()
     {
         GameObject item = Instantiate(projectilePrefab, currentPool);
-        item.name = "Projectile (fromPool)";
+        item.name = $"Projectile {poolType} (fromPool) to {currentPool.name}";
         item.gameObject.SetActive(false);
         return item;
     }
