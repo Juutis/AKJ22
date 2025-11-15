@@ -20,3 +20,9 @@ MonoBehaviour:
     WaitSecondsBeforeStarting: 1
   - WaveConfig: {fileID: 11400000, guid: 4bf6c969d54b7cf48bfc50ad069b1a2f, type: 2}
     WaitSecondsBeforeStarting: 5
+  - WaveConfig: {fileID: 11400000, guid: ceb78903563342045a74337fcead5e5d, type: 2}
+    WaitSecondsBeforeStarting: 10
+  - WaveConfig: {fileID: 11400000, guid: 0a3af6409614e4d46ac13a3c42ae9f58, type: 2}
+    WaitSecondsBeforeStarting: 15
+  - WaveConfig: {fileID: 11400000, guid: 2f41ee470f6ef2b4d8281023ba8f1c5c, type: 2}
+    WaitSecondsBeforeStarting: 20

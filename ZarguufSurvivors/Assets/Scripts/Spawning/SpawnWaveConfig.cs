@@ -4,9 +4,9 @@ using UnityEngine;
 public class SpawnWaveConfig : ScriptableObject
 {
     [SerializeField]
-    private SpawnableMob spawnableMob;
+    private EnemyConfig enemyConfig;
 
-    public SpawnableMob SpawnableMob { get { return spawnableMob; } }
+    public EnemyConfig EnemyConfig { get { return enemyConfig; } }
 
     [SerializeField]
     private SpawnFormation formation;

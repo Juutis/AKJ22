@@ -3,21 +3,35 @@ using UnityEngine;
 public class SpawnableMob : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    void Start()
-    {
-        
-    }
-
-    public void Initialize(int mobIndex, int waveIndex, Transform parent)
-    {
-        name = $"Mob[W{waveIndex} - {mobIndex}]";
-        transform.parent = parent;
-    }
+    private MoveTowardsPlayerEnemy mtpEnemy;
+    private Damageable damageable;
+    private SpriteAnimator spriteAnim;
+    private EnemyConfig config;
+    private CircleCollider2D coll;
 
     public void SetPosition(Vector2 newPosition)
     {
         transform.position = newPosition;
+    }
+
+    public void Create()
+    {
+        mtpEnemy = GetComponent<MoveTowardsPlayerEnemy>();
+        damageable = GetComponentInChildren<Damageable>();
+        spriteAnim = GetComponentInChildren<SpriteAnimator>();
+        coll = GetComponent<CircleCollider2D>();
+    }
+
+    public void Initialize(EnemyConfig config, int mobIndex, int waveIndex, Transform parent)
+    {
+        name = $"Mob[W{waveIndex} - {mobIndex}]";
+        transform.parent = parent;
+
+        this.config = config;
+        mtpEnemy.Init(config);
+        damageable.Init(config.Health);
+        spriteAnim.Init(config.Sprites);
+        coll.radius = config.ColliderRadius;
     }
 
     public void Begin()
