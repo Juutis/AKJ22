@@ -32,18 +32,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireballProjectile
       objectReference: {fileID: 0}
-    - target: {fileID: 5634127037609954158, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634127037609954158, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634127037609954158, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
+    - target: {fileID: 3770613610558199606, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
+      propertyPath: 'sprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -6607481912129624618, guid: 8e4c560203225884e8aded2cf0140014, type: 3}
+    - target: {fileID: 3770613610558199606, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
+      propertyPath: 'sprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: -7250195882505504687, guid: 8e4c560203225884e8aded2cf0140014, type: 3}
     - target: {fileID: 5634127037609954158, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -85,16 +81,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8150189830505208125, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6607481912129624618, guid: 8e4c560203225884e8aded2cf0140014, type: 3}
+    - target: {fileID: 8150189830505208125, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: m_Color.b
-      value: 0.010412939
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8150189830505208125, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: m_Color.g
-      value: 0.28855917
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8150189830505208125, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: m_Color.r
-      value: 0.735849
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
