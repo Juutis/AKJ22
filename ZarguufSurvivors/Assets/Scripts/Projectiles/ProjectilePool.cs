@@ -105,5 +105,6 @@ public enum ProjectileType
 {
     MagicMissile,
     Fireball,
-    ProtectionScroll
+    ProtectionScroll,
+    PoisonCauldron
 }

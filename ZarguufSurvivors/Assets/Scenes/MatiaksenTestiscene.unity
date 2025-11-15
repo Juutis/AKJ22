@@ -304,29 +304,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1167657693503490910, guid: dde2e800f01ffb2f386d650a023091db, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1955370402916274220, guid: dde2e800f01ffb2f386d650a023091db, type: 3}
       propertyPath: cooldown
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1955370402916274220, guid: dde2e800f01ffb2f386d650a023091db, type: 3}
-      propertyPath: rotateSpeed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5253442127092224117, guid: dde2e800f01ffb2f386d650a023091db, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7795750055710581298, guid: dde2e800f01ffb2f386d650a023091db, type: 3}
       propertyPath: m_Name
       value: PlayerContainer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8848934697492687227, guid: dde2e800f01ffb2f386d650a023091db, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

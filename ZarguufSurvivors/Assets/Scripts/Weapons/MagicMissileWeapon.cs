@@ -14,7 +14,7 @@ public class MagicMissileWeapon : MonoBehaviour
     void Start()
     {
         lastShoot = 0;
-        player = transform.parent.GetComponent<PlayerMovement>();
+        player = transform.parent.parent.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame

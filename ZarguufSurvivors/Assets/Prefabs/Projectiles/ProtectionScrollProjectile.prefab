@@ -135,4 +135,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: addc43c3df69da3058f234574de1dd2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StaticProjectile
-  projectileType: 0
+  projectileType: 2
+  lifetime: 8

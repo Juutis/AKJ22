@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using UnityEngine;
 
-public class ProtectionScrollWeapon : MonoBehaviour
+public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
 {
     [SerializeField]
     private float cooldown;
@@ -24,7 +23,7 @@ public class ProtectionScrollWeapon : MonoBehaviour
     void Start()
     {
         lastShoot = 0;
-        player = transform.parent.GetComponent<PlayerMovement>();
+        player = transform.parent.parent.GetComponent<PlayerMovement>();
 
         MoveContainer();
     }
@@ -46,11 +45,13 @@ public class ProtectionScrollWeapon : MonoBehaviour
         GameObject newProjectile = pool.Get();
         StaticProjectile projectile = newProjectile.GetComponent<StaticProjectile>();
 
-        if (projectile == null) {
+        if (projectile == null)
+        {
             Debug.LogError("Couldn't get a projectile");
             return;
         }
 
+        projectile.Init(this);
         projectiles.Add(projectile);
 
         for (int i = 0; i < projectiles.Count; i++)
@@ -63,5 +64,11 @@ public class ProtectionScrollWeapon : MonoBehaviour
     {
         pool = ProjectilePoolManager.main.GetPool(ProjectileType.ProtectionScroll);
         pool.SetContainer(transform);
+    }
+
+    public void Kill(GameObject obj)
+    {
+        projectiles.Remove(obj.GetComponent<StaticProjectile>());
+        ProjectilePoolManager.main.GetPool(ProjectileType.ProtectionScroll).Kill(obj);
     }
 }
