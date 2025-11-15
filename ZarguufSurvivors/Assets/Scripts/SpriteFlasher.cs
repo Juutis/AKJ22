@@ -10,7 +10,7 @@ public class SpriteFlasher : MonoBehaviour
     [SerializeField]
     private Color flashColor;
     private Color origColor;
-    private float flashStarted = 0;
+    private float flashStarted = -10.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
