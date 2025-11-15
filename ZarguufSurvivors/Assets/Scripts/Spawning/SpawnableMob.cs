@@ -9,6 +9,14 @@ public class SpawnableMob : MonoBehaviour
     private EnemyConfig config;
     private CircleCollider2D coll;
 
+    [SerializeField]
+    private XpDrop xpDropPrefab;
+
+    public int GetDamageDoneToPlayer()
+    {
+        return config.DamageDoneToPlayer;
+    }
+
     public void SetPosition(Vector2 newPosition)
     {
         transform.position = newPosition;
@@ -48,6 +56,9 @@ public class SpawnableMob : MonoBehaviour
     public void Kill()
     {
         // reset mob stats like health etc. here
+        var xpDrop = Instantiate(xpDropPrefab);
+        xpDrop.transform.position = transform.position;
+        xpDrop.Initialize(config.XpDrop);
         SpawnableMobPool.main.Kill(this);
     }
 

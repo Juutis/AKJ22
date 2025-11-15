@@ -35,6 +35,14 @@ public class EnemyConfig : ScriptableObject
     [SerializeField]
     private float runThroughDistance;
     public float RunThroughDistance { get { return runThroughDistance; } }
+
+    [SerializeField]
+    private int xpDrop = 5;
+    public int XpDrop { get { return xpDrop; } }
+
+    [SerializeField]
+    private int damageDoneToPlayer = 5;
+    public int DamageDoneToPlayer { get { return damageDoneToPlayer; } }
 }
 
 public enum MoveStrategy

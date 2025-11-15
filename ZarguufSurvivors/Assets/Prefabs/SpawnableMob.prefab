@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e066b679f62de949846e4a0ed0b266a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnableMob
+  xpDropPrefab: {fileID: 8071717285066813259, guid: b8328a21d053ece4ab7d346519d09551, type: 3}
 --- !u!114 &3869027413250755653
 MonoBehaviour:
   m_ObjectHideFlags: 0
