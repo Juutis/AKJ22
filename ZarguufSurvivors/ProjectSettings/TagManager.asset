@@ -14,8 +14,8 @@ TagManager:
   - Enemy
   - Enemy Damage Receiver
   - FlyingEnemy
-  - 
-  - 
+  - PlayerLayer
+  - Pickupable
   - 
   - 
   - 

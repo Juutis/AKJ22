@@ -47,13 +47,7 @@ public class LevelManager : MonoBehaviour
 
     private Timer runTimer;
 
-    private int totalPlayerXp = 0;
-    private int currentPlayerXp = 0;
-    private int currentPlayerLevel = 1;
-    private int requiredPlayerXp = 25;
 
-    private int playerHealth = 100;
-    private int playerMaxHealth = 100;
     private int playerKillCount = 0;
 
     void Start()
@@ -69,9 +63,7 @@ public class LevelManager : MonoBehaviour
             Debug.LogWarning("No levels set in LevelManager!");
             return;
         }
-        MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
-        MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
-        MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
+
         started = true;
         runTimer = new();
     }
@@ -87,30 +79,6 @@ public class LevelManager : MonoBehaviour
         var camHeight = Camera.main.orthographicSize;
         var camWidth = camHeight * Camera.main.aspect;
         return Mathf.Max(camWidth, camHeight) * 1.41f + 1.0f;
-    }
-
-    public void UpdatePlayerXp(int xpGained)
-    {
-        currentPlayerXp += xpGained;
-        totalPlayerXp += xpGained;
-        if (currentPlayerXp >= requiredPlayerXp)
-        {
-            currentPlayerXp = 0;
-            currentPlayerLevel += 1;
-            MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
-        }
-        MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
-    }
-
-    public void UpdatePlayerHealth(int healthChange)
-    {
-        playerHealth += healthChange;
-        if (playerHealth <= 0)
-        {
-            Debug.Log("<color=red>Player died!!!</color>");
-        }
-        playerHealth = Math.Clamp(playerHealth, 0, playerMaxHealth);
-        MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
     }
 
     public void UpdatePlayerKillCount(int killCount)
@@ -173,18 +141,6 @@ public class LevelManager : MonoBehaviour
             var mob = GameObject.FindFirstObjectByType<SpawnableMob>();
             if (mob != null) { mob.Kill(); }
         }
-        if (Keyboard.current != null && Keyboard.current.pKey.wasPressedThisFrame)
-        {
-            UpdatePlayerXp(1);
-        }
-        if (Keyboard.current != null && Keyboard.current.oKey.wasPressedThisFrame)
-        {
-            UpdatePlayerHealth(-5);
-        }
-        if (Keyboard.current != null && Keyboard.current.iKey.wasPressedThisFrame)
-        {
-            UpdatePlayerHealth(2);
-        }
         if (Keyboard.current != null && Keyboard.current.uKey.wasPressedThisFrame)
         {
             UpdatePlayerKillCount(2);
@@ -212,40 +168,6 @@ public struct GameDurationUpdatedEvent : IEvent
     public GameDurationUpdatedEvent(double currentTime)
     {
         CurrentRunTime = currentTime;
-    }
-}
-
-public struct XpUpdatedEvent : IEvent
-{
-    public int CurrentXp { get; }
-    public int RequiredXp { get; }
-
-    public XpUpdatedEvent(int currentXp, int requiredXp)
-    {
-        CurrentXp = currentXp;
-        RequiredXp = requiredXp;
-    }
-}
-
-public struct LevelGainedEvent : IEvent
-{
-    public int CurrentLevel;
-
-    public LevelGainedEvent(int currentLevel)
-    {
-        CurrentLevel = currentLevel;
-    }
-}
-
-public struct PlayerHealthChangeEvent : IEvent
-{
-    public int CurrentHealth;
-    public int MaxHealth;
-
-    public PlayerHealthChangeEvent(int currentHealth, int maxHealth)
-    {
-        CurrentHealth = currentHealth;
-        MaxHealth = maxHealth;
     }
 }
 

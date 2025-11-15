@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float playerSpeed;
 
+    private int playerHealth = 100;
+    private int playerMaxHealth = 100;
+
+
+    private int totalPlayerXp = 0;
+    private int currentPlayerXp = 0;
+    private int currentPlayerLevel = 1;
+    private int requiredPlayerXp = 25;
+
     private Rigidbody2D playerBody;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         moveDir = Vector2.up;
+        MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
+        MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
+        MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
     }
 
     // Update is called once per frame
@@ -60,5 +73,81 @@ public class PlayerMovement : MonoBehaviour
 
             transform.position = new Vector3(newPos2.x, newPos2.y, transform.position.z);
         }
+    }
+
+    public void UpdatePlayerHealth(int healthChange)
+    {
+        playerHealth += healthChange;
+        if (playerHealth <= 0)
+        {
+            Debug.Log("<color=red>Player died!!!</color>");
+        }
+        playerHealth = Math.Clamp(playerHealth, 0, playerMaxHealth);
+        MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
+    }
+
+    public void UpdatePlayerXp(int xpGained)
+    {
+        currentPlayerXp += xpGained;
+        totalPlayerXp += xpGained;
+        if (currentPlayerXp >= requiredPlayerXp)
+        {
+            currentPlayerXp = 0;
+            currentPlayerLevel += 1;
+            MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
+        }
+        MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
+    }
+
+    void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        var spawnableMob = collider2D.GetComponent<SpawnableMob>();
+        if (spawnableMob != null) {
+            int damage = spawnableMob.GetDamageDoneToPlayer();
+            UpdatePlayerHealth(-damage);
+        }
+
+        var xpDrop = collider2D.GetComponent<XpDrop>();
+        if (xpDrop != null)
+        {
+            var amount = xpDrop.XpDropAmount;
+            UpdatePlayerXp(amount);
+            xpDrop.Kill();
+        }
+    }
+}
+
+
+public struct PlayerHealthChangeEvent : IEvent
+{
+    public int CurrentHealth;
+    public int MaxHealth;
+
+    public PlayerHealthChangeEvent(int currentHealth, int maxHealth)
+    {
+        CurrentHealth = currentHealth;
+        MaxHealth = maxHealth;
+    }
+}
+
+public struct XpUpdatedEvent : IEvent
+{
+    public int CurrentXp { get; }
+    public int RequiredXp { get; }
+
+    public XpUpdatedEvent(int currentXp, int requiredXp)
+    {
+        CurrentXp = currentXp;
+        RequiredXp = requiredXp;
+    }
+}
+
+public struct LevelGainedEvent : IEvent
+{
+    public int CurrentLevel;
+
+    public LevelGainedEvent(int currentLevel)
+    {
+        CurrentLevel = currentLevel;
     }
 }
