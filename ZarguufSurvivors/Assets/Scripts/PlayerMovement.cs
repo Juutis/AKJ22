@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private SpriteRenderer playerSprite;
     [SerializeField]
-    private float playerSpeed;
+    private float[] playerSpeedLevels;
 
     private int playerHealth = 100;
     private int playerMaxHealth = 100;
@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
+        int currentSpeedLevel = SkillManager.main.GetSkillLevel(SkillType.MovementSpeedBoost);
 
         if (moveValue.sqrMagnitude != 0)
         {
@@ -75,12 +76,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (useRigidbody)
         {
-            playerBody.linearVelocity = moveValue * playerSpeed;
+            playerBody.linearVelocity = moveValue * playerSpeedLevels[currentSpeedLevel];
         }
         else
         {
             Vector2 oldPos2 = new Vector2(transform.position.x, transform.position.y);
-            Vector2 newPos2 = oldPos2 + moveValue * playerSpeed * Time.deltaTime;
+            Vector2 newPos2 = oldPos2 + moveValue * playerSpeedLevels[currentSpeedLevel] * Time.deltaTime;
 
             transform.position = new Vector3(newPos2.x, newPos2.y, transform.position.z);
         }
