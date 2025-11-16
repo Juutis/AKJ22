@@ -18,6 +18,9 @@ public class UIPauseMenu : MonoBehaviour
     private Sprite pauseImage;
 
     [SerializeField]
+    private Sprite winImage;
+
+    [SerializeField]
     private Image imgFlair;
 
     [SerializeField]
@@ -55,6 +58,20 @@ public class UIPauseMenu : MonoBehaviour
         LevelManager.main.Pause();
     }
 
+
+    public void ShowTheEndScreen()
+    {
+        isDeathScreen = true;
+        isOpen = true;
+        animator.Play("uiPauseMenuShow");
+        txtTitle.text = "The end";
+        txtMessage.text = "You have won!";
+        txtAction.text = "New game";
+        Time.timeScale = 0f;
+        imgFlair.sprite = winImage;
+        LevelManager.main.Pause();
+    }
+
     public void AfterHide()
     {
         Time.timeScale = 1f;
@@ -75,16 +92,23 @@ public class UIPauseMenu : MonoBehaviour
     private void OnEnable()
     {
         MessageBus.Subscribe<PlayerDiedEvent>(OnPlayerDiedEvent);
+        MessageBus.Subscribe<PlayerWinEvent>(OnPlayerWinEvent);
     }
 
     private void OnDisable()
     {
         MessageBus.Unsubscribe<PlayerDiedEvent>(OnPlayerDiedEvent);
+        MessageBus.Unsubscribe<PlayerWinEvent>(OnPlayerWinEvent);
     }
 
     private void OnPlayerDiedEvent(PlayerDiedEvent e)
     {
         ShowDeathScreen();
+    }
+
+    private void OnPlayerWinEvent(PlayerWinEvent e)
+    {
+        ShowTheEndScreen();
     }
 
     // Update is called once per frame

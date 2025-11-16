@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private int requiredPlayerXp = 25;
 
     private int numberOfMobsKilled = 0;
+    private int numberOfMobsSpawned = 0;
 
     private Rigidbody2D playerBody;
     private SpriteFlasher flasher;
@@ -200,11 +201,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         MessageBus.Subscribe<MobWasKilledEvent>(OnMobWasKilledEvent);
+        MessageBus.Subscribe<MobWasSpawnedEvent>(OnMobWasSpawnedEvent);
     }
 
     private void OnDisable()
     {
         MessageBus.Unsubscribe<MobWasKilledEvent>(OnMobWasKilledEvent);
+        MessageBus.Unsubscribe<MobWasSpawnedEvent>(OnMobWasSpawnedEvent);
     }
 
     private void OnMobWasKilledEvent(MobWasKilledEvent e)
@@ -213,6 +216,14 @@ public class PlayerMovement : MonoBehaviour
         SoundManager.main.PlaySound(mobConfig.GameSoundType);
         numberOfMobsKilled += 1;
         MessageBus.Publish(new PlayerKillCountChange(numberOfMobsKilled));
+        if (LevelManager.main.IsFinished && numberOfMobsKilled >= numberOfMobsSpawned) {
+            MessageBus.Publish(new PlayerWinEvent(1));
+        }
+    }
+
+    private void OnMobWasSpawnedEvent(MobWasSpawnedEvent e)
+    {
+        numberOfMobsSpawned += 1;
     }
 
     float xDamping = 0.5f;
@@ -298,5 +309,16 @@ public struct PlayerKillCountChange : IEvent
     public PlayerKillCountChange(int killCount)
     {
         KillCount = killCount;
+    }
+}
+
+
+public struct PlayerWinEvent : IEvent
+{
+    public int Number;
+
+    public PlayerWinEvent(int number)
+    {
+        Number = number;
     }
 }
