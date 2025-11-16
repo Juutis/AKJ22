@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 using System.Collections.Generic;
+using System;
 
 public class ProjectilePool : MonoBehaviour
 {
@@ -86,7 +87,7 @@ public class ProjectilePool : MonoBehaviour
     private GameObject CreateItem()
     {
         GameObject item = Instantiate(projectilePrefab, currentPool);
-        item.name = $"Projectile {poolType} (fromPool) to {Random.Range(0, 99999)}";
+        item.name = $"Projectile {poolType} (fromPool) to {UnityEngine.Random.Range(0, 99999)}";
         item.gameObject.SetActive(false);
         return item;
     }
