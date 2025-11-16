@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1698722121066331896
 Transform:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6448512724174099065
 Transform:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3577062865945107755
 Transform:
   m_ObjectHideFlags: 0
@@ -225,13 +225,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b64b58a4e6d0a298029302cec5e097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChainLightningWeapon
-  cooldown: 2
-  jumpDelay: 0.1
-  projectileRange: 3
-  jumpRange: 5
-  jumpAmount: 3
   lifetime: 0.6
   projectilePrefab: {fileID: 2341477590152459601, guid: 107607914fa1146bfa0d5e52365c1f97, type: 3}
+  levels:
+  - cooldown: 1
+    jumpDelay: 0.1
+    projectileRange: 1
+    jumpRange: 1
+    jumpAmount: 1
+    projectileCount: 1
+    damage: 2
 --- !u!1 &7318319317955456233
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &642271008740683772
 Transform:
   m_ObjectHideFlags: 0
@@ -294,7 +297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2411537149256060505
 Transform:
   m_ObjectHideFlags: 0

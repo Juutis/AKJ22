@@ -20,8 +20,9 @@ public class ChainProjectile : MonoBehaviour
     private float lifetime;
     private List<Transform> previousTargets;
     private bool inited = false;
+    private float damage;
 
-    public void Init(ProjectilePool pool, Transform start, Transform target, float lifetime, float jumpRange, float jumpDelay, int jumps, List<Transform> previousTargets)
+    public void Init(ProjectilePool pool, Transform start, Transform target, float lifetime, float jumpRange, float jumpDelay, float damage, int jumps, List<Transform> previousTargets)
     {
         this.pool = pool;
         this.jumpRange = jumpRange;
@@ -34,6 +35,7 @@ public class ChainProjectile : MonoBehaviour
         this.previousTargets = previousTargets;
         inited = true;
         hasJumped = false;
+        this.damage = damage;
     }
 
     void OnEnable()
@@ -67,9 +69,8 @@ public class ChainProjectile : MonoBehaviour
         {
             if (target.gameObject.TryGetComponent<Damageable>(out Damageable enemy))
             {
-                var damageToDo = 1;
-                enemy.Hurt(damageToDo);
-                UIManager.main.ShowPoppingText($"{damageToDo}", Color.red, transform.position);
+                enemy.Hurt(damage);
+                UIManager.main.ShowPoppingText($"{damage}", Color.red, target.position);
             }
 
             Kill();
@@ -90,7 +91,7 @@ public class ChainProjectile : MonoBehaviour
 
         foreach (Collider2D enemy in enemies)
         {
-            if (previousTargets.Contains(enemy.transform))
+            if (previousTargets.Any(x => transform.gameObject == enemy.gameObject))
             {
                 continue;
             }
@@ -108,7 +109,7 @@ public class ChainProjectile : MonoBehaviour
                     pool.Kill(newProjectile);
                 }
 
-                projectile.Init(pool, target, enemy.transform, lifetime, jumpRange, jumpDelay, jumps - 1, previousTargets);
+                projectile.Init(pool, target, enemy.transform, lifetime, jumpRange, jumpDelay, damage, jumps - 1, previousTargets);
             }
 
             break;
