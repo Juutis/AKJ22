@@ -15,21 +15,24 @@ MonoBehaviour:
   Name: Level 1
   spawnWaves:
   - WaveConfig: {fileID: 11400000, guid: 406f42baab37d314aaeefe8f00cce403, type: 2}
-    queueBehavior: 0
+    queueBehavior: 2
     WaitSecondsBeforeStarting: 0
   - WaveConfig: {fileID: 11400000, guid: f80003a7a37e3db4eb5ca3dbaf5af052, type: 2}
-    queueBehavior: 0
+    queueBehavior: 2
     WaitSecondsBeforeStarting: 1
-  - WaveConfig: {fileID: 11400000, guid: 4bf6c969d54b7cf48bfc50ad069b1a2f, type: 2}
+  - WaveConfig: {fileID: 11400000, guid: 7c4f3140852bdbf4a8ad3e65135a9e00, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 1
+  - WaveConfig: {fileID: 11400000, guid: efdbdf617fd780f49b475bbd8cea2fda, type: 2}
     queueBehavior: 0
+    WaitSecondsBeforeStarting: 10
+  - WaveConfig: {fileID: 11400000, guid: ec3b5498d55c91d48a2d4af0359a8137, type: 2}
+    queueBehavior: 1
     WaitSecondsBeforeStarting: 5
-  - WaveConfig: {fileID: 11400000, guid: ceb78903563342045a74337fcead5e5d, type: 2}
-    queueBehavior: 0
-    WaitSecondsBeforeStarting: 5
-  - WaveConfig: {fileID: 11400000, guid: 0a3af6409614e4d46ac13a3c42ae9f58, type: 2}
-    queueBehavior: 0
-    WaitSecondsBeforeStarting: 5
-  - WaveConfig: {fileID: 11400000, guid: 2f41ee470f6ef2b4d8281023ba8f1c5c, type: 2}
-    queueBehavior: 0
-    WaitSecondsBeforeStarting: 5
-  WaitBeforeStartingNextLevel: 5
+  - WaveConfig: {fileID: 11400000, guid: efdbdf617fd780f49b475bbd8cea2fda, type: 2}
+    queueBehavior: 1
+    WaitSecondsBeforeStarting: 20
+  - WaveConfig: {fileID: 11400000, guid: efdbdf617fd780f49b475bbd8cea2fda, type: 2}
+    queueBehavior: 1
+    WaitSecondsBeforeStarting: 1
+  WaitBeforeStartingNextLevel: 15

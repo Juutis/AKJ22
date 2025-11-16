@@ -17,8 +17,10 @@ MonoBehaviour:
   - {fileID: -7543727382803030254, guid: bed0f51de9a790c48b83477d84d73574, type: 3}
   - {fileID: 3203004115538406449, guid: bed0f51de9a790c48b83477d84d73574, type: 3}
   minSpeed: 5
-  maxSpeed: 6
+  maxSpeed: 5
   colliderRadius: 0.1
   isFlying: 1
   moveStrategy: 1
   runThroughDistance: 10
+  xpDrop: 5
+  damageDoneToPlayer: 5

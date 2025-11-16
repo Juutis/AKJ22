@@ -27,14 +27,15 @@ public class SpawnWaveConfig : ScriptableObject
 
     [SerializeField]
     [Tooltip("Only if timing is Interval")]
-    private float amountPerInterval = 1;
-    public float AmountPerInterval { get { return amountPerInterval; } }
+    private int amountPerInterval = 1;
+    public int AmountPerInterval { get { return amountPerInterval; } }
 
 }
 
 public enum SpawnFormation
 {
-    CircleAroundPlayer
+    CircleAroundPlayer,
+    Grouped,
 }
 
 public enum SpawnTiming
