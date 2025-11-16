@@ -110,6 +110,7 @@ MonoBehaviour:
   minFramesPerSecond: 6
   maxFramesPerSecond: 8
   sortRoot: {fileID: 8028965231693023115}
+  loop: 1
 --- !u!1 &6210741462567735100
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,4 +157,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StaticProjectile
   projectileType: 2
-  lifetime: 8
+  lifetime: 9999999

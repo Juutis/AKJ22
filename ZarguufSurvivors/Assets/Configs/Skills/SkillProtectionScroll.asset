@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f3fc084724ec74e9a8552803ef9703, type: 3}
   m_Name: SkillProtectionScroll
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
+  skillCategory: 0
   skillType: 2
   icon: {fileID: 6210622488468733894, guid: ba103a719f2d9e74185fb1d44f37d637, type: 3}
   currentLevel: 0
