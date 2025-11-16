@@ -22,5 +22,5 @@ MonoBehaviour:
   isFlying: 1
   moveStrategy: 1
   runThroughDistance: 10
-  xpDrop: 5
+  xpDrop: 6
   damageDoneToPlayer: 5

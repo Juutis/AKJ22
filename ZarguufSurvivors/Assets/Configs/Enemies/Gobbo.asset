@@ -19,3 +19,8 @@ MonoBehaviour:
   minSpeed: 2
   maxSpeed: 3
   colliderRadius: 0.2
+  isFlying: 0
+  moveStrategy: 0
+  runThroughDistance: 0
+  xpDrop: 4
+  damageDoneToPlayer: 5
