@@ -138,6 +138,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 28fb6ad0c92f05441a85d187f888d8a8, type: 2}
   - {fileID: 11400000, guid: cdc33b44f6d620c4e85cafed48bc8d5d, type: 2}
   - {fileID: 11400000, guid: 158cd352de94368428e083ebba1411c7, type: 2}
+  - {fileID: 11400000, guid: b4d7be7e082e57c44bcbbd2c2ccfe6ea, type: 2}
+  - {fileID: 11400000, guid: ff4ad76ac7d6a8442b65985f9d2f28db, type: 2}
+  - {fileID: 11400000, guid: c66b0c85d3cb763459871072515850cf, type: 2}
+  - {fileID: 11400000, guid: 4a232960cf2c4d34791b6d68aeb2cc42, type: 2}
+  - {fileID: 11400000, guid: 4a232960cf2c4d34791b6d68aeb2cc42, type: 2}
+  - {fileID: 11400000, guid: 59465dfc64653e144931ca54cee5d9c5, type: 2}
+  - {fileID: 11400000, guid: 59465dfc64653e144931ca54cee5d9c5, type: 2}
+  - {fileID: 11400000, guid: 59465dfc64653e144931ca54cee5d9c5, type: 2}
+  - {fileID: 11400000, guid: 59465dfc64653e144931ca54cee5d9c5, type: 2}
+  - {fileID: 11400000, guid: 59465dfc64653e144931ca54cee5d9c5, type: 2}
+  - {fileID: 11400000, guid: 59465dfc64653e144931ca54cee5d9c5, type: 2}
+  - {fileID: 11400000, guid: 59465dfc64653e144931ca54cee5d9c5, type: 2}
   waveManagerPrefab: {fileID: 5110123023583604088, guid: 210a052e7be1c1b458e00680530aaa8b, type: 3}
   waveContainer: {fileID: 2652499596382200116}
   parentPrefab: {fileID: 2984533718738365294, guid: 5ddca7e7b91dd6c439568e538e8ace02, type: 3}
