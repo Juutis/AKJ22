@@ -29,9 +29,14 @@ public class SkillManager : MonoBehaviour
         }
 
         //activatedSkills.Add(SkillCategory.Weapon, GetRandomSkillsWithCategory(1, SkillCategory.Weapon));
-        SkillConfig lightning = skillsThisRun.FirstOrDefault(x => x.SkillType == SkillType.ProtectionScroll);
+        SkillConfig lightning = skillsThisRun.FirstOrDefault(x => x.SkillType == SkillType.FireCurseProjectile);
         lightning.SkillUp();
         activatedSkills.Add(SkillCategory.Weapon, new() { lightning });
+
+        // SkillConfig projectileBoost = skillsThisRun.FirstOrDefault(x => x.SkillType == SkillType.ProjectileCountBoost);
+        // projectileBoost.SkillUp();
+        // projectileBoost.SkillUp();
+        // activatedSkills.Add(SkillCategory.Passive, new() { projectileBoost });
     }
 
     public List<SkillConfig> GetRandomSkills(int number)

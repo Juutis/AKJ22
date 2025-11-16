@@ -87,6 +87,7 @@ public class ProjectilePool : MonoBehaviour
     private void OnGet(GameObject projectile)
     {
         projectile.SetActive(true);
+        projectile.transform.position = new(99999, 99999);
     }
 
     private void OnRelease(GameObject projectile)

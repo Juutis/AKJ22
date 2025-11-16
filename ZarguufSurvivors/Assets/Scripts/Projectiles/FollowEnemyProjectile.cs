@@ -10,6 +10,7 @@ public class FollowEnemyProjectile : MonoBehaviour
     private float cooldown = 1;
     private float lastHit;
     private float damage;
+    private bool isKilled;
 
     private DamageTracker damageTracker = new DamageTracker(100.0f);
 
@@ -19,9 +20,11 @@ public class FollowEnemyProjectile : MonoBehaviour
 
     }
 
-    void OnEnable() {
+    void OnEnable()
+    {
         lifeStart = Time.time;
         lastHit = Time.time;
+        isKilled = false;
     }
 
     public void Init(Transform target, float cooldown, float damage)
@@ -38,11 +41,13 @@ public class FollowEnemyProjectile : MonoBehaviour
     {
         transform.position = target.position;
 
-        if (Time.time - lifeStart >= lifetime) {
+        if (Time.time - lifeStart >= lifetime && !isKilled)
+        {
+            isKilled = true;
             ProjectilePoolManager.main.GetPool(projectileType).Kill(gameObject);
         }
 
-        if (Time.time - lastHit > cooldown)
+        if (Time.time - lastHit > cooldown && !isKilled)
         {
             if (target != null && target.TryGetComponent<Damageable>(out Damageable dmg))
             {
@@ -50,9 +55,15 @@ public class FollowEnemyProjectile : MonoBehaviour
                 {
                     applyDamage(dmg, damage);
                     UIManager.main.ShowPoppingText($"{damage}", Color.red, transform.position);
+
+                    if (dmg.IsKilled())
+                    {
+                        isKilled = true;
+                        ProjectilePoolManager.main.GetPool(projectileType).Kill(gameObject);
+                    }
                 }
             }
-            
+
             lastHit = Time.time;
         }
     }

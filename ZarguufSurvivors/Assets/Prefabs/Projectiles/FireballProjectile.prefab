@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1835048153025202968, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: randomDirection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2740937686171974666, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: m_Name

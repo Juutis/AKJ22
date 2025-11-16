@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -33,11 +35,11 @@ public class SpawnableMobPool : MonoBehaviour
             maxSize: maxSize
         );
         var initializedObjects = new List<SpawnableMob>();
-        for(int i = 0; i < objectsToInitializeAtStart; i += 1)
+        for (int i = 0; i < objectsToInitializeAtStart; i += 1)
         {
             initializedObjects.Add(pool.Get());
         }
-        foreach(var obj in initializedObjects)
+        foreach (var obj in initializedObjects)
         {
             pool.Release(obj);
         }
@@ -51,8 +53,15 @@ public class SpawnableMobPool : MonoBehaviour
 
     public void Kill(SpawnableMob mob)
     {
-        pool.Release(mob);
-    } 
+        try
+        {
+            pool.Release(mob);
+        }
+        catch (InvalidOperationException e)
+        {
+            // was killed already lols
+        }
+    }
 
     // Creates a new pooled GameObject the first time (and whenever the pool needs more).
     private SpawnableMob CreateItem()

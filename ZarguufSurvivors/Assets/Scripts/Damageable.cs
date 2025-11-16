@@ -32,7 +32,7 @@ public class Damageable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Hurt(float damage)
@@ -54,6 +54,11 @@ public class Damageable : MonoBehaviour
             onDamageReceived.Invoke();
             ScreenShake.Instance.Shake(0.5f);
         }
+    }
+
+    public bool IsKilled()
+    {
+        return killedAlready;
     }
 }
 

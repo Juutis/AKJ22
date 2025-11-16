@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FireballWeapon : MonoBehaviour
@@ -43,15 +44,27 @@ public class FireballWeapon : MonoBehaviour
 
     private void Shoot()
     {
-        Collider2D enemy = Physics2D.OverlapCircle(player.transform.position, 6f, LayerMask.GetMask("Enemy Damage Receiver"));
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(player.transform.position, 6f, LayerMask.GetMask("Enemy Damage Receiver"));
+        Collider2D enemy = enemies?.OrderBy(x => System.Guid.NewGuid())?.FirstOrDefault();
+
+        if (enemy == null)
+        {
+            lastShoot = Time.time;
+            return;
+        }
 
         GameObject newProjectile = ProjectilePoolManager.main.GetPool(ProjectileType.Fireball).Get();
         float currentDamage = currentLevel.damage * SkillManager.main.GetAttackDamageMultiplier();
-        newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, currentLevel.projectileSpeed, currentDamage, currentLevel.hitCount);
 
         Vector2 randomPos2 = UnityEngine.Random.insideUnitCircle.normalized * 0.2f;
         Vector3 randomPos = new Vector3(randomPos2.x, randomPos2.y, 0);
         Vector3 offsetPos = new Vector3(player.MoveDir.x, player.MoveDir.y, 0) * 0.5f;
+        Vector3 start3 = transform.position + offsetPos + randomPos;
+        Vector2 start = new(start3.x, start3.y);
+        Vector2 target = new(enemy.transform.position.x, enemy.transform.position.y);
+        Vector2 dir = (target - start).normalized;
+
+        newProjectile.GetComponent<StraightFlyingProjectile>().Init(dir, currentLevel.projectileSpeed, currentDamage, currentLevel.hitCount);
 
         newProjectile.transform.position = transform.position + offsetPos + randomPos;
         lastShoot = Time.time;
