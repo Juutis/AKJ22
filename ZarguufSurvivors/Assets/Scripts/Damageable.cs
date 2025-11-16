@@ -42,10 +42,16 @@ public class Damageable : MonoBehaviour
             return;
         }
         currentHealth -= damage;
+        SoundManager.main.PlaySound(GameSoundType.EnemyHit);
         if (currentHealth <= 0)
         {
+            var spawnableMob = GetComponentInParent<SpawnableMob>();
+            Debug.Log($"found spawnablemob: {spawnableMob}");
+            if (spawnableMob != null)
+            {
+                MessageBus.Publish(new MobWasKilledEvent(spawnableMob.Config));
+            }
             onKilled.Invoke();
-            MessageBus.Publish(new MobWasKilledEvent(name));
             killedAlready = true;
             ScreenShake.Instance.Shake(2.5f);
         }
@@ -64,10 +70,10 @@ public class Damageable : MonoBehaviour
 
 public struct MobWasKilledEvent : IEvent
 {
-    public string Name;
+    public EnemyConfig EnemyConfig;
 
-    public MobWasKilledEvent(string name)
+    public MobWasKilledEvent(EnemyConfig enemyConfig)
     {
-        Name = name;
+        EnemyConfig = enemyConfig;
     }
 }

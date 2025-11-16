@@ -13,6 +13,11 @@ public class UIPauseMenu : MonoBehaviour
     private bool gameIsPaused {get {return LevelManager.main.IsPaused;}}
 
     [SerializeField]
+    private Sprite deathImage;
+    [SerializeField]
+    private Sprite pauseImage;
+
+    [SerializeField]
     private Image imgFlair;
 
     [SerializeField]
@@ -33,6 +38,7 @@ public class UIPauseMenu : MonoBehaviour
         txtTitle.text = "Game paused";
         txtMessage.text = "You have paused the game";
         txtAction.text = "Continue";
+        imgFlair.sprite = pauseImage;
         LevelManager.main.Pause();
     }
 
@@ -45,6 +51,7 @@ public class UIPauseMenu : MonoBehaviour
         txtMessage.text = "You have died!";
         txtAction.text = "New game";
         Time.timeScale = 0f;
+        imgFlair.sprite = deathImage;
         LevelManager.main.Pause();
     }
 
@@ -91,6 +98,7 @@ public class UIPauseMenu : MonoBehaviour
             )
         )
         {
+            SoundManager.main.PlaySound(GameSoundType.Select);
             Hide();
         }
         else if (!gameIsPaused && !isOpen && Keyboard.current != null && Keyboard.current.pKey.wasPressedThisFrame)
@@ -106,6 +114,7 @@ public class UIPauseMenu : MonoBehaviour
             )
         )
         {
+            SoundManager.main.PlaySound(GameSoundType.Select);
             Hide();
         }
     }
