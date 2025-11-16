@@ -14,7 +14,12 @@ public class StaticProjectile : MonoBehaviour
     IWeapon weapon;
     private DamageTracker damageTracker;
     private float damage;
+    private int hitCount;
 
+    void OnEnable()
+    {
+        hitCount = 1000; // before init value
+    }
 
     void Start()
     {
@@ -22,16 +27,17 @@ public class StaticProjectile : MonoBehaviour
         damageTracker = new DamageTracker(1.0f);
     }
 
-    public void Init(IWeapon weapon, float damage)
+    public void Init(IWeapon weapon, float damage, int hitCount)
     {
         this.weapon = weapon;
         lifeStart = Time.time;
         this.damage = damage;
+        this.hitCount = hitCount;
     }
 
-    public void Init(IWeapon weapon, Vector2 pos, float scale, float damage)
+    public void Init(IWeapon weapon, Vector2 pos, float scale, float damage, int hitCount)
     {
-        Init(weapon, damage);
+        Init(weapon, damage, hitCount);
         transform.position = pos;
         transform.localScale = new Vector3(scale, scale, scale);
     }
@@ -51,6 +57,12 @@ public class StaticProjectile : MonoBehaviour
             {
                 applyDamage(dmg, damage);
                 UIManager.main.ShowPoppingText($"{damage}", Color.red, transform.position);
+                hitCount--;
+
+                if (hitCount <= 0)
+                {
+                    weapon.Kill(gameObject);
+                }
             }
         }
     }

@@ -13,6 +13,7 @@ public class StraightFlyingProjectile : MonoBehaviour
     private float lifeStart;
     private float radiusCoef = 0.65f;
     private float damage;
+    private int hitCount;
 
     private DamageTracker damageTracker = new DamageTracker(100.0f);
 
@@ -22,7 +23,12 @@ public class StraightFlyingProjectile : MonoBehaviour
 
     }
 
-    public void Init(Vector2 dir, float speed, float damage)
+    void OnEnable()
+    {
+        hitCount = 100; // just so it doesn't die instantly on pool.Get()
+    }
+
+    public void Init(Vector2 dir, float speed, float damage, int hitCount)
     {
         if (randomDirection)
         {
@@ -37,12 +43,14 @@ public class StraightFlyingProjectile : MonoBehaviour
         lifeStart = Time.time;
         this.damage = damage;
         damageTracker = new DamageTracker(100.0f);
+        this.hitCount = hitCount;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - lifeStart >= lifetime) {
+        if (Time.time - lifeStart >= lifetime)
+        {
             Kill();
         }
 
@@ -58,6 +66,12 @@ public class StraightFlyingProjectile : MonoBehaviour
             {
                 applyDamage(dmg, damage);
                 UIManager.main.ShowPoppingText($"{damage}", Color.red, transform.position);
+                hitCount--;
+
+                if (hitCount <= 0)
+                {
+                    Kill();
+                }
             }
         }
     }

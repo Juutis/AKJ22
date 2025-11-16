@@ -48,7 +48,7 @@ public class PoisonCauldronWeapon : MonoBehaviour, IWeapon
             return;
         }
 
-        projectile.Init(this, new Vector2(player.transform.position.x, player.transform.position.y) + Random.insideUnitCircle * currentLevel.spawnRange, currentLevel.projectileSize, currentLevel.damage);
+        projectile.Init(this, new Vector2(player.transform.position.x, player.transform.position.y) + Random.insideUnitCircle * currentLevel.spawnRange, currentLevel.projectileSize, currentLevel.damage, 9999);
     }
 
     public void Kill(GameObject obj)
