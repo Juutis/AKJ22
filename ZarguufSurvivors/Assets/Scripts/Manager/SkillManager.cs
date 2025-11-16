@@ -90,7 +90,7 @@ public class SkillManager : MonoBehaviour
 
     public float GetXPBoostMultiplier()
     {
-        return 1f + 0.2f * GetSkillLevel(SkillType.XPBoost);
+        return 1f + 0.1f * GetSkillLevel(SkillType.XPBoost);
     }
 
     public int GetProjectileCountAddition()
