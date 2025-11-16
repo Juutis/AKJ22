@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae3c022732d46246bdda06218687c75, type: 3}
   m_Name: Wormy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyConfig
-  health: 15
+  health: 5
   sprites:
   - {fileID: 9001875409612917766, guid: 9dda325de1ffefb49878705f459fd426, type: 3}
   - {fileID: -4538466838747964795, guid: 9dda325de1ffefb49878705f459fd426, type: 3}
@@ -22,5 +22,5 @@ MonoBehaviour:
   isFlying: 0
   moveStrategy: 0
   runThroughDistance: 0
-  xpDrop: 6
+  xpDrop: 10
   damageDoneToPlayer: 5
