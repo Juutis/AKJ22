@@ -27,6 +27,11 @@ public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
     // Update is called once per frame
     void Update()
     {
+        if (!SkillManager.main.isSkillActive(SkillType.ProtectionScroll))
+        {
+            return;
+        }
+
         currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.ProtectionScroll))];
         if (Time.time - lastShoot >= currentLevel.cooldown && projectiles.Count < currentLevel.maxProjectiles)
         {

@@ -24,6 +24,11 @@ public class PoisonCauldronWeapon : MonoBehaviour, IWeapon
     // Update is called once per frame
     void Update()
     {
+        if (!SkillManager.main.isSkillActive(SkillType.PoisonCauldron))
+        {
+            return;
+        }
+
         currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.PoisonCauldron))];
         if (Time.time - lastShoot >= currentLevel.cooldown)
         {
@@ -37,7 +42,8 @@ public class PoisonCauldronWeapon : MonoBehaviour, IWeapon
         GameObject newProjectile = pool.Get();
         StaticProjectile projectile = newProjectile.GetComponent<StaticProjectile>();
 
-        if (projectile == null) {
+        if (projectile == null)
+        {
             Debug.LogError("Couldn't get a projectile");
             return;
         }

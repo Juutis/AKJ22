@@ -24,6 +24,12 @@ public class FireCurseWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!SkillManager.main.isSkillActive(SkillType.FireCurseProjectile))
+        {
+            return;
+        }
+
+
         currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.FireCurseProjectile))];
         if (Time.time - lastShoot >= currentLevel.cooldown)
         {

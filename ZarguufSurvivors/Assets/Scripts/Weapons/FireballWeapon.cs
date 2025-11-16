@@ -22,6 +22,11 @@ public class FireballWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!SkillManager.main.isSkillActive(SkillType.Fireball))
+        {
+            return;
+        }
+
         currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.Fireball))];
         if (Time.time - lastShoot >= currentLevel.cooldown)
         {
@@ -44,7 +49,8 @@ public class FireballWeapon : MonoBehaviour
 }
 
 [Serializable]
-public class FireballLevel {
+public class FireballLevel
+{
     public float cooldown;
     public float projectileSpeed;
     public float damage;

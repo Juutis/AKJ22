@@ -22,6 +22,11 @@ public class MagicMissileWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!SkillManager.main.isSkillActive(SkillType.MagicMissile))
+        {
+            return;
+        }
+
         currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.MagicMissile))];
         if (Time.time - lastShoot >= currentLevel.cooldown)
         {
