@@ -37,7 +37,7 @@ public class MagicMissileWeapon : MonoBehaviour
     private void Shoot()
     {
         GameObject newProjectile = ProjectilePoolManager.main.GetPool(ProjectileType.MagicMissile).Get();
-        newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, currentLevel.projectileSpeed, currentLevel.damage);
+        newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, currentLevel.projectileSpeed, currentLevel.damage, currentLevel.hitCount);
 
         Vector2 randomPos2 = UnityEngine.Random.insideUnitCircle.normalized * 0.2f;
         Vector3 randomPos = new Vector3(randomPos2.x, randomPos2.y, 0);
@@ -54,4 +54,5 @@ public class MagicMissileLevel
     public float cooldown;
     public float projectileSpeed;
     public float damage;
+    public int hitCount;
 }

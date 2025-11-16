@@ -39,7 +39,7 @@ public class FireballWeapon : MonoBehaviour
         Collider2D enemy = Physics2D.OverlapCircle(player.transform.position, 6f, LayerMask.GetMask("Enemy Damage Receiver"));
 
         GameObject newProjectile = ProjectilePoolManager.main.GetPool(ProjectileType.Fireball).Get();
-        newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, currentLevel.projectileSpeed, currentLevel.damage);
+        newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, currentLevel.projectileSpeed, currentLevel.damage, currentLevel.hitCount);
 
         Vector2 randomPos2 = UnityEngine.Random.insideUnitCircle.normalized * 0.2f;
         Vector3 randomPos = new Vector3(randomPos2.x, randomPos2.y, 0);
@@ -56,4 +56,5 @@ public class FireballLevel
     public float cooldown;
     public float projectileSpeed;
     public float damage;
+    public int hitCount;
 }

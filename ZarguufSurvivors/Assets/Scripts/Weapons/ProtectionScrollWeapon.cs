@@ -53,7 +53,7 @@ public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
             return;
         }
 
-        projectile.Init(this, currentLevel.damage);
+        projectile.Init(this, currentLevel.damage, currentLevel.hitCount);
         projectiles.Add(projectile);
 
         for (int i = 0; i < projectiles.Count; i++)
@@ -84,4 +84,5 @@ public class ProtectionScrollLevel
     public int maxProjectiles;
     public float projectileDistance;
     public float damage;
+    public int hitCount;
 }
