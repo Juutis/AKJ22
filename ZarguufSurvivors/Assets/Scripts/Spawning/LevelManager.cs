@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -47,6 +46,9 @@ public class LevelManager : MonoBehaviour
 
     private Timer runTimer;
 
+    private bool isPaused = false;
+
+    public bool IsPaused { get { return isPaused; } set { isPaused = value; } }
 
     private int playerKillCount = 0;
 
@@ -92,13 +94,17 @@ public class LevelManager : MonoBehaviour
 #if UNITY_EDITOR
         DebugStuffz();
 #endif
-
-        if (!started || finished)
+        if (isPaused)
         {
             return;
         }
 
         MessageBus.Publish(new GameDurationUpdatedEvent(runTimer.GetTime()));
+
+        if (!started || finished)
+        {
+            return;
+        }
 
         if (currentLevelConfig == null)
         {

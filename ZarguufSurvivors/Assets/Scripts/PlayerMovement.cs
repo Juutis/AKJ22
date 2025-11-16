@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         moveDir = Vector2.up;
         MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
         MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
-        MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
+        //MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
 
         flasher = GetComponentInChildren<SpriteFlasher>();
     }
