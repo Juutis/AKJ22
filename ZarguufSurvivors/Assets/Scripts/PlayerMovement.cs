@@ -235,7 +235,14 @@ public class PlayerMovement : MonoBehaviour
             float clampedY = Mathf.Clamp(currentPos.y, min.y + yDamping, max.y - yDamping);
 
             // Apply the clamped position back to the Rigidbody
-            playerBody.position = new Vector2(clampedX, clampedY);
+            if (clampedX != currentPos.x)
+            {
+                playerBody.position = new Vector2(clampedX, clampedY);
+            }
+            if (clampedY != currentPos.y)
+            {
+                playerBody.position = new Vector2(clampedX, clampedY);
+            }
         }
     }
 
