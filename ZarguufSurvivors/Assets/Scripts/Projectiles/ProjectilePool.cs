@@ -107,5 +107,6 @@ public enum ProjectileType
     Fireball,
     ProtectionScroll,
     PoisonCauldron,
-    ChainLightningProjectile
+    ChainLightningProjectile,
+    FireCurseProjectile
 }
