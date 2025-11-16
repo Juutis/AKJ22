@@ -41,7 +41,7 @@ public class StraightFlyingProjectile : MonoBehaviour
     void Update()
     {
         if (Time.time - lifeStart >= lifetime) {
-            ProjectilePoolManager.main.GetPool(projectileType).Kill(gameObject);
+            Kill();
         }
 
         Vector2 oldPos2 = new Vector2(transform.position.x, transform.position.y);
@@ -66,5 +66,11 @@ public class StraightFlyingProjectile : MonoBehaviour
         damageable.Hurt(damage);
         damageTracker.TargetDamaged(damageable);
         ScreenShake.Instance.Shake(1.0f);
+    }
+
+    private void Kill()
+    {
+        ProjectilePoolManager.main.GetPool(projectileType).Kill(gameObject);
+        damageTracker = null;
     }
 }

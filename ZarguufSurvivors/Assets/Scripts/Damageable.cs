@@ -10,6 +10,7 @@ public class Damageable : MonoBehaviour
     private UnityEvent onKilled;
 
     private float currentHealth;
+    private bool killedAlready;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,6 +26,7 @@ public class Damageable : MonoBehaviour
     public void Init(float maxHealth)
     {
         currentHealth = maxHealth;
+        killedAlready = false;
     }
 
     // Update is called once per frame
@@ -35,10 +37,15 @@ public class Damageable : MonoBehaviour
 
     public void Hurt(float damage)
     {
+        if (killedAlready)
+        {
+            return;
+        }
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
             onKilled.Invoke();
+            killedAlready = true;
         }
         else
         {

@@ -18,6 +18,7 @@ public class StaticProjectile : MonoBehaviour
     void Start()
     {
         Invoke("CleanUpDamageTrackers", 1.0f);
+        damageTracker = new DamageTracker(1.0f);
     }
 
     public void Init(IWeapon weapon)
@@ -31,7 +32,6 @@ public class StaticProjectile : MonoBehaviour
         Init(weapon);
         transform.position = pos;
         transform.localScale = new Vector3(scale, scale, scale);
-        damageTracker = new DamageTracker(1.0f);
     }
 
     // Update is called once per frame
