@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateRequiredXP(int currentPlayerLevel)
     {
-        requiredPlayerXp = currentPlayerLevel * 25;
+        requiredPlayerXp = 25 + (int)Math.Pow(currentPlayerLevel, 1.25f) * 10;
     }
 
     void OnTriggerEnter2D(Collider2D collider2D)
