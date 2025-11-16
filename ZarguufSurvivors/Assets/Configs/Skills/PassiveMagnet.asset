@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f3fc084724ec74e9a8552803ef9703, type: 3}
-  m_Name: PassiveProjectileCount
+  m_Name: PassiveMagnet
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
   skillCategory: 1
-  skillType: 10
-  icon: {fileID: 538740977833997149, guid: a6786cabd9c8af54fbd91b43c2daed18, type: 3}
+  skillType: 8
+  icon: {fileID: -3668528402627127979, guid: ac3652292bab7c946b0057853610947c, type: 3}
   currentLevel: 0
-  title: Projectile count
-  description: More the merrier
+  title: Pickup range
+  description: Suck it up

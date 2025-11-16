@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private int playerHealth = 100;
     private int playerMaxHealth = 100;
+    private const int playerOriginalMaxHealth = 100;
 
 
     [SerializeField]
@@ -34,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteFlasher flasher;
     private float lastDamaged = 0;
     private float invulnerabilityDuration = 0.5f;
+    private float magnetCD = 0.333f;
+    private float lastMagnet = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -84,6 +87,28 @@ public class PlayerMovement : MonoBehaviour
             Vector2 newPos2 = oldPos2 + moveValue * playerSpeedLevels[currentSpeedLevel] * Time.deltaTime;
 
             transform.position = new Vector3(newPos2.x, newPos2.y, transform.position.z);
+        }
+
+        if (playerMaxHealth < (playerOriginalMaxHealth + SkillManager.main.GetPlayerMaxHealthAddition()))
+        {
+            playerMaxHealth = playerOriginalMaxHealth + SkillManager.main.GetPlayerMaxHealthAddition();
+            playerHealth += SkillManager.main.GetPlayerHealthAddition();
+        }
+
+        int magnet = SkillManager.main.GetMagnetSkillLevel();
+
+        if (magnet > 0 && Time.time - magnetCD > lastMagnet)
+        {
+            float magnetRange = 2f + 0.3f * magnet;
+            Collider2D[] pickups = Physics2D.OverlapCircleAll(transform.position, magnetRange, LayerMask.GetMask("Pickupable"));
+
+            foreach (Collider2D pickup in pickups)
+            {
+                if (pickup.gameObject.TryGetComponent<XpDrop>(out XpDrop xpd))
+                {
+                    xpd.GoToPlayer();
+                }
+            }
         }
     }
 
