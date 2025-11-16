@@ -20,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
     private int playerMaxHealth = 100;
 
 
+    [SerializeField]
+    private BoxCollider2D movementBounds;
+
     private int totalPlayerXp = 0;
     private int currentPlayerXp = 0;
     private int currentPlayerLevel = 1;
@@ -163,6 +166,28 @@ public class PlayerMovement : MonoBehaviour
         var mobName = e.Name;
         numberOfMobsKilled += 1;
         MessageBus.Publish(new PlayerKillCountChange(numberOfMobsKilled));
+    }
+
+    float xDamping = 0.5f;
+    float yDamping = 5f;
+    void LateUpdate()
+    {
+        if (movementBounds != null)
+        {
+            // Get the boundary limits
+            var min = movementBounds.bounds.min;
+            var max = movementBounds.bounds.max;
+
+            // Get the Rigidbody's position
+            Vector2 currentPos = playerBody.position;
+
+            // Clamp the X and Y coordinates
+            float clampedX = Mathf.Clamp(currentPos.x, min.x + xDamping, max.x - xDamping);
+            float clampedY = Mathf.Clamp(currentPos.y, min.y + yDamping, max.y - yDamping);
+
+            // Apply the clamped position back to the Rigidbody
+            playerBody.position = new Vector2(clampedX, clampedY);
+        }
     }
 
 }
