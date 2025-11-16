@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Wormys Drizzle
   m_EditorClassIdentifier: Assembly-CSharp::SpawnWave
   enemyConfig: {fileID: 11400000, guid: 99d1c4dcf7a626642af5a4dbaa040def, type: 2}
-  formation: 0
+  formation: 1
   amount: 30
   timing: 1
   interval: 3
-  amountPerInterval: 1
+  amountPerInterval: 3

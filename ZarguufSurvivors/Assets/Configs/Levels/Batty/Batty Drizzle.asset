@@ -17,4 +17,4 @@ MonoBehaviour:
   amount: 30
   timing: 1
   interval: 3
-  amountPerInterval: 1
+  amountPerInterval: 3
