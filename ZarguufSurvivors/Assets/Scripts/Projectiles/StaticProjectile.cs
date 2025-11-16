@@ -13,6 +13,7 @@ public class StaticProjectile : MonoBehaviour
     private float radiusCoef = 0.65f;
     IWeapon weapon;
     private DamageTracker damageTracker;
+    private float damage;
 
 
     void Start()
@@ -21,15 +22,16 @@ public class StaticProjectile : MonoBehaviour
         damageTracker = new DamageTracker(1.0f);
     }
 
-    public void Init(IWeapon weapon)
+    public void Init(IWeapon weapon, float damage)
     {
         this.weapon = weapon;
         lifeStart = Time.time;
+        this.damage = damage;
     }
 
-    public void Init(IWeapon weapon, Vector2 pos, float scale)
+    public void Init(IWeapon weapon, Vector2 pos, float scale, float damage)
     {
-        Init(weapon);
+        Init(weapon, damage);
         transform.position = pos;
         transform.localScale = new Vector3(scale, scale, scale);
     }
@@ -47,9 +49,8 @@ public class StaticProjectile : MonoBehaviour
         {
             if (damageTracker.CanHurt(dmg))
             {
-                var damageToDo = 1;
-                applyDamage(dmg, damageToDo);
-                UIManager.main.ShowPoppingText($"{damageToDo}", Color.red, transform.position);
+                applyDamage(dmg, damage);
+                UIManager.main.ShowPoppingText($"{damage}", Color.red, transform.position);
             }
         }
     }

@@ -349,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8504021380936873332, guid: 5957e5b9dff9fca4f9ba7b2c0adb6bf4, type: 3}
       propertyPath: orthographic size
-      value: 7.515625
+      value: 8.40625
       objectReference: {fileID: 0}
     - target: {fileID: 8739728856010423717, guid: 5957e5b9dff9fca4f9ba7b2c0adb6bf4, type: 3}
       propertyPath: m_Name
@@ -411,6 +411,14 @@ PrefabInstance:
     - target: {fileID: 2658613311987553683, guid: dde2e800f01ffb2f386d650a023091db, type: 3}
       propertyPath: orthographic size
       value: 7.515625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021015030998794109, guid: dde2e800f01ffb2f386d650a023091db, type: 3}
+      propertyPath: levels.Array.data[0].jumpRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021015030998794109, guid: dde2e800f01ffb2f386d650a023091db, type: 3}
+      propertyPath: levels.Array.data[0].projectileRange
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7581490648729929566, guid: dde2e800f01ffb2f386d650a023091db, type: 3}
       propertyPath: m_IsTrigger

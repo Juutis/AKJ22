@@ -12,6 +12,7 @@ public class StraightFlyingProjectile : MonoBehaviour
     private float lifetime = 5;
     private float lifeStart;
     private float radiusCoef = 0.65f;
+    private float damage;
 
     private DamageTracker damageTracker = new DamageTracker(100.0f);
 
@@ -21,7 +22,7 @@ public class StraightFlyingProjectile : MonoBehaviour
 
     }
 
-    public void Init(Vector2 dir, float speed)
+    public void Init(Vector2 dir, float speed, float damage)
     {
         if (randomDirection)
         {
@@ -34,6 +35,7 @@ public class StraightFlyingProjectile : MonoBehaviour
 
         this.speed = speed;
         lifeStart = Time.time;
+        this.damage = damage;
         damageTracker = new DamageTracker(100.0f);
     }
 
@@ -54,9 +56,8 @@ public class StraightFlyingProjectile : MonoBehaviour
         {
             if (damageTracker.CanHurt(dmg))
             {
-                var damageToDo = 1;
-                applyDamage(dmg, damageToDo);
-                UIManager.main.ShowPoppingText($"{damageToDo}", Color.red, transform.position);
+                applyDamage(dmg, damage);
+                UIManager.main.ShowPoppingText($"{damage}", Color.red, transform.position);
             }
         }
     }

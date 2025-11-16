@@ -4,13 +4,7 @@ using UnityEngine;
 public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
 {
     [SerializeField]
-    private float cooldown;
-    [SerializeField]
-    private float rotateSpeed;
-    [SerializeField]
-    private int maxProjectiles;
-    [SerializeField]
-    private float projectileDistance;
+    private List<ProtectionScrollLevel> levels;
 
     private float lastShoot;
     private PlayerMovement player;
@@ -18,10 +12,12 @@ public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
     private ProjectilePool pool;
 
     private List<StaticProjectile> projectiles = new();
+    private ProtectionScrollLevel currentLevel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentLevel = levels[0];
         lastShoot = 0;
         player = transform.parent.parent.GetComponent<PlayerMovement>();
 
@@ -31,12 +27,13 @@ public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - lastShoot >= cooldown && projectiles.Count < maxProjectiles)
+        currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.ProtectionScroll))];
+        if (Time.time - lastShoot >= currentLevel.cooldown && projectiles.Count < currentLevel.maxProjectiles)
         {
             Shoot();
         }
 
-        transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+        transform.Rotate(0f, 0f, currentLevel.rotateSpeed * Time.deltaTime);
     }
 
     private void Shoot()
@@ -51,12 +48,12 @@ public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
             return;
         }
 
-        projectile.Init(this);
+        projectile.Init(this, currentLevel.damage);
         projectiles.Add(projectile);
 
         for (int i = 0; i < projectiles.Count; i++)
         {
-            projectiles[i].transform.position = player.transform.position + Quaternion.Euler(0, 0, 360 / projectiles.Count * i) * Vector2.up * projectileDistance;
+            projectiles[i].transform.position = player.transform.position + Quaternion.Euler(0, 0, 360 / projectiles.Count * i) * Vector2.up * currentLevel.projectileDistance;
         }
     }
 
@@ -71,4 +68,15 @@ public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
         projectiles.Remove(obj.GetComponent<StaticProjectile>());
         ProjectilePoolManager.main.GetPool(ProjectileType.ProtectionScroll).Kill(obj);
     }
+}
+
+
+[System.Serializable]
+public class ProtectionScrollLevel
+{
+    public float cooldown;
+    public float rotateSpeed;
+    public int maxProjectiles;
+    public float projectileDistance;
+    public float damage;
 }
