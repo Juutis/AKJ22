@@ -32,7 +32,6 @@ public class ChainProjectile : MonoBehaviour
         this.target = target;
         this.lifetime = lifetime;
         this.previousTargets = previousTargets;
-        Debug.Log($"Init {transform.name}");
         inited = true;
         hasJumped = false;
     }
@@ -66,8 +65,6 @@ public class ChainProjectile : MonoBehaviour
 
         if (Time.time - startTime > lifetime)
         {
-            Debug.Log($"Died {transform.name}");
-
             if (target.gameObject.TryGetComponent<Damageable>(out Damageable enemy))
             {
                 var damageToDo = 1;

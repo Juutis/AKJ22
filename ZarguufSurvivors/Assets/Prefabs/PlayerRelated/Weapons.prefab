@@ -47,6 +47,55 @@ MonoBehaviour:
   cooldown: 1
   projectileSpeed: 5
   projectilePrefab: {fileID: 1323401879864160827, guid: e00e8e60120a33e34899c334f48ebe85, type: 3}
+--- !u!1 &3105419657616499856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6448512724174099065}
+  - component: {fileID: 1589112583627272382}
+  m_Layer: 0
+  m_Name: Weapon6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6448512724174099065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3105419657616499856}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 757309090667288465}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1589112583627272382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3105419657616499856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 583e4890499f2f0e6a581b22585060a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FireCurseWeapon
+  cooldown: 1
+  projectileRange: 4
+  lifetime: 2
+  dotCooldown: 0.5
+  projectilePrefab: {fileID: 1323401879864160827, guid: 847d2f5f810afc539accffaf31181590, type: 3}
 --- !u!1 &3653401936064154908
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,6 +130,7 @@ Transform:
   - {fileID: 3577062865945107755}
   - {fileID: 2411537149256060505}
   - {fileID: 5637747705823795167}
+  - {fileID: 6448512724174099065}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4421487131608594370
