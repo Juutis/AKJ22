@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
   skillCategory: 1
   skillType: 11
-  icon: {fileID: 9192125042309663246, guid: a30e6762f94a1ec49b314e683ceab5da, type: 3}
+  icon: {fileID: -4297203505398261690, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
   currentLevel: 0
   title: Attack Speed
   description: Faster fingers

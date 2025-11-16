@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
   skillCategory: 0
   skillType: 4
-  icon: {fileID: 3742693228195874173, guid: fb71df7c97ca63446a566d1434b79805, type: 3}
+  icon: {fileID: 6621252853494989987, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
   currentLevel: 0
   title: Chain lightning
   description: Lightning strikes from your fingertips damaging multiple enemies at

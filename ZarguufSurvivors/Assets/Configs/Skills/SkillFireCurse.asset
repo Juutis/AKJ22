@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
   skillCategory: 0
   skillType: 5
-  icon: {fileID: 6215400140222225110, guid: 055f48563808de744ac58516bcc50157, type: 3}
+  icon: {fileID: -2978653956524333172, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
   currentLevel: 0
   title: Fire Curse
   description: Lights up nearby enemies, dealing massive damage over time.

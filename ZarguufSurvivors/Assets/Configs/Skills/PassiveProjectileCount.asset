@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
   skillCategory: 1
   skillType: 10
-  icon: {fileID: 538740977833997149, guid: a6786cabd9c8af54fbd91b43c2daed18, type: 3}
+  icon: {fileID: 2189712646507832853, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
   currentLevel: 0
   title: Projectile count
   description: More the merrier

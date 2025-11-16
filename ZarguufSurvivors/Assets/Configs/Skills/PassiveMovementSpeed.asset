@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
   skillCategory: 1
   skillType: 9
-  icon: {fileID: -7060935714447605527, guid: 762e922203ae95246ba171c5bae6546e, type: 3}
+  icon: {fileID: 3357360333254942192, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
   currentLevel: 0
   title: Movement Speed
   description: Running shoes

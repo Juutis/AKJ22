@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
   skillCategory: 1
   skillType: 6
-  icon: {fileID: -7250195882505504687, guid: 8e4c560203225884e8aded2cf0140014, type: 3}
+  icon: {fileID: 4202938828118557322, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
   currentLevel: 0
   title: Attack Damage
   description: Spicy magic

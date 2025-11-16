@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
   skillCategory: 0
   skillType: 3
-  icon: {fileID: -1469719317268872596, guid: 2163cb0bfa6b3ae4fb89b3c1f7972865, type: 3}
+  icon: {fileID: -1290855366162983238, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
   currentLevel: 0
   title: Cauldron
   description: Periodically creates pools of poisonous goo on the ground.

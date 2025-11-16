@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
   skillCategory: 0
   skillType: 0
-  icon: {fileID: 538740977833997149, guid: a6786cabd9c8af54fbd91b43c2daed18, type: 3}
+  icon: {fileID: -2248273014285675650, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
   currentLevel: 0
   title: Magic Missile
   description: 'Rapidly shoots magic missiles towards the direction you''re facing

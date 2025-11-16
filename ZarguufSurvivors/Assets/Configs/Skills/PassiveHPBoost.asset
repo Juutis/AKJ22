@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
   skillCategory: 1
   skillType: 12
-  icon: {fileID: -3668528402627127979, guid: ac3652292bab7c946b0057853610947c, type: 3}
+  icon: {fileID: 7627503616358371109, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
   currentLevel: 0
   title: More health
   description: He's a big boy!
