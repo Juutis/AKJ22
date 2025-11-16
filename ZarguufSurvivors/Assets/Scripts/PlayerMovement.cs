@@ -54,9 +54,14 @@ public class PlayerMovement : MonoBehaviour
         moveDir = Vector2.up;
         MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
         MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
-        MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
 
+        Invoke("GainFirstLevel", 0.5f); 
         flasher = GetComponentInChildren<SpriteFlasher>();
+    }
+
+    public void GainFirstLevel()
+    {
+        MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
     }
 
     // Update is called once per frame

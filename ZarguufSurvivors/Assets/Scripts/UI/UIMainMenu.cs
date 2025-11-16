@@ -13,7 +13,7 @@ public class UIMainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mouse.current != null &&
+        /*if (Mouse.current != null &&
             (
                 Mouse.current.leftButton.wasPressedThisFrame ||
                 Mouse.current.rightButton.wasPressedThisFrame
@@ -21,8 +21,8 @@ public class UIMainMenu : MonoBehaviour
         )
         {
             SceneManager.LoadScene("juhoScene");
-        }
-        else if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
+        }*/
+        if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
         {
             SceneManager.LoadScene("juhoScene");
         }
