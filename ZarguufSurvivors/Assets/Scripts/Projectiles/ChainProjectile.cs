@@ -21,6 +21,7 @@ public class ChainProjectile : MonoBehaviour
     private List<Transform> previousTargets;
     private bool inited = false;
     private float damage;
+    private bool isKilled = false;
 
     public void Init(ProjectilePool pool, Transform start, Transform target, float lifetime, float jumpRange, float jumpDelay, float damage, int jumps, List<Transform> previousTargets)
     {
@@ -52,7 +53,7 @@ public class ChainProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!inited)
+        if (!inited || isKilled)
         {
             return;
         }
@@ -65,7 +66,7 @@ public class ChainProjectile : MonoBehaviour
             Jump();
         }
 
-        if (Time.time - startTime > lifetime)
+        if (Time.time - startTime > lifetime && !isKilled)
         {
             if (target.gameObject.TryGetComponent<Damageable>(out Damageable enemy))
             {
@@ -91,15 +92,14 @@ public class ChainProjectile : MonoBehaviour
 
         foreach (Collider2D enemy in enemies)
         {
-            if (previousTargets.Any(x => transform.gameObject == enemy.gameObject))
+            if (previousTargets.Any(x => transform.gameObject.GetInstanceID() == enemy.gameObject.GetInstanceID()))
             {
                 continue;
             }
 
-            previousTargets.Add(enemy.transform);
-
             if (enemy != null)
             {
+                previousTargets.Add(enemy.transform);
                 GameObject newProjectile = pool.Get();
                 ChainProjectile projectile = newProjectile.GetComponent<ChainProjectile>();
 
@@ -118,6 +118,7 @@ public class ChainProjectile : MonoBehaviour
 
     public void Kill()
     {
+        isKilled = true;
         inited = false;
         pool.Kill(gameObject);
     }

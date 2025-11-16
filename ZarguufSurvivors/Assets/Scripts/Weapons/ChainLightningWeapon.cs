@@ -50,7 +50,7 @@ public class ChainLightningWeapon : MonoBehaviour
                 Debug.LogError("Couldn't get ChainProjectile from pool");
                 pool.Kill(newProjectile);
             }
-            projectile.Init(pool, transform, enemy.transform, lifetime, currentLevel.jumpRange, currentLevel.jumpDelay, currentLevel.damage, currentLevel.jumpAmount, new());
+            projectile.Init(pool, transform, enemy.transform, lifetime, currentLevel.jumpRange, currentLevel.jumpDelay, currentLevel.damage, currentLevel.jumpAmount, new List<Transform> { enemy.transform });
         }
 
         lastShoot = Time.time;
@@ -58,7 +58,8 @@ public class ChainLightningWeapon : MonoBehaviour
 }
 
 [Serializable]
-public class ChainLightningLevel {
+public class ChainLightningLevel
+{
     public float cooldown;
     public float jumpDelay;
     public float projectileRange;
