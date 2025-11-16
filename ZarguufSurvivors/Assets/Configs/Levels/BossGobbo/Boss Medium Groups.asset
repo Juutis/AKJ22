@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnWave
   enemyConfig: {fileID: 11400000, guid: c243bd9436924ac48b8f237d63dbc838, type: 2}
   formation: 1
-  amount: 15
+  amount: 30
   timing: 1
-  interval: 5
-  amountPerInterval: 3
+  interval: 3
+  amountPerInterval: 5

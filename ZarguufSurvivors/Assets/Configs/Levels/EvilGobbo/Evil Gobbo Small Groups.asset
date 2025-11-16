@@ -16,5 +16,5 @@ MonoBehaviour:
   formation: 1
   amount: 30
   timing: 1
-  interval: 5
+  interval: 3
   amountPerInterval: 3
