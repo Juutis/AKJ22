@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     private int currentPlayerLevel = 1;
     private int requiredPlayerXp = 25;
 
+    private int numberOfMobsKilled = 0;
+
     private Rigidbody2D playerBody;
     private SpriteFlasher flasher;
     private float lastDamaged = 0;
@@ -86,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerHealth <= 0)
         {
             Debug.Log("<color=red>Player died!!!</color>");
+            MessageBus.Publish(new PlayerDiedEvent(playerHealth));
         }
         playerHealth = Math.Clamp(playerHealth, 0, playerMaxHealth);
         MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
@@ -143,6 +146,25 @@ public class PlayerMovement : MonoBehaviour
     {
         return Time.time > lastDamaged + invulnerabilityDuration;
     }
+
+
+    private void OnEnable()
+    {
+        MessageBus.Subscribe<MobWasKilledEvent>(OnMobWasKilledEvent);
+    }
+
+    private void OnDisable()
+    {
+        MessageBus.Unsubscribe<MobWasKilledEvent>(OnMobWasKilledEvent);
+    }
+
+    private void OnMobWasKilledEvent(MobWasKilledEvent e)
+    {
+        var mobName = e.Name;
+        numberOfMobsKilled += 1;
+        MessageBus.Publish(new PlayerKillCountChange(numberOfMobsKilled));
+    }
+
 }
 
 
@@ -155,6 +177,16 @@ public struct PlayerHealthChangeEvent : IEvent
     {
         CurrentHealth = currentHealth;
         MaxHealth = maxHealth;
+    }
+}
+
+public struct PlayerDiedEvent : IEvent
+{
+    public int CurrentHealth;
+
+    public PlayerDiedEvent(int currentHealth)
+    {
+        CurrentHealth = currentHealth;
     }
 }
 
@@ -177,5 +209,15 @@ public struct LevelGainedEvent : IEvent
     public LevelGainedEvent(int currentLevel)
     {
         CurrentLevel = currentLevel;
+    }
+}
+
+public struct PlayerKillCountChange : IEvent
+{
+    public int KillCount;
+
+    public PlayerKillCountChange(int killCount)
+    {
+        KillCount = killCount;
     }
 }
