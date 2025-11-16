@@ -12,7 +12,6 @@ public class FollowEnemyProjectile : MonoBehaviour
     private float damage;
     private bool isKilled;
 
-    private DamageTracker damageTracker = new DamageTracker(100.0f);
     private Damageable targetDamageable;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,7 +53,7 @@ public class FollowEnemyProjectile : MonoBehaviour
             return;
         }
 
-        if (targetDamageable.IsKilled())
+        if (targetDamageable.IsKilled() && !isKilled)
         {
             Kill();
         }
@@ -71,15 +70,12 @@ public class FollowEnemyProjectile : MonoBehaviour
         {
             if (target != null && target.TryGetComponent<Damageable>(out Damageable dmg))
             {
-                if (damageTracker.CanHurt(dmg))
-                {
-                    applyDamage(dmg, damage);
-                    UIManager.main.ShowPoppingText($"{damage}", Color.red, transform.position);
+                applyDamage(dmg, damage);
+                UIManager.main.ShowPoppingText($"{damage}", Color.red, transform.position);
 
-                    if (dmg.IsKilled())
-                    {
-                        Kill();
-                    }
+                if (dmg.IsKilled())
+                {
+                    Kill();
                 }
             }
 
@@ -90,7 +86,6 @@ public class FollowEnemyProjectile : MonoBehaviour
     public void applyDamage(Damageable damageable, float damage)
     {
         damageable.Hurt(damage);
-        damageTracker.TargetDamaged(damageable);
         ScreenShake.Instance.Shake(1.0f);
     }
 
