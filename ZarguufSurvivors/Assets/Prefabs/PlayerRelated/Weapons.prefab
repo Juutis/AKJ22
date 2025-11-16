@@ -47,7 +47,7 @@ MonoBehaviour:
   levels:
   - cooldown: 1.5
     projectileSpeed: 6
-    damage: 4
+    damage: 20
 --- !u!1 &3105419657616499856
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
     projectileRange: 4
     lifetime: 2
     dotCooldown: 0.8
-    damage: 2
+    damage: 8
 --- !u!1 &3653401936064154908
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
     rotateSpeed: 90
     maxProjectiles: 3
     projectileDistance: 3
-    damage: 1
+    damage: 10
 --- !u!1 &5400778452851727853
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
     jumpRange: 2.5
     jumpAmount: 1
     projectileCount: 1
-    damage: 2
+    damage: 16
 --- !u!1 &7318319317955456233
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   levels:
   - cooldown: 0.66
     projectileSpeed: 8
-    damage: 1
+    damage: 10
 --- !u!1 &8110859066171566267
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,4 +335,4 @@ MonoBehaviour:
   - cooldown: 3
     projectileSize: 2
     spawnRange: 6
-    damage: 1
+    damage: 8

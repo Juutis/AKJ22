@@ -28,7 +28,8 @@ public class SkillManager : MonoBehaviour
             skillsThisRun.Add(Instantiate(skill));
         }
 
-        activatedSkills.Add(SkillCategory.Weapon, GetRandomSkillsWithCategory(1, SkillCategory.Weapon));
+        //activatedSkills.Add(SkillCategory.Weapon, GetRandomSkillsWithCategory(1, SkillCategory.Weapon));
+        activatedSkills.Add(SkillCategory.Weapon, skills.Where(x => x.SkillType == SkillType.ChainLightningProjectile).ToList());
     }
 
     public List<SkillConfig> GetRandomSkills(int number)

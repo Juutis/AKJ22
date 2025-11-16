@@ -19,6 +19,11 @@ public class FollowEnemyProjectile : MonoBehaviour
 
     }
 
+    void OnEnable() {
+        lifeStart = Time.time;
+        lastHit = Time.time;
+    }
+
     public void Init(Transform target, float cooldown, float damage)
     {
         lifeStart = Time.time;
@@ -47,6 +52,8 @@ public class FollowEnemyProjectile : MonoBehaviour
                     UIManager.main.ShowPoppingText($"{damage}", Color.red, transform.position);
                 }
             }
+            
+            lastHit = Time.time;
         }
     }
 

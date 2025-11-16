@@ -43,6 +43,9 @@ public class ChainProjectile : MonoBehaviour
 
     void OnEnable()
     {
+        this.inited = false;
+        this.isKilled = false;
+        this.hasJumped = false;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -61,17 +64,17 @@ public class ChainProjectile : MonoBehaviour
 
         if (!hasJumped && (Time.time - startTime > jumpDelay) && (jumps > 0))
         {
-            Jump();
-        }
-
-        if (Time.time - startTime > lifetime && !isKilled)
-        {
             if (target.gameObject.TryGetComponent<Damageable>(out Damageable enemy))
             {
                 enemy.Hurt(damage);
                 UIManager.main.ShowPoppingText($"{damage}", Color.red, target.position);
             }
 
+            Jump();
+        }
+
+        if (Time.time - startTime > lifetime && !isKilled)
+        {
             Kill();
         }
     }

@@ -36,6 +36,8 @@ public class FireballWeapon : MonoBehaviour
 
     private void Shoot()
     {
+        Collider2D enemy = Physics2D.OverlapCircle(player.transform.position, 6f, LayerMask.GetMask("Enemy Damage Receiver"));
+
         GameObject newProjectile = ProjectilePoolManager.main.GetPool(ProjectileType.Fireball).Get();
         newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, currentLevel.projectileSpeed, currentLevel.damage);
 
