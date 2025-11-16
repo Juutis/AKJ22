@@ -41,8 +41,10 @@ public class UILevelUpMenu : MonoBehaviour
     private void OnLevelGainedEvent(LevelGainedEvent e)
     {
         currentLevel = e.CurrentLevel;
-        SoundManager.main.PlaySound(GameSoundType.LevelUp);
-        txtCurrentLevel.text = $"Level up! Level {currentLevel}";
+        if (currentLevel > 0) {
+            SoundManager.main.PlaySound(GameSoundType.LevelUp);
+        }
+        txtCurrentLevel.text = $"Level up! Level {currentLevel + 1}";
         Show();
     }
 
@@ -57,7 +59,7 @@ public class UILevelUpMenu : MonoBehaviour
 
     public void AfterHide()
     {
-        foreach(var uiSkill in uiSkills)
+        foreach (var uiSkill in uiSkills)
         {
             Destroy(uiSkill.gameObject);
         }
@@ -76,22 +78,42 @@ public class UILevelUpMenu : MonoBehaviour
 
     private void PopulateSkills()
     {
-        skillConfigs = SkillManager.main.GetRandomSkills(maxSkills);
+        if (currentLevel == 0)
+        {
+            skillConfigs = SkillManager.main.GetJustWeapons(maxSkills);
+        }
+        else
+        {
+            skillConfigs = SkillManager.main.GetRandomSkills(maxSkills);
+        }
         numberOfSkills = skillConfigs.Count;
         var index = 0;
-        foreach(var skillConfig in skillConfigs)
+        foreach (var skillConfig in skillConfigs)
         {
             var uiLevelUpSkill = Instantiate(uiLevelUpSkillPrefab, skillContainer);
             uiLevelUpSkill.Initialize(skillConfig, index);
             uiSkills.Add(uiLevelUpSkill);
             index += 1;
         }
+        if (numberOfSkills == 0)
+        {
+            var emptySkill = Instantiate(uiLevelUpSkillPrefab, skillContainer);
+            emptySkill.InitializeEmpty();
+            uiSkills.Add(emptySkill);
+        }
     }
 
     private void ChooseSelectedSkill()
     {
-        var skill = uiSkills.FirstOrDefault(uiSkill => uiSkill.IsSelected).SkillConfig;
-        MessageBus.Publish(new SkillLevelUpChosenEvent(skill));
+        var skill = uiSkills.FirstOrDefault(uiSkill => uiSkill.IsSelected);
+        if (skill.SkillConfig == null)
+        {
+            Debug.Log("You selected gold");
+        }
+        else
+        {
+            MessageBus.Publish(new SkillLevelUpChosenEvent(skill.SkillConfig));
+        }
         SoundManager.main.PlaySound(GameSoundType.Select);
         Hide();
     }

@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private int totalPlayerXp = 0;
     private int currentPlayerXp = 0;
-    private int currentPlayerLevel = 1;
+    private int currentPlayerLevel = 0;
     private int requiredPlayerXp = 25;
 
     private int numberOfMobsKilled = 0;
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         moveDir = Vector2.up;
         MessageBus.Publish(new PlayerHealthChangeEvent(playerHealth, playerMaxHealth));
         MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
-        //MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
+        MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
 
         flasher = GetComponentInChildren<SpriteFlasher>();
     }

@@ -58,13 +58,18 @@ public class LevelManager : MonoBehaviour
 
     public void Pause()
     {
-        runTimer.Pause();
+        if (runTimer != null) {
+            runTimer.Pause();
+        }
         isPaused = true;
     }
 
     public void Unpause()
     {
-        runTimer.Unpause();
+        if (runTimer != null)
+        {
+            runTimer.Unpause();
+        }
         isPaused = false;
     }
 

@@ -38,7 +38,7 @@ public class UIXpBar : MonoBehaviour
 
     private void OnLevelGainedEvent(LevelGainedEvent e)
     {
-        txtLevel.text = $"level {e.CurrentLevel}";
+        txtLevel.text = $"level {e.CurrentLevel + 1}";
     }
 
 
