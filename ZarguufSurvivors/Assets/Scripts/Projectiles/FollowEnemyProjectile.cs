@@ -41,7 +41,7 @@ public class FollowEnemyProjectile : MonoBehaviour
             targetDamageable = dmg;
         }
         else
-        {
+        {   
             Kill();
         }
     }

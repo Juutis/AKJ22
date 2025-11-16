@@ -33,10 +33,10 @@ public class SkillManager : MonoBehaviour
         lightning.SkillUp();
         activatedSkills.Add(SkillCategory.Weapon, new() { lightning });
 
-        // SkillConfig projectileBoost = skillsThisRun.FirstOrDefault(x => x.SkillType == SkillType.ProjectileCountBoost);
-        // projectileBoost.SkillUp();
-        // projectileBoost.SkillUp();
-        // activatedSkills.Add(SkillCategory.Passive, new() { projectileBoost });
+        SkillConfig projectileBoost = skillsThisRun.FirstOrDefault(x => x.SkillType == SkillType.PickUpRangeBoost);
+        projectileBoost.SkillUp();
+        projectileBoost.SkillUp();
+        activatedSkills.Add(SkillCategory.Passive, new() { projectileBoost });
     }
 
     public List<SkillConfig> GetRandomSkills(int number)
@@ -78,17 +78,34 @@ public class SkillManager : MonoBehaviour
         return skillsThisRun.FirstOrDefault(skill => skill.SkillType == skillType)?.CurrentLevel ?? 0;
     }
 
-    public float GetAttackCooldownMultiplier() {
+    public float GetAttackCooldownMultiplier()
+    {
         return 1f / (1f + 0.1f * GetSkillLevel(SkillType.AttackSpeedBoost));
     }
 
-    public float GetAttackDamageMultiplier() {
+    public float GetAttackDamageMultiplier()
+    {
         return 1f + 0.1f * GetSkillLevel(SkillType.DamageBoost);
     }
 
 
-    public int GetProjectileCountAddition() {
+    public int GetProjectileCountAddition()
+    {
         return 1 * GetSkillLevel(SkillType.ProjectileCountBoost);
+    }
+
+    public int GetPlayerMaxHealthAddition()
+    {
+        return 10 * GetSkillLevel(SkillType.HPBoost);
+    }
+
+    public int GetPlayerHealthAddition()
+    {
+        return 10;
+    }
+
+    public int GetMagnetSkillLevel() {
+        return GetSkillLevel(SkillType.PickUpRangeBoost);
     }
 
     private void OnEnable()
