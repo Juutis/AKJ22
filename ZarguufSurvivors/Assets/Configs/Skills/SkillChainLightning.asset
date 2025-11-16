@@ -17,4 +17,5 @@ MonoBehaviour:
   icon: {fileID: 3742693228195874173, guid: fb71df7c97ca63446a566d1434b79805, type: 3}
   currentLevel: 0
   title: Chain lightning
-  description: Connecting people
+  description: Lightning strikes from your fingertips damaging multiple enemies at
+    once.

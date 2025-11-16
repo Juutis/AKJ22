@@ -485,43 +485,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
   levels:
   - cooldown: 0.66
-    projectileSpeed: 8
+    projectileSpeed: 15
     damage: 25
     hitCount: 1
   - cooldown: 0.55
-    projectileSpeed: 8
+    projectileSpeed: 15
     damage: 30
     hitCount: 2
   - cooldown: 0.5
-    projectileSpeed: 8
+    projectileSpeed: 15
     damage: 35
     hitCount: 3
   - cooldown: 0.45
-    projectileSpeed: 8
+    projectileSpeed: 15
     damage: 40
     hitCount: 4
   - cooldown: 0.4
-    projectileSpeed: 8
+    projectileSpeed: 15
     damage: 45
     hitCount: 5
   - cooldown: 0.35
-    projectileSpeed: 8
+    projectileSpeed: 15
     damage: 50
     hitCount: 6
   - cooldown: 0.3
-    projectileSpeed: 8
+    projectileSpeed: 15
     damage: 55
     hitCount: 7
   - cooldown: 0.25
-    projectileSpeed: 8
+    projectileSpeed: 15
     damage: 60
     hitCount: 8
   - cooldown: 0.2
-    projectileSpeed: 8
+    projectileSpeed: 15
     damage: 75
     hitCount: 9
-  - cooldown: 0.1
-    projectileSpeed: 8
+  - cooldown: 0.15
+    projectileSpeed: 15
     damage: 100
     hitCount: 10
 --- !u!1 &8110859066171566267

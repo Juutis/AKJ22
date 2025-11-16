@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f3fc084724ec74e9a8552803ef9703, type: 3}
   m_Name: SkillMagicMissile
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
+  skillCategory: 0
   skillType: 0
   icon: {fileID: 538740977833997149, guid: a6786cabd9c8af54fbd91b43c2daed18, type: 3}
   currentLevel: 0
   title: Magic Missile
-  description: 'Shoots a magic missile towards enemies
+  description: 'Rapidly shoots magic missiles towards the direction you''re facing
 
 '
