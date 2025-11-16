@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae3c022732d46246bdda06218687c75, type: 3}
   m_Name: Batty
   m_EditorClassIdentifier: Assembly-CSharp::EnemyConfig
-  health: 20
+  health: 15
   sprites:
   - {fileID: -7543727382803030254, guid: bed0f51de9a790c48b83477d84d73574, type: 3}
   - {fileID: 3203004115538406449, guid: bed0f51de9a790c48b83477d84d73574, type: 3}
@@ -22,5 +22,5 @@ MonoBehaviour:
   isFlying: 1
   moveStrategy: 1
   runThroughDistance: 10
-  xpDrop: 6
+  xpDrop: 10
   damageDoneToPlayer: 5

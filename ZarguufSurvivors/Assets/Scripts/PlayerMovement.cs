@@ -152,6 +152,12 @@ public class PlayerMovement : MonoBehaviour
             UpdatePlayerXp(amount);
             xpDrop.Kill();
         }
+
+        if (collider.gameObject.tag == "Magnet")
+        {
+            XpDropManager.Instance.Drops.ForEach(it => it.GoToPlayer());
+            Destroy(collider.gameObject);
+        }
     }
 
     private bool canTakeDamage()

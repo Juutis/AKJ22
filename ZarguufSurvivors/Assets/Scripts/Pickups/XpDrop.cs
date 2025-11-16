@@ -18,12 +18,16 @@ public class XpDrop : MonoBehaviour
     [SerializeField]
     private int xpAmount = 5;
 
+    private bool goToPlayer = false;
+    private Transform player;
+
     void Start()
     {
         if (!initiated)
         {
             Initialize(xpAmount);
         }
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public void Initialize(int xpDrop)
@@ -38,11 +42,30 @@ public class XpDrop : MonoBehaviour
         }
         xpDropTier.Sprite.SetActive(true);
         initiated = true;
+        XpDropManager.Instance.Drops.Add(this);
+    }
+
+    public void Update()
+    {
+        if (goToPlayer)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, 10.0f * Time.deltaTime);
+        }
     }
 
     public void Kill()
     {
+        XpDropManager.Instance.Drops.Remove(this);
         Destroy(gameObject);
+    }
+
+    public void GoToPlayer()
+    {
+        if (goToPlayer)
+        {
+            return;
+        }
+        goToPlayer = true;
     }
 }
 

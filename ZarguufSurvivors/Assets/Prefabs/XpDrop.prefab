@@ -50,9 +50,9 @@ MonoBehaviour:
   - Sprite: {fileID: 4452323200386676847}
     MinimumXp: 0
   - Sprite: {fileID: 6851937395138208610}
-    MinimumXp: 10
+    MinimumXp: 20
   - Sprite: {fileID: 7133923046588460648}
-    MinimumXp: 30
+    MinimumXp: 100
   spriteRenderer: {fileID: 2575368162534635290}
   xpAmount: 5
 --- !u!58 &675219325689971469
