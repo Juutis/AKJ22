@@ -163,6 +163,7 @@ public class PlayerMovement : MonoBehaviour
             if (spawnableMob != null && canTakeDamage())
             {
                 int damage = spawnableMob.GetDamageDoneToPlayer();
+                SoundManager.main.PlaySound(GameSoundType.Hurt);
                 UpdatePlayerHealth(-damage);
                 ScreenShake.Instance.Shake(10.0f);
                 flasher.Flash();
@@ -175,6 +176,7 @@ public class PlayerMovement : MonoBehaviour
         {
             var amount = xpDrop.XpDropAmount;
             UpdatePlayerXp(amount);
+            SoundManager.main.PlaySound(GameSoundType.PickupXp);
             xpDrop.Kill();
         }
 
@@ -203,7 +205,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMobWasKilledEvent(MobWasKilledEvent e)
     {
-        var mobName = e.Name;
+        var mobConfig = e.EnemyConfig;
+        Debug.Log($"play soudn {mobConfig.GameSoundType}");
+        SoundManager.main.PlaySound(mobConfig.GameSoundType);
         numberOfMobsKilled += 1;
         MessageBus.Publish(new PlayerKillCountChange(numberOfMobsKilled));
     }

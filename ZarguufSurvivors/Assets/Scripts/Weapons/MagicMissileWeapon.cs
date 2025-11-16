@@ -48,6 +48,7 @@ public class MagicMissileWeapon : MonoBehaviour
 
         newProjectile.transform.position = transform.position + offsetPos + randomPos;
         lastShoot = Time.time;
+        SoundManager.main.PlaySound(GameSoundType.ShootProjectile);
     }
 }
 

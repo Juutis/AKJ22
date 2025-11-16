@@ -1147,7 +1147,11 @@ MonoBehaviour:
 
     move
 
-    select (menu)'
+    select (menu)
+
+    toggle sounds
+
+    mute music'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1b225bfc6227c4bbca404c8e2ac713, type: 2}
   m_sharedMaterial: {fileID: 1885755014145841909, guid: 0e1b225bfc6227c4bbca404c8e2ac713, type: 2}
@@ -1287,7 +1291,11 @@ MonoBehaviour:
 
     WASD / Arrow keys
 
-    Enter / Spacebar'
+    Enter / Spacebar
+
+    I
+
+    O'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e1b225bfc6227c4bbca404c8e2ac713, type: 2}
   m_sharedMaterial: {fileID: 1885755014145841909, guid: 0e1b225bfc6227c4bbca404c8e2ac713, type: 2}

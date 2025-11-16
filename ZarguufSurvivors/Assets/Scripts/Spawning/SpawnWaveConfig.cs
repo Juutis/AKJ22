@@ -29,7 +29,6 @@ public class SpawnWaveConfig : ScriptableObject
     [Tooltip("Only if timing is Interval")]
     private int amountPerInterval = 1;
     public int AmountPerInterval { get { return amountPerInterval; } }
-
 }
 
 public enum SpawnFormation

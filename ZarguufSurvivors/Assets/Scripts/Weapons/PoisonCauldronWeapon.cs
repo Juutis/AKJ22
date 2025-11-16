@@ -57,6 +57,7 @@ public class PoisonCauldronWeapon : MonoBehaviour, IWeapon
 
         float currentDamage = currentLevel.damage * SkillManager.main.GetAttackDamageMultiplier();
         projectile.Init(this, new Vector2(player.transform.position.x, player.transform.position.y) + Random.insideUnitCircle * currentLevel.spawnRange, currentLevel.projectileSize, currentDamage, 9999);
+        SoundManager.main.PlaySound(GameSoundType.WeaponEffectDeep);
     }
 
     public void Kill(GameObject obj)
