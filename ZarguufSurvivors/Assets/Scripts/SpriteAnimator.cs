@@ -26,8 +26,20 @@ public class SpriteAnimator : MonoBehaviour
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
+        spriteIndex = 0;
         rend.sprite = sprites[0];
         frameDuration = Random.Range(1.0f / maxFramesPerSecond, 1.0f / minFramesPerSecond);
+        CancelInvoke("NextFrame");
+        Invoke("NextFrame", Random.Range(0.0f, frameDuration));
+    }
+
+    void OnEnable()
+    {
+        rend = GetComponent<SpriteRenderer>();
+        spriteIndex = 0;
+        rend.sprite = sprites[0];
+        frameDuration = Random.Range(1.0f / maxFramesPerSecond, 1.0f / minFramesPerSecond);
+        CancelInvoke("NextFrame");
         Invoke("NextFrame", Random.Range(0.0f, frameDuration));
     }
 
