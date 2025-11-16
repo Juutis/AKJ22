@@ -13,6 +13,7 @@ public class FollowEnemyProjectile : MonoBehaviour
     private bool isKilled;
 
     private DamageTracker damageTracker = new DamageTracker(100.0f);
+    private Damageable targetDamageable;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,20 +35,39 @@ public class FollowEnemyProjectile : MonoBehaviour
         lastHit = Time.time;
         this.cooldown = cooldown;
         this.damage = damage;
+
+        if (target != null && target.TryGetComponent<Damageable>(out Damageable dmg))
+        {
+            targetDamageable = dmg;
+        }
+        else
+        {
+            Kill();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isKilled)
+        {
+            return;
+        }
+
+        if (targetDamageable.IsKilled())
+        {
+            Kill();
+        }
+
         transform.position = target.position;
 
-        if (Time.time - lifeStart >= lifetime && !isKilled)
+        if (Time.time - lifeStart >= lifetime)
         {
             isKilled = true;
             ProjectilePoolManager.main.GetPool(projectileType).Kill(gameObject);
         }
 
-        if (Time.time - lastHit > cooldown && !isKilled)
+        if (Time.time - lastHit > cooldown)
         {
             if (target != null && target.TryGetComponent<Damageable>(out Damageable dmg))
             {
@@ -58,8 +78,7 @@ public class FollowEnemyProjectile : MonoBehaviour
 
                     if (dmg.IsKilled())
                     {
-                        isKilled = true;
-                        ProjectilePoolManager.main.GetPool(projectileType).Kill(gameObject);
+                        Kill();
                     }
                 }
             }
@@ -73,5 +92,11 @@ public class FollowEnemyProjectile : MonoBehaviour
         damageable.Hurt(damage);
         damageTracker.TargetDamaged(damageable);
         ScreenShake.Instance.Shake(1.0f);
+    }
+
+    private void Kill()
+    {
+        isKilled = true;
+        ProjectilePoolManager.main.GetPool(projectileType).Kill(gameObject);
     }
 }
