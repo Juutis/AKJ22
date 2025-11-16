@@ -46,7 +46,6 @@ public class Damageable : MonoBehaviour
         if (currentHealth <= 0)
         {
             var spawnableMob = GetComponentInParent<SpawnableMob>();
-            Debug.Log($"found spawnablemob: {spawnableMob}");
             if (spawnableMob != null)
             {
                 MessageBus.Publish(new MobWasKilledEvent(spawnableMob.Config));

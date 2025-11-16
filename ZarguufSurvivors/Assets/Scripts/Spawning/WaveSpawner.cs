@@ -144,7 +144,6 @@ public class WaveSpawner : MonoBehaviour
         }
         if (wave.Timing == SpawnTiming.Instant)
         {
-            //Debug.Log($"Spawing {wave.Amount} mobs instantly...");
             for (int i = 0; i < wave.Amount; i += 1)
             {
                 SpawnMob();

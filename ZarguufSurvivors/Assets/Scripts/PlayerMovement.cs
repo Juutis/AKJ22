@@ -120,7 +120,6 @@ public class PlayerMovement : MonoBehaviour
         playerHealth += healthChange;
         if (playerHealth <= 0)
         {
-            Debug.Log("<color=red>Player died!!!</color>");
             MessageBus.Publish(new PlayerDiedEvent(playerHealth));
         }
         playerHealth = Math.Clamp(playerHealth, 0, playerMaxHealth);
@@ -211,7 +210,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnMobWasKilledEvent(MobWasKilledEvent e)
     {
         var mobConfig = e.EnemyConfig;
-        Debug.Log($"play soudn {mobConfig.GameSoundType}");
         SoundManager.main.PlaySound(mobConfig.GameSoundType);
         numberOfMobsKilled += 1;
         MessageBus.Publish(new PlayerKillCountChange(numberOfMobsKilled));
