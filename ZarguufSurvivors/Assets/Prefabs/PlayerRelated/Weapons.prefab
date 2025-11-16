@@ -569,43 +569,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoisonCauldronWeapon
   levels:
-  - cooldown: 3
+  - cooldown: 6
     projectileSize: 1
     spawnRange: 4
     damage: 8
-  - cooldown: 2.8
+  - cooldown: 5.7
     projectileSize: 1.1
     spawnRange: 4
     damage: 12
-  - cooldown: 2.6
-    projectileSize: 1.2
+  - cooldown: 5
+    projectileSize: 5.4
     spawnRange: 4
     damage: 14
   - cooldown: 2.4
-    projectileSize: 1.3
+    projectileSize: 5.1
     spawnRange: 4
     damage: 16
   - cooldown: 2.2
-    projectileSize: 1.4
+    projectileSize: 4.8
     spawnRange: 4
     damage: 18
   - cooldown: 2
-    projectileSize: 1.5
+    projectileSize: 4.5
     spawnRange: 4
     damage: 20
   - cooldown: 1.8
-    projectileSize: 1.6
+    projectileSize: 4.2
     spawnRange: 4
     damage: 22
   - cooldown: 1.7
-    projectileSize: 1.7
+    projectileSize: 3.9
     spawnRange: 4
     damage: 24
   - cooldown: 1.6
-    projectileSize: 1.8
+    projectileSize: 3.5
     spawnRange: 4
     damage: 26
-  - cooldown: 1.5
-    projectileSize: 2
+  - cooldown: 3
+    projectileSize: 3
     spawnRange: 4
     damage: 30
