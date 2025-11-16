@@ -35,11 +35,11 @@ PrefabInstance:
     - target: {fileID: 3770613610558199606, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: 'sprites.Array.data[0]'
       value: 
-      objectReference: {fileID: -6607481912129624618, guid: 8e4c560203225884e8aded2cf0140014, type: 3}
+      objectReference: {fileID: -2978653956524333172, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
     - target: {fileID: 3770613610558199606, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: 'sprites.Array.data[1]'
       value: 
-      objectReference: {fileID: -7250195882505504687, guid: 8e4c560203225884e8aded2cf0140014, type: 3}
+      objectReference: {fileID: -2978653956524333172, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
     - target: {fileID: 5634127037609954158, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -83,7 +83,11 @@ PrefabInstance:
     - target: {fileID: 8150189830505208125, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6607481912129624618, guid: 8e4c560203225884e8aded2cf0140014, type: 3}
+      objectReference: {fileID: -2978653956524333172, guid: c87d77d6f14a472fea060de928653ce3, type: 3}
+    - target: {fileID: 8150189830505208125, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
+      propertyPath: m_Color.a
+      value: 0.53333336
+      objectReference: {fileID: 0}
     - target: {fileID: 8150189830505208125, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -95,6 +99,14 @@ PrefabInstance:
     - target: {fileID: 8150189830505208125, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150189830505208125, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150189830505208125, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1011168851
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1835048153025202968, guid: d511705a60decdb5088fe0ad9a7b9164, type: 3}
