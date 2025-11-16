@@ -18,6 +18,7 @@ public class MoveTowardsPlayerEnemy : MonoBehaviour
     private int groupSize;
     private int indexInGroup;
     private int prevGroupedSide = 1;
+    private int groupedMovementCounter = 3;
 
     public void Init(EnemyConfig config, int indexInGroup, int groupSize)
     {
@@ -28,6 +29,7 @@ public class MoveTowardsPlayerEnemy : MonoBehaviour
         speed = UnityEngine.Random.Range(config.MinSpeed, config.MaxSpeed);
         this.indexInGroup = indexInGroup;
         this.groupSize = groupSize;
+        groupedMovementCounter = 3;
     }
 
     public void Begin()
@@ -66,6 +68,12 @@ public class MoveTowardsPlayerEnemy : MonoBehaviour
 
     private void calculateRunThroughTargetPosition()
     {
+        groupedMovementCounter--;
+        if (groupedMovementCounter <= 0)
+        {
+            groupSize = 1;
+            indexInGroup = 0;
+        }
         if (groupSize > 1)
         {
             var dir = target.position - transform.position;

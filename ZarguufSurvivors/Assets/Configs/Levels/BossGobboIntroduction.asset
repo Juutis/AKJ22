@@ -26,4 +26,4 @@ MonoBehaviour:
   - WaveConfig: {fileID: 11400000, guid: bdb0c0798613271479120c2704eb7ea5, type: 2}
     queueBehavior: 2
     WaitSecondsBeforeStarting: 0
-  WaitBeforeStartingNextLevel: 15
+  WaitBeforeStartingNextLevel: 10

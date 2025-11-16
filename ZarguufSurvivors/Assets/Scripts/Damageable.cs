@@ -47,10 +47,12 @@ public class Damageable : MonoBehaviour
             onKilled.Invoke();
             MessageBus.Publish(new MobWasKilledEvent(name));
             killedAlready = true;
+            ScreenShake.Instance.Shake(2.5f);
         }
         else
         {
             onDamageReceived.Invoke();
+            ScreenShake.Instance.Shake(0.5f);
         }
     }
 }
