@@ -45,11 +45,22 @@ public class Damageable : MonoBehaviour
         if (currentHealth <= 0)
         {
             onKilled.Invoke();
+            MessageBus.Publish(new MobWasKilledEvent(name));
             killedAlready = true;
         }
         else
         {
             onDamageReceived.Invoke();
         }
+    }
+}
+
+public struct MobWasKilledEvent : IEvent
+{
+    public string Name;
+
+    public MobWasKilledEvent(string name)
+    {
+        Name = name;
     }
 }

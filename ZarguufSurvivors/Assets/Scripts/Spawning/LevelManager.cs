@@ -48,14 +48,24 @@ public class LevelManager : MonoBehaviour
 
     private bool isPaused = false;
 
-    public bool IsPaused { get { return isPaused; } set { isPaused = value; } }
-
-    private int playerKillCount = 0;
+    public bool IsPaused { get { return isPaused; } }
 
     void Start()
     {
         //playerTransform = Player.main.Transform;
         Begin();
+    }
+
+    public void Pause()
+    {
+        runTimer.Pause();
+        isPaused = true;
+    }
+
+    public void Unpause()
+    {
+        runTimer.Unpause();
+        isPaused = false;
     }
 
     public void Begin()
@@ -81,12 +91,6 @@ public class LevelManager : MonoBehaviour
         var camHeight = Camera.main.orthographicSize;
         var camWidth = camHeight * Camera.main.aspect;
         return Mathf.Max(camWidth, camHeight) * 1.41f + 1.0f;
-    }
-
-    public void UpdatePlayerKillCount(int killCount)
-    {
-        playerKillCount += killCount;
-        MessageBus.Publish(new PlayerKillCountChange(playerKillCount));
     }
 
     void Update()
@@ -147,10 +151,6 @@ public class LevelManager : MonoBehaviour
             var mob = GameObject.FindFirstObjectByType<SpawnableMob>();
             if (mob != null) { mob.Kill(); }
         }
-        if (Keyboard.current != null && Keyboard.current.uKey.wasPressedThisFrame)
-        {
-            UpdatePlayerKillCount(2);
-        }
     }
 
     private LevelConfig GetNextLevel()
@@ -174,15 +174,5 @@ public struct GameDurationUpdatedEvent : IEvent
     public GameDurationUpdatedEvent(double currentTime)
     {
         CurrentRunTime = currentTime;
-    }
-}
-
-public struct PlayerKillCountChange : IEvent
-{
-    public int KillCount;
-
-    public PlayerKillCountChange(int killCount)
-    {
-        KillCount = killCount;
     }
 }
