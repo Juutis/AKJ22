@@ -29,7 +29,9 @@ public class SkillManager : MonoBehaviour
         }
 
         //activatedSkills.Add(SkillCategory.Weapon, GetRandomSkillsWithCategory(1, SkillCategory.Weapon));
-        activatedSkills.Add(SkillCategory.Weapon, skills.Where(x => x.SkillType == SkillType.ChainLightningProjectile).ToList());
+        SkillConfig lightning = skills.FirstOrDefault(x => x.SkillType == SkillType.ChainLightningProjectile);
+        lightning.SkillUp();
+        activatedSkills.Add(SkillCategory.Weapon, new() { lightning });
     }
 
     public List<SkillConfig> GetRandomSkills(int number)
@@ -49,7 +51,7 @@ public class SkillManager : MonoBehaviour
             .ToList();
     }
 
-    public bool isSkillActive(SkillType skillType)
+    public bool IsSkillActive(SkillType skillType)
     {
         SkillConfig conf = skills.FirstOrDefault(x => x.SkillType == skillType);
 
@@ -86,10 +88,10 @@ public class SkillManager : MonoBehaviour
         SkillConfig skill = e.Skill;
         SkillCategory category = skill.SkillCategory;
 
-        if (activatedSkills.TryGetValue(category, out List<SkillConfig> skills))
+        if (activatedSkills.TryGetValue(category, out List<SkillConfig> skillsInCategory))
         {
-            bool hasFullSkills = skills.Count == maxSkillsPerCategory;
-            bool isNewSkill = skills.All(x => x.name != skill.name);
+            bool hasFullSkills = skillsInCategory.Count >= maxSkillsPerCategory;
+            bool isNewSkill = skillsInCategory.All(x => x.SkillType != skill.SkillType);
 
             if (isNewSkill && hasFullSkills)
             {
@@ -97,9 +99,9 @@ public class SkillManager : MonoBehaviour
             }
             else if (isNewSkill)
             {
-                skills.Add(skill);
+                skillsInCategory.Add(skill);
             }
-            
+
         }
         else
         {
@@ -108,19 +110,22 @@ public class SkillManager : MonoBehaviour
 
         skill.SkillUp();
 
-            // TODO: Delete skills that were not selected if hasFullSkills
+        // Delete skills that were not selected if hasFullSkills
         if (activatedSkills.TryGetValue(category, out List<SkillConfig> list))
         {
-            bool hasFullSkills = list.Count == maxSkillsPerCategory;
-            
-            if (hasFullSkills) {
+            bool hasFullSkills = list.Count >= maxSkillsPerCategory;
+
+            if (hasFullSkills)
+            {
                 List<SkillConfig> toBeRemoved = skillsThisRun
                     .Where(x => x.SkillCategory == skill.SkillCategory)
-                    .Where(x => list.Any(y => y.SkillType != x.SkillType))
+                    .Where(x => !list.Any(y => y.SkillType == x.SkillType))
                     .ToList();
 
                 toBeRemoved.ForEach(x => skillsThisRun.Remove(x));
             }
+
+            Debug.Log($"Skill leveled! Total skills in {category} is {list.Count}. Is category full? {hasFullSkills}");
         }
     }
 

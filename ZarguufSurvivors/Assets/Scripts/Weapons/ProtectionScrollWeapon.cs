@@ -27,7 +27,7 @@ public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
     // Update is called once per frame
     void Update()
     {
-        if (!SkillManager.main.isSkillActive(SkillType.ProtectionScroll))
+        if (!SkillManager.main.IsSkillActive(SkillType.ProtectionScroll))
         {
             return;
         }

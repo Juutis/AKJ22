@@ -22,7 +22,7 @@ public class MagicMissileWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!SkillManager.main.isSkillActive(SkillType.MagicMissile))
+        if (!SkillManager.main.IsSkillActive(SkillType.MagicMissile))
         {
             return;
         }

@@ -29,7 +29,7 @@ public class ChainLightningWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!SkillManager.main.isSkillActive(SkillType.ChainLightningProjectile))
+        if (!SkillManager.main.IsSkillActive(SkillType.ChainLightningProjectile))
         {
             return;
         }

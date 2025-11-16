@@ -22,7 +22,7 @@ public class FireballWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!SkillManager.main.isSkillActive(SkillType.Fireball))
+        if (!SkillManager.main.IsSkillActive(SkillType.Fireball))
         {
             return;
         }

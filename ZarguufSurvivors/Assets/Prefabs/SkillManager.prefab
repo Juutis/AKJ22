@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d636f349479ed8545b5718d06f21ad45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillManager
+  maxSkillsPerCategory: 3
   skills:
   - {fileID: 11400000, guid: 5dc7c24f833171843a3bf837253af2c1, type: 2}
   - {fileID: 11400000, guid: 3da4ec5b540ee0d4cb2233a4a53b8a68, type: 2}
   - {fileID: 11400000, guid: 2b4c792701083d14fa09217d8ccbf9f5, type: 2}
   - {fileID: 11400000, guid: 63a2348eec7e70a4dad501bf0bf28f10, type: 2}
+  - {fileID: 11400000, guid: 39ee4bdac76719da99ee72676afb510d, type: 2}
+  - {fileID: 11400000, guid: c2446b0d01a5cdbc8a38334f46b7b75c, type: 2}

@@ -24,7 +24,7 @@ public class FireCurseWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!SkillManager.main.isSkillActive(SkillType.FireCurseProjectile))
+        if (!SkillManager.main.IsSkillActive(SkillType.FireCurseProjectile))
         {
             return;
         }
