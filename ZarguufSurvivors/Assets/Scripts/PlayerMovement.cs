@@ -118,13 +118,16 @@ public class PlayerMovement : MonoBehaviour
 
     public void handleCollision(Collider2D collider)
     {
-        var spawnableMob = collider.transform.parent.GetComponent<SpawnableMob>();
-        if (spawnableMob != null && canTakeDamage()) {
-            int damage = spawnableMob.GetDamageDoneToPlayer();
-            UpdatePlayerHealth(-damage);
-            ScreenShake.Instance.Shake(10.0f);
-            flasher.Flash();
-            lastDamaged = Time.time;
+        if (collider.transform.parent != null)
+        {
+            var spawnableMob = collider.transform.parent.GetComponent<SpawnableMob>();
+            if (spawnableMob != null && canTakeDamage()) {
+                int damage = spawnableMob.GetDamageDoneToPlayer();
+                UpdatePlayerHealth(-damage);
+                ScreenShake.Instance.Shake(10.0f);
+                flasher.Flash();
+                lastDamaged = Time.time;
+            }
         }
 
         var xpDrop = collider.GetComponent<XpDrop>();

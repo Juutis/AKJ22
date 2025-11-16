@@ -45,6 +45,11 @@ public class SpawnableMob : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("FlyingEnemy");
             GetComponentInChildren<Renderer>().sortingLayerName = "Flying";
         }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Enemy");
+            GetComponentInChildren<Renderer>().sortingLayerName = "Default";
+        }
     }
 
     public void Begin()

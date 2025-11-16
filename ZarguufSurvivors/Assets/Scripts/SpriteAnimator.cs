@@ -19,6 +19,9 @@ public class SpriteAnimator : MonoBehaviour
     [SerializeField]
     private Transform sortRoot;
 
+    [SerializeField]
+    private bool loop = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,7 +39,10 @@ public class SpriteAnimator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rend.sortingOrder = -(int)(sortRoot.position.y * 100);
+        if (sortRoot != null)
+        {
+            rend.sortingOrder = -(int)(sortRoot.position.y * 100);
+        }
     }
 
     public void NextFrame()
@@ -44,7 +50,14 @@ public class SpriteAnimator : MonoBehaviour
         spriteIndex++;
         if (spriteIndex >= sprites.Count)
         {
-            spriteIndex = 0;
+            if (loop)
+            {
+                spriteIndex = 0;
+            }
+            else
+            {
+                spriteIndex = sprites.Count - 1;
+            }
         }
         rend.sprite = sprites[spriteIndex];
         Invoke("NextFrame", frameDuration);

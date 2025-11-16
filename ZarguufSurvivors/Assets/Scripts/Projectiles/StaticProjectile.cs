@@ -12,12 +12,13 @@ public class StaticProjectile : MonoBehaviour
     private float lifeStart;
     private float radiusCoef = 0.65f;
     IWeapon weapon;
-    private DamageTracker damageTracker = new DamageTracker(1.0f);
+    private DamageTracker damageTracker;
 
 
     void Start()
     {
         Invoke("CleanUpDamageTrackers", 1.0f);
+        damageTracker = new DamageTracker(1.0f);
     }
 
     public void Init(IWeapon weapon)
