@@ -58,8 +58,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
-        
-        if (moveValue.sqrMagnitude != 0) {
+
+        if (moveValue.sqrMagnitude != 0)
+        {
             moveDir = moveValue.normalized;
         }
 
@@ -107,9 +108,15 @@ public class PlayerMovement : MonoBehaviour
             currentPlayerXp = 0;
             currentPlayerLevel += 1;
             MessageBus.Publish(new LevelGainedEvent(currentPlayerLevel));
+            UpdateRequiredXP(currentPlayerLevel);
         }
         MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
         UIManager.main.ShowPoppingText($"{xpGained}", Color.yellow, transform.position);
+    }
+
+    private void UpdateRequiredXP(int currentPlayerLevel)
+    {
+        requiredPlayerXp = currentPlayerLevel * 25;
     }
 
     void OnTriggerEnter2D(Collider2D collider2D)
@@ -127,7 +134,8 @@ public class PlayerMovement : MonoBehaviour
         if (collider.transform.parent != null)
         {
             var spawnableMob = collider.transform.parent.GetComponent<SpawnableMob>();
-            if (spawnableMob != null && canTakeDamage()) {
+            if (spawnableMob != null && canTakeDamage())
+            {
                 int damage = spawnableMob.GetDamageDoneToPlayer();
                 UpdatePlayerHealth(-damage);
                 ScreenShake.Instance.Shake(10.0f);
