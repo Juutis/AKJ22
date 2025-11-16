@@ -48,33 +48,43 @@ MonoBehaviour:
   - cooldown: 1.5
     projectileSpeed: 6
     damage: 45
+    hitCount: 0
   - cooldown: 1.4
     projectileSpeed: 6
     damage: 55
+    hitCount: 0
   - cooldown: 1.3
     projectileSpeed: 6
     damage: 65
+    hitCount: 0
   - cooldown: 1.1
     projectileSpeed: 6
     damage: 75
+    hitCount: 0
   - cooldown: 1.1
     projectileSpeed: 6
     damage: 85
+    hitCount: 0
   - cooldown: 1
     projectileSpeed: 6
     damage: 95
+    hitCount: 0
   - cooldown: 1
     projectileSpeed: 6
     damage: 105
+    hitCount: 0
   - cooldown: 1
     projectileSpeed: 6
     damage: 115
+    hitCount: 0
   - cooldown: 1
     projectileSpeed: 6
     damage: 125
+    hitCount: 0
   - cooldown: 1.1
     projectileSpeed: 6
     damage: 125
+    hitCount: 0
 --- !u!1 &3105419657616499856
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,47 +138,47 @@ MonoBehaviour:
   - cooldown: 0.9
     projectileRange: 4
     lifetime: 2
-    dotCooldown: 0.75
+    dotCooldown: 0.7
     damage: 10
   - cooldown: 0.8
     projectileRange: 4
     lifetime: 2
-    dotCooldown: 0.7
+    dotCooldown: 0.6
     damage: 12
   - cooldown: 1
     projectileRange: 4
     lifetime: 2
-    dotCooldown: 0.65
+    dotCooldown: 0.5
     damage: 14
   - cooldown: 0.7
     projectileRange: 4
     lifetime: 2
-    dotCooldown: 0.6
+    dotCooldown: 0.4
     damage: 16
   - cooldown: 0.6
     projectileRange: 4
     lifetime: 2
-    dotCooldown: 0.55
+    dotCooldown: 0.3
     damage: 18
   - cooldown: 0.5
     projectileRange: 4
     lifetime: 2
-    dotCooldown: 0.5
+    dotCooldown: 0.25
     damage: 20
   - cooldown: 0.4
     projectileRange: 4
     lifetime: 2
-    dotCooldown: 0.45
+    dotCooldown: 0.2
     damage: 22
   - cooldown: 0.3
     projectileRange: 4
     lifetime: 2
-    dotCooldown: 0.4
+    dotCooldown: 0.15
     damage: 24
   - cooldown: 0.2
     projectileRange: 4
     lifetime: 2
-    dotCooldown: 0.25
+    dotCooldown: 0.1
     damage: 30
 --- !u!1 &3653401936064154908
 GameObject:
@@ -257,51 +267,61 @@ MonoBehaviour:
     maxProjectiles: 2
     projectileDistance: 3
     damage: 10
+    hitCount: 0
   - cooldown: 2
     rotateSpeed: 100
     maxProjectiles: 3
     projectileDistance: 3
     damage: 15
+    hitCount: 0
   - cooldown: 2
     rotateSpeed: 110
     maxProjectiles: 4
     projectileDistance: 3
     damage: 20
+    hitCount: 0
   - cooldown: 2
     rotateSpeed: 120
     maxProjectiles: 5
     projectileDistance: 3
     damage: 25
+    hitCount: 0
   - cooldown: 2
     rotateSpeed: 130
     maxProjectiles: 5
     projectileDistance: 3
     damage: 30
+    hitCount: 0
   - cooldown: 2
     rotateSpeed: 140
     maxProjectiles: 6
     projectileDistance: 3.5
     damage: 35
+    hitCount: 0
   - cooldown: 2
     rotateSpeed: 150
     maxProjectiles: 6
     projectileDistance: 3.5
     damage: 40
+    hitCount: 0
   - cooldown: 2
     rotateSpeed: 160
     maxProjectiles: 7
     projectileDistance: 3.5
     damage: 45
+    hitCount: 0
   - cooldown: 2
     rotateSpeed: 170
     maxProjectiles: 7
     projectileDistance: 3.5
     damage: 50
+    hitCount: 0
   - cooldown: 2
     rotateSpeed: 180
     maxProjectiles: 8
     projectileDistance: 4
     damage: 60
+    hitCount: 0
 --- !u!1 &5400778452851727853
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,70 +375,70 @@ MonoBehaviour:
     jumpRange: 2.5
     jumpAmount: 1
     projectileCount: 1
-    damage: 45
+    damage: 25
   - cooldown: 3
     jumpDelay: 0.1
     projectileRange: 5
     jumpRange: 2.5
     jumpAmount: 2
     projectileCount: 1
-    damage: 60
+    damage: 30
   - cooldown: 2.9
     jumpDelay: 0.1
     projectileRange: 5
     jumpRange: 3
     jumpAmount: 3
     projectileCount: 1
-    damage: 75
+    damage: 35
   - cooldown: 2.8
     jumpDelay: 0.1
     projectileRange: 5
     jumpRange: 3
     jumpAmount: 4
     projectileCount: 1
-    damage: 90
+    damage: 40
   - cooldown: 2.7
     jumpDelay: 0.1
     projectileRange: 5
     jumpRange: 3.5
     jumpAmount: 5
     projectileCount: 1
-    damage: 105
+    damage: 45
   - cooldown: 2.6
     jumpDelay: 0.1
     projectileRange: 5
     jumpRange: 3.5
     jumpAmount: 6
     projectileCount: 1
-    damage: 120
+    damage: 50
   - cooldown: 2.5
     jumpDelay: 0.1
     projectileRange: 5
     jumpRange: 3.5
     jumpAmount: 7
     projectileCount: 1
-    damage: 135
+    damage: 55
   - cooldown: 2.2
     jumpDelay: 0.1
     projectileRange: 5
     jumpRange: 4
     jumpAmount: 8
     projectileCount: 1
-    damage: 150
+    damage: 60
   - cooldown: 2
     jumpDelay: 0.1
     projectileRange: 5
     jumpRange: 4.5
     jumpAmount: 9
     projectileCount: 1
-    damage: 165
+    damage: 75
   - cooldown: 1.5
     jumpDelay: 0.1
     projectileRange: 5
     jumpRange: 5
     jumpAmount: 15
     projectileCount: 1
-    damage: 190
+    damage: 100
 --- !u!1 &7318319317955456233
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,34 +486,44 @@ MonoBehaviour:
   levels:
   - cooldown: 0.66
     projectileSpeed: 8
-    damage: 10
+    damage: 25
+    hitCount: 0
   - cooldown: 0.55
     projectileSpeed: 8
-    damage: 11
+    damage: 30
+    hitCount: 0
   - cooldown: 0.5
     projectileSpeed: 8
-    damage: 12
+    damage: 35
+    hitCount: 0
   - cooldown: 0.45
     projectileSpeed: 8
-    damage: 13
+    damage: 40
+    hitCount: 0
   - cooldown: 0.4
     projectileSpeed: 8
-    damage: 14
+    damage: 45
+    hitCount: 0
   - cooldown: 0.35
-    projectileSpeed: 40
-    damage: 15
+    projectileSpeed: 8
+    damage: 50
+    hitCount: 0
   - cooldown: 0.3
-    projectileSpeed: 40
-    damage: 16
+    projectileSpeed: 8
+    damage: 55
+    hitCount: 0
   - cooldown: 0.25
-    projectileSpeed: 40
-    damage: 16
+    projectileSpeed: 8
+    damage: 60
+    hitCount: 0
   - cooldown: 0.2
-    projectileSpeed: 40
-    damage: 18
+    projectileSpeed: 8
+    damage: 75
+    hitCount: 0
   - cooldown: 0.1
-    projectileSpeed: 40
-    damage: 20
+    projectileSpeed: 8
+    damage: 100
+    hitCount: 0
 --- !u!1 &8110859066171566267
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,15 +597,15 @@ MonoBehaviour:
     projectileSize: 1.6
     spawnRange: 4
     damage: 22
-  - cooldown: 1.6
+  - cooldown: 1.7
     projectileSize: 1.7
     spawnRange: 4
     damage: 24
-  - cooldown: 1.4
+  - cooldown: 1.6
     projectileSize: 1.8
     spawnRange: 4
     damage: 26
-  - cooldown: 1
+  - cooldown: 1.5
     projectileSize: 2
     spawnRange: 4
     damage: 30
