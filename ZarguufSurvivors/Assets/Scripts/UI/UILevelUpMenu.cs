@@ -125,15 +125,15 @@ public class UILevelUpMenu : MonoBehaviour
             {
                 return;
             }
-            if (Keyboard.current.upArrowKey.wasPressedThisFrame)
+            if (Keyboard.current.upArrowKey.wasPressedThisFrame || Keyboard.current.wKey.wasPressedThisFrame)
             {
                 MoveSelectionUp();
             }
-            else if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+            else if (Keyboard.current.downArrowKey.wasPressedThisFrame || Keyboard.current.sKey.wasPressedThisFrame)
             {
                 MoveSelectionDown();
             }
-            if (Keyboard.current.enterKey.wasPressedThisFrame)
+            if (Keyboard.current.enterKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame)
             {
                 ChooseSelectedSkill();
             }
