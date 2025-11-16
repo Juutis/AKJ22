@@ -17,4 +17,4 @@ MonoBehaviour:
   icon: {fileID: 6210622488468733894, guid: ba103a719f2d9e74185fb1d44f37d637, type: 3}
   currentLevel: 0
   title: Protection Scroll
-  description: Reading make u smart
+  description: Creates a barrier of protective scrolls rotating around you

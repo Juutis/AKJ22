@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f3fc084724ec74e9a8552803ef9703, type: 3}
   m_Name: SkillFireCurse
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
+  skillCategory: 0
   skillType: 5
   icon: {fileID: 6215400140222225110, guid: 055f48563808de744ac58516bcc50157, type: 3}
   currentLevel: 0
   title: Fire Curse
-  description: Feeling warm?
+  description: Lights up nearby enemies, dealing massive damage over time.

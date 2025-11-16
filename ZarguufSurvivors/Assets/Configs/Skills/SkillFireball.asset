@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f3fc084724ec74e9a8552803ef9703, type: 3}
   m_Name: SkillFireball
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
+  skillCategory: 0
   skillType: 1
   icon: {fileID: -7250195882505504687, guid: 8e4c560203225884e8aded2cf0140014, type: 3}
   currentLevel: 0
   title: Fireball
-  description: Boom
+  description: Shoots slow but powerful fireballs towards nearby enemies.
