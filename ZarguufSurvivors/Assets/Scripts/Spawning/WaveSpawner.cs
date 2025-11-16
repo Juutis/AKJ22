@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using UnityEngine;
 
@@ -30,6 +31,7 @@ public class WaveSpawner : MonoBehaviour
     private float waitTime = 0f;
 
     private float waitBeforeStartTimer = 0f;
+    private Vector2 groupOrigin;
 
     public void Initialize(int index, SpawnWave spawnWaveConfig, Transform mobContainer, Transform playerTransform)
     {
@@ -79,12 +81,27 @@ public class WaveSpawner : MonoBehaviour
         {
             return;
         }
+        var indexInGroup = amountSpawned % wave.AmountPerInterval;
+        var groupSize = Mathf.Min(wave.Amount - amountSpawned, wave.AmountPerInterval);
+
         var mob = SpawnableMobPool.main.Get();
-        mob.Initialize(wave.EnemyConfig, amountSpawned, waveIndex, spawnContainer);
+        mob.Initialize(wave.EnemyConfig, amountSpawned, waveIndex, spawnContainer, indexInGroup, groupSize);
 
         if (wave.Formation == SpawnFormation.CircleAroundPlayer)
         {
             mob.SetPosition(GetRandomPositionAroundCircle(playerTransform.position));
+        }
+        if (wave.Formation == SpawnFormation.Grouped)
+        {
+            if (indexInGroup == 0)
+            {
+                groupOrigin = GetRandomPositionAroundCircle(playerTransform.position);
+            }
+            var groupToPlayer = groupOrigin - (Vector2)playerTransform.position;
+            var groupDirection = Vector2.Perpendicular(groupToPlayer);
+            var groupSpacing = groupDirection.normalized * 1.5f;
+            var mobPos = groupOrigin + (-groupSize / 2 + indexInGroup) * groupSpacing;
+            mob.SetPosition(mobPos);
         }
 
         mob.Begin();

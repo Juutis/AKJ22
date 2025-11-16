@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class SpawnableMob : MonoBehaviour
@@ -30,13 +31,13 @@ public class SpawnableMob : MonoBehaviour
         coll = GetComponent<CircleCollider2D>();
     }
 
-    public void Initialize(EnemyConfig config, int mobIndex, int waveIndex, Transform parent)
+    public void Initialize(EnemyConfig config, int mobIndex, int waveIndex, Transform parent, int indexInGroup, int groupSize)
     {
         name = $"Mob[W{waveIndex} - {mobIndex}]";
         transform.parent = parent;
 
         this.config = config;
-        mtpEnemy.Init(config);
+        mtpEnemy.Init(config, indexInGroup, groupSize);
         damageable.Init(config.Health);
         spriteAnim.Init(config.Sprites);
         coll.radius = config.ColliderRadius;

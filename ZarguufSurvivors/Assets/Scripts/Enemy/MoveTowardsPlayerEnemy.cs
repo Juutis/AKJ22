@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEditor;
+using System.Text.RegularExpressions;
 
 public class MoveTowardsPlayerEnemy : MonoBehaviour
 {
@@ -14,14 +15,19 @@ public class MoveTowardsPlayerEnemy : MonoBehaviour
 
     private Action handleFunc;
     private bool runThroughResetting = false;
+    private int groupSize;
+    private int indexInGroup;
+    private int prevGroupedSide = 1;
 
-    public void Init(EnemyConfig config)
+    public void Init(EnemyConfig config, int indexInGroup, int groupSize)
     {
         this.config = config;
         rb = GetComponent<Rigidbody2D>();
         rend = GetComponentInChildren<SpriteRenderer>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        speed = UnityEngine.Random.Range(config.MinSpeed, config.MaxSpeed);        
+        speed = UnityEngine.Random.Range(config.MinSpeed, config.MaxSpeed);
+        this.indexInGroup = indexInGroup;
+        this.groupSize = groupSize;
     }
 
     public void Begin()
@@ -60,8 +66,19 @@ public class MoveTowardsPlayerEnemy : MonoBehaviour
 
     private void calculateRunThroughTargetPosition()
     {
-        var dir = target.position - transform.position;
-        targetPosition = target.position + dir.normalized * config.RunThroughDistance;
+        if (groupSize > 1)
+        {
+            var dir = target.position - transform.position;
+            var offsetDir = -Vector2.Perpendicular(dir).normalized;
+            Vector3 offset = 2.0f * prevGroupedSide * offsetDir * (-groupSize / 2 + indexInGroup);
+            targetPosition = target.position + dir.normalized * config.RunThroughDistance + offset;
+            prevGroupedSide = -prevGroupedSide;
+        }
+        else
+        {
+            var dir = target.position - transform.position;
+            targetPosition = target.position + dir.normalized * config.RunThroughDistance;
+        }
         runThroughResetting = false;
     }
 
