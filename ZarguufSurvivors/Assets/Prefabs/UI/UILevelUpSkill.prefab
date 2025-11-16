@@ -114,6 +114,7 @@ MonoBehaviour:
   selectionIndicator: {fileID: 50142072927567602}
   imgBg: {fileID: 2669822345723967576}
   imgBorder: {fileID: 5649275920578618319}
+  goldIcon: {fileID: -3627873907703169443, guid: ac3652292bab7c946b0057853610947c, type: 3}
 --- !u!1 &1929939975745104871
 GameObject:
   m_ObjectHideFlags: 0

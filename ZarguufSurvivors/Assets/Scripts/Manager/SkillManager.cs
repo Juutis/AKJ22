@@ -9,6 +9,7 @@ public class SkillManager : MonoBehaviour
     void Awake()
     {
         main = this;
+        PopulateSkills();
     }
 
     [SerializeField]
@@ -19,16 +20,15 @@ public class SkillManager : MonoBehaviour
 
     private List<SkillConfig> skillsThisRun = new();
 
+    private int maxSkillLevel = 10;
+
     private Dictionary<SkillCategory, List<SkillConfig>> activatedSkills = new();
 
     void Start()
     {
-        foreach (var skill in skills)
-        {
-            skillsThisRun.Add(Instantiate(skill));
-        }
 
         //activatedSkills.Add(SkillCategory.Weapon, GetRandomSkillsWithCategory(1, SkillCategory.Weapon));
+        /*
         SkillConfig lightning = skillsThisRun.FirstOrDefault(x => x.SkillType == SkillType.FireCurseProjectile);
         lightning.SkillUp();
         activatedSkills.Add(SkillCategory.Weapon, new() { lightning });
@@ -37,11 +37,30 @@ public class SkillManager : MonoBehaviour
         projectileBoost.SkillUp();
         projectileBoost.SkillUp();
         activatedSkills.Add(SkillCategory.Passive, new() { projectileBoost });
+        */
+    }
+
+    private void PopulateSkills()
+    {
+        if (skillsThisRun.Count == 0) {
+            foreach (var skill in skills)
+            {
+                skillsThisRun.Add(Instantiate(skill));
+            }
+        }
+    }
+
+    public List<SkillConfig> GetJustWeapons(int number) {
+        return skillsThisRun.Where(skill => skill.SkillCategory == SkillCategory.Weapon && skill.CurrentLevel < maxSkillLevel)
+            .OrderBy(x => System.Guid.NewGuid())
+            .Take(number)
+            .ToList();
     }
 
     public List<SkillConfig> GetRandomSkills(int number)
     {
         return skillsThisRun
+            .Where(skill => skill.CurrentLevel < maxSkillLevel)
             .OrderBy(x => System.Guid.NewGuid())
             .Take(number)
             .ToList();

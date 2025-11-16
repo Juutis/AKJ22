@@ -35,6 +35,9 @@ public class UILevelUpSkill : MonoBehaviour
 
     [SerializeField]
     private Image imgBorder;
+    
+    [SerializeField]
+    private Sprite goldIcon;
 
     private bool isSelected = false;
     public bool IsSelected { get { return isSelected; } }
@@ -46,6 +49,24 @@ public class UILevelUpSkill : MonoBehaviour
     {
 
     }
+
+    public void InitializeEmpty()
+    {
+        originalColor = imgBg.color;
+        borderOriginalColor = imgBorder.color;
+
+        txtLevel.text = "";
+        txtTitle.text = "Gold";
+        txtDescription.text = $"Just gold. What do you do with it? I don't know.";
+        txtKey.text = $"{index + 1}";
+        imgIcon.sprite = goldIcon;
+        index = 0;
+        if (index == 0)
+        {
+            Select();
+        }
+    }
+
 
     public void Initialize(SkillConfig skill, int index)
     {
