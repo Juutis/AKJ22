@@ -1085,7 +1085,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gobbo survivor
+  m_text: 'Zarguuf: the Reckoning'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa29f5edee2c64a4ebfc343d73ab0e86, type: 2}
   m_sharedMaterial: {fileID: -4850208237117573571, guid: fa29f5edee2c64a4ebfc343d73ab0e86, type: 2}
