@@ -31,9 +31,16 @@ public class FireCurseWeapon : MonoBehaviour
 
 
         currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.FireCurseProjectile))];
-        if (Time.time - lastShoot >= currentLevel.cooldown)
+        float currentCooldown = currentLevel.cooldown * SkillManager.main.GetAttackCooldownMultiplier();
+
+        if (Time.time - lastShoot >= currentCooldown)
         {
-            Shoot();
+            int currentProjectileCount = 1 + SkillManager.main.GetProjectileCountAddition();
+
+            for (int i = 0; i < currentProjectileCount; i++)
+            {
+                Shoot();
+            }
         }
     }
 
@@ -52,7 +59,8 @@ public class FireCurseWeapon : MonoBehaviour
                 pool.Kill(newProjectile);
             }
 
-            projectile.Init(enemy.transform, currentLevel.dotCooldown, currentLevel.damage);
+            float currentDamage = currentLevel.damage * SkillManager.main.GetAttackDamageMultiplier();
+            projectile.Init(enemy.transform, currentLevel.dotCooldown, currentDamage);
         }
 
         lastShoot = Time.time;

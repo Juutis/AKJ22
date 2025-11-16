@@ -73,6 +73,19 @@ public class SkillManager : MonoBehaviour
         return skillsThisRun.FirstOrDefault(skill => skill.SkillType == skillType)?.CurrentLevel ?? 0;
     }
 
+    public float GetAttackCooldownMultiplier() {
+        return 1f / (1f + 0.1f * GetSkillLevel(SkillType.AttackSpeedBoost));
+    }
+
+    public float GetAttackDamageMultiplier() {
+        return 1f + 0.1f * GetSkillLevel(SkillType.DamageBoost);
+    }
+
+
+    public int GetProjectileCountAddition() {
+        return 1 * GetSkillLevel(SkillType.ProjectileCountBoost);
+    }
+
     private void OnEnable()
     {
         MessageBus.Subscribe<SkillLevelUpChosenEvent>(OnSkillLevelUpChosenEvent);
@@ -142,6 +155,7 @@ public enum SkillType
     FireCurseProjectile,
     DamageBoost,
     XPBoost,
+    PickUpRangeBoost,
     MovementSpeedBoost,
     ProjectileCountBoost,
     AttackSpeedBoost,

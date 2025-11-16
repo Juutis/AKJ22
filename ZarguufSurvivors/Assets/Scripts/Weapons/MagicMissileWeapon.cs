@@ -28,7 +28,10 @@ public class MagicMissileWeapon : MonoBehaviour
         }
 
         currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.MagicMissile))];
-        if (Time.time - lastShoot >= currentLevel.cooldown)
+
+        float currentCooldown = currentLevel.cooldown * SkillManager.main.GetAttackCooldownMultiplier();
+        
+        if (Time.time - lastShoot >= currentCooldown)
         {
             Shoot();
         }

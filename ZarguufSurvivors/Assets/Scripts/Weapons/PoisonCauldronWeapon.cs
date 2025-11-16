@@ -30,9 +30,16 @@ public class PoisonCauldronWeapon : MonoBehaviour, IWeapon
         }
 
         currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.PoisonCauldron))];
-        if (Time.time - lastShoot >= currentLevel.cooldown)
+        float currentCooldown = currentLevel.cooldown * SkillManager.main.GetAttackCooldownMultiplier();
+
+        if (Time.time - lastShoot >= currentCooldown)
         {
-            Shoot();
+            int currentProjectileCount = 1 + SkillManager.main.GetProjectileCountAddition();
+
+            for (int i = 0; i < currentProjectileCount; i++)
+            {
+                Shoot();
+            }
         }
     }
 
@@ -48,7 +55,8 @@ public class PoisonCauldronWeapon : MonoBehaviour, IWeapon
             return;
         }
 
-        projectile.Init(this, new Vector2(player.transform.position.x, player.transform.position.y) + Random.insideUnitCircle * currentLevel.spawnRange, currentLevel.projectileSize, currentLevel.damage, 9999);
+        float currentDamage = currentLevel.damage * SkillManager.main.GetAttackDamageMultiplier();
+        projectile.Init(this, new Vector2(player.transform.position.x, player.transform.position.y) + Random.insideUnitCircle * currentLevel.spawnRange, currentLevel.projectileSize, currentDamage, 9999);
     }
 
     public void Kill(GameObject obj)

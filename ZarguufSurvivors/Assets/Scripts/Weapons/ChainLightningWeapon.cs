@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ChainLightningWeapon : MonoBehaviour
@@ -35,16 +36,24 @@ public class ChainLightningWeapon : MonoBehaviour
         }
 
         currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.ChainLightningProjectile))];
+        float currentCooldown = currentLevel.cooldown * SkillManager.main.GetAttackCooldownMultiplier();
+
         if (Time.time - lastShoot >= currentLevel.cooldown)
         {
-            Shoot();
+            int currentProjectileCount = 1 + SkillManager.main.GetProjectileCountAddition();
+
+            for (int i = 0; i < currentProjectileCount; i++)
+            {
+                Shoot();
+            }
         }
     }
 
     private void Shoot()
     {
         // TODO: Closest enemy?
-        Collider2D enemy = Physics2D.OverlapCircle(player.transform.position, currentLevel.projectileRange, LayerMask.GetMask("Enemy Damage Receiver"));
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(player.transform.position, currentLevel.projectileRange, LayerMask.GetMask("Enemy Damage Receiver"));
+        Collider2D enemy = enemies?.OrderBy(x => System.Guid.NewGuid())?.FirstOrDefault();
 
         if (enemy != null)
         {
@@ -56,7 +65,9 @@ public class ChainLightningWeapon : MonoBehaviour
                 Debug.LogError("Couldn't get ChainProjectile from pool");
                 pool.Kill(newProjectile);
             }
-            projectile.Init(pool, transform, enemy.transform, lifetime, currentLevel.jumpRange, currentLevel.jumpDelay, currentLevel.damage, currentLevel.jumpAmount, new List<Transform> { enemy.transform });
+
+            float currentDamage = currentLevel.damage * SkillManager.main.GetAttackDamageMultiplier();
+            projectile.Init(pool, transform, enemy.transform, lifetime, currentLevel.jumpRange, currentLevel.jumpDelay, currentDamage, currentLevel.jumpAmount, new List<Transform> { enemy.transform });
         }
 
         lastShoot = Time.time;

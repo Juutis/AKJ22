@@ -28,9 +28,16 @@ public class FireballWeapon : MonoBehaviour
         }
 
         currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.Fireball))];
+        float currentCooldown = currentLevel.cooldown * SkillManager.main.GetAttackCooldownMultiplier();
+
         if (Time.time - lastShoot >= currentLevel.cooldown)
         {
-            Shoot();
+            int currentProjectileCount = 1 + SkillManager.main.GetProjectileCountAddition();
+
+            for (int i = 0; i < currentProjectileCount; i++)
+            {
+                Shoot();
+            }
         }
     }
 
@@ -39,7 +46,8 @@ public class FireballWeapon : MonoBehaviour
         Collider2D enemy = Physics2D.OverlapCircle(player.transform.position, 6f, LayerMask.GetMask("Enemy Damage Receiver"));
 
         GameObject newProjectile = ProjectilePoolManager.main.GetPool(ProjectileType.Fireball).Get();
-        newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, currentLevel.projectileSpeed, currentLevel.damage, currentLevel.hitCount);
+        float currentDamage = currentLevel.damage * SkillManager.main.GetAttackDamageMultiplier();
+        newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, currentLevel.projectileSpeed, currentDamage, currentLevel.hitCount);
 
         Vector2 randomPos2 = UnityEngine.Random.insideUnitCircle.normalized * 0.2f;
         Vector3 randomPos = new Vector3(randomPos2.x, randomPos2.y, 0);

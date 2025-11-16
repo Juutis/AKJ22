@@ -33,7 +33,10 @@ public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
         }
 
         currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.ProtectionScroll))];
-        if (Time.time - lastShoot >= currentLevel.cooldown && projectiles.Count < currentLevel.maxProjectiles)
+        float currentCooldown = currentLevel.cooldown * SkillManager.main.GetAttackCooldownMultiplier();
+        int currentMaxProjectiles = currentLevel.maxProjectiles + SkillManager.main.GetProjectileCountAddition();
+
+        if (Time.time - lastShoot >= currentCooldown && projectiles.Count < currentMaxProjectiles)
         {
             Shoot();
         }
@@ -53,7 +56,8 @@ public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
             return;
         }
 
-        projectile.Init(this, currentLevel.damage, currentLevel.hitCount);
+        float currentDamage = currentLevel.damage * SkillManager.main.GetAttackDamageMultiplier();
+        projectile.Init(this, currentDamage, currentLevel.hitCount);
         projectiles.Add(projectile);
 
         for (int i = 0; i < projectiles.Count; i++)
