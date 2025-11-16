@@ -68,6 +68,7 @@ public class FireballWeapon : MonoBehaviour
 
         newProjectile.transform.position = transform.position + offsetPos + randomPos;
         lastShoot = Time.time;
+        SoundManager.main.PlaySound(GameSoundType.Fireball);
     }
 }
 

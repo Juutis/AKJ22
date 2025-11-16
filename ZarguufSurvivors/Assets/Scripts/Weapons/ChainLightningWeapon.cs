@@ -68,6 +68,7 @@ public class ChainLightningWeapon : MonoBehaviour
 
             float currentDamage = currentLevel.damage * SkillManager.main.GetAttackDamageMultiplier();
             projectile.Init(pool, transform, enemy.transform, lifetime, currentLevel.jumpRange, currentLevel.jumpDelay, currentDamage, currentLevel.jumpAmount, new List<Transform> { enemy.transform });
+            SoundManager.main.PlaySound(GameSoundType.ChainLightningLoop);
         }
 
         lastShoot = Time.time;

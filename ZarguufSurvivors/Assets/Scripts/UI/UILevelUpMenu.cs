@@ -41,6 +41,7 @@ public class UILevelUpMenu : MonoBehaviour
     private void OnLevelGainedEvent(LevelGainedEvent e)
     {
         currentLevel = e.CurrentLevel;
+        SoundManager.main.PlaySound(GameSoundType.LevelUp);
         txtCurrentLevel.text = $"Level up! Level {currentLevel}";
         Show();
     }
@@ -91,6 +92,7 @@ public class UILevelUpMenu : MonoBehaviour
     {
         var skill = uiSkills.FirstOrDefault(uiSkill => uiSkill.IsSelected).SkillConfig;
         MessageBus.Publish(new SkillLevelUpChosenEvent(skill));
+        SoundManager.main.PlaySound(GameSoundType.Select);
         Hide();
     }
 

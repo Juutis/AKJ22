@@ -24,3 +24,4 @@ MonoBehaviour:
   runThroughDistance: 10
   xpDrop: 10
   damageDoneToPlayer: 5
+  gameSoundType: 1

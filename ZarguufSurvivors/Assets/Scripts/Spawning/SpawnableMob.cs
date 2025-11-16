@@ -10,6 +10,8 @@ public class SpawnableMob : MonoBehaviour
     private EnemyConfig config;
     private CircleCollider2D coll;
 
+    public EnemyConfig Config {get {return config;}}
+
     [SerializeField]
     private XpDrop xpDropPrefab;
 

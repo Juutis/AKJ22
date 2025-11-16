@@ -43,6 +43,11 @@ public class EnemyConfig : ScriptableObject
     [SerializeField]
     private int damageDoneToPlayer = 5;
     public int DamageDoneToPlayer { get { return damageDoneToPlayer; } }
+
+
+    [SerializeField]
+    private GameSoundType gameSoundType;
+    public GameSoundType GameSoundType { get { return gameSoundType; } }
 }
 
 public enum MoveStrategy
