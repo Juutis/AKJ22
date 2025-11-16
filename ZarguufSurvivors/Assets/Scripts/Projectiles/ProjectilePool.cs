@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 using System.Collections.Generic;
+using System;
 
 public class ProjectilePool : MonoBehaviour
 {
@@ -55,31 +56,38 @@ public class ProjectilePool : MonoBehaviour
     }
 
     public void SetContainer(Transform container)
-    { 
+    {
         List<GameObject> initializedObjects = new();
 
         for (int i = 0; i < objectsToInitializeAtStart; i += 1)
-        { 
+        {
             initializedObjects.Add(pool.Get());
         }
 
         currentPool = container;
 
         foreach (GameObject obj in initializedObjects)
-        { 
+        {
             pool.Release(obj);
         }
     }
 
     public void Kill(GameObject projectile)
     {
-        pool.Release(projectile);
+        try
+        {
+            pool.Release(projectile);
+        }
+        catch (InvalidOperationException e)
+        {
+            // was killed already lols
+        }
     }
 
     private GameObject CreateItem()
     {
         GameObject item = Instantiate(projectilePrefab, currentPool);
-        item.name = $"Projectile {poolType} (fromPool) to {Random.Range(0,99999)}";
+        item.name = $"Projectile {poolType} (fromPool) to {UnityEngine.Random.Range(0, 99999)}";
         item.gameObject.SetActive(false);
         return item;
     }

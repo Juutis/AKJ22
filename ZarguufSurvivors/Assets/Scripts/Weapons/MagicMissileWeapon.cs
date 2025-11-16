@@ -33,7 +33,12 @@ public class MagicMissileWeapon : MonoBehaviour
         
         if (Time.time - lastShoot >= currentCooldown)
         {
-            Shoot();
+            int currentProjectileCount = 1 + SkillManager.main.GetProjectileCountAddition();
+
+            for (int i = 0; i < currentProjectileCount; i++)
+            {
+                Shoot();
+            }
         }
     }
 
@@ -42,7 +47,7 @@ public class MagicMissileWeapon : MonoBehaviour
         GameObject newProjectile = ProjectilePoolManager.main.GetPool(ProjectileType.MagicMissile).Get();
         newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, currentLevel.projectileSpeed, currentLevel.damage, currentLevel.hitCount);
 
-        Vector2 randomPos2 = UnityEngine.Random.insideUnitCircle.normalized * 0.2f;
+        Vector2 randomPos2 = UnityEngine.Random.insideUnitCircle.normalized * 0.25f;
         Vector3 randomPos = new Vector3(randomPos2.x, randomPos2.y, 0);
         Vector3 offsetPos = new Vector3(player.MoveDir.x, player.MoveDir.y, 0) * 0.5f;
 
