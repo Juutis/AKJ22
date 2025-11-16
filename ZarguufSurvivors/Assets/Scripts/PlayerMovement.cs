@@ -127,8 +127,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void UpdatePlayerXp(int xpGained)
     {
-        currentPlayerXp += xpGained;
-        totalPlayerXp += xpGained;
+        int currentXpGained = Mathf.RoundToInt(xpGained * SkillManager.main.GetXPBoostMultiplier());
+        currentPlayerXp += currentXpGained;
+        totalPlayerXp += currentXpGained;
+        
         if (currentPlayerXp >= requiredPlayerXp)
         {
             currentPlayerXp = 0;
@@ -137,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
             UpdateRequiredXP(currentPlayerLevel);
         }
         MessageBus.Publish(new XpUpdatedEvent(currentPlayerXp, requiredPlayerXp));
-        UIManager.main.ShowPoppingText($"{xpGained}", Color.yellow, transform.position);
+        UIManager.main.ShowPoppingText($"{currentXpGained}", Color.yellow, transform.position);
     }
 
     private void UpdateRequiredXP(int currentPlayerLevel)
