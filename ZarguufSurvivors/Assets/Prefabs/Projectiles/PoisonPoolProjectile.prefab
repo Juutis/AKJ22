@@ -299,6 +299,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1276023456801832887, guid: f17e926f0284a2cf7964e2531d384585, type: 3}
+      propertyPath: lifetime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276023456801832887, guid: f17e926f0284a2cf7964e2531d384585, type: 3}
       propertyPath: projectileType
       value: 3
       objectReference: {fileID: 0}
