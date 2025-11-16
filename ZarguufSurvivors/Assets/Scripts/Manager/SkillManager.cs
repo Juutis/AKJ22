@@ -70,7 +70,7 @@ public class SkillManager : MonoBehaviour
 
     public int GetSkillLevel(SkillType skillType)
     {
-        return skillsThisRun.FirstOrDefault(skill => skill.SkillType == skillType).CurrentLevel;
+        return skillsThisRun.FirstOrDefault(skill => skill.SkillType == skillType)?.CurrentLevel ?? 0;
     }
 
     private void OnEnable()
@@ -139,7 +139,13 @@ public enum SkillType
     ProtectionScroll,
     PoisonCauldron,
     ChainLightningProjectile,
-    FireCurseProjectile
+    FireCurseProjectile,
+    DamageBoost,
+    XPBoost,
+    MovementSpeedBoost,
+    ProjectileCountBoost,
+    AttackSpeedBoost,
+    HPBoost
 }
 
 public enum SkillCategory

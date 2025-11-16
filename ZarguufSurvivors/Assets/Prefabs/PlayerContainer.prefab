@@ -177,7 +177,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   useRigidbody: 1
   playerSprite: {fileID: 9155008008901267425}
-  playerSpeed: 6
+  playerSpeedLevels:
+  - 6
+  - 6.8
+  - 7.1
+  - 7.4
+  - 7.9
+  - 8.4
+  - 8.9
+  - 9.5
+  - 10.1
+  - 11
+  movementBounds: {fileID: 0}
 --- !u!50 &410980418070772029
 Rigidbody2D:
   serializedVersion: 5
