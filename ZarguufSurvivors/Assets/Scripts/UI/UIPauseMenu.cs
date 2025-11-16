@@ -62,7 +62,7 @@ public class UIPauseMenu : MonoBehaviour
         isOpen = false;
         if (isDeathScreen)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("juhoScene");
         }
         isDeathScreen = false;
     }

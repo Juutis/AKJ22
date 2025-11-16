@@ -22,6 +22,6 @@ public class UISkillDisplay : MonoBehaviour
 
     public void UpdateLevel()
     {
-        txtLevel.text = $"{skillConfig.CurrentLevel + 1}";
+        txtLevel.text = $"{skillConfig.CurrentLevel}";
     }
 }
