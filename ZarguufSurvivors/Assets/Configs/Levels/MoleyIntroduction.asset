@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85a5ed57fd0500a42b750879695a1488, type: 3}
-  m_Name: BattyBossLevel
+  m_Name: MoleyIntroduction
   m_EditorClassIdentifier: Assembly-CSharp::Level
   Name: Batty Boss Level
   spawnWaves:
@@ -22,23 +22,29 @@ MonoBehaviour:
     WaitSecondsBeforeStarting: 0
   - WaveConfig: {fileID: 11400000, guid: efdbdf617fd780f49b475bbd8cea2fda, type: 2}
     queueBehavior: 2
-    WaitSecondsBeforeStarting: 10
-  - WaveConfig: {fileID: 11400000, guid: 8088859c40bab10419d4630e52e9bbc4, type: 2}
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: 4f8141978eef687439c0a1987bb8944b, type: 2}
     queueBehavior: 2
-    WaitSecondsBeforeStarting: 12
-  - WaveConfig: {fileID: 11400000, guid: ceb78903563342045a74337fcead5e5d, type: 2}
-    queueBehavior: 0
-    WaitSecondsBeforeStarting: 5
-  - WaveConfig: {fileID: 11400000, guid: 49b4f7e0f3422b14c8b65fea5d15c6d5, type: 2}
+    WaitSecondsBeforeStarting: 3
+  - WaveConfig: {fileID: 11400000, guid: 7338d91eeaf20bb43b05d6252f14b4d5, type: 2}
     queueBehavior: 0
     WaitSecondsBeforeStarting: 10
-  - WaveConfig: {fileID: 11400000, guid: 7338d91eeaf20bb43b05d6252f14b4d5, type: 2}
+  - WaveConfig: {fileID: 11400000, guid: 4bf6c969d54b7cf48bfc50ad069b1a2f, type: 2}
     queueBehavior: 1
     WaitSecondsBeforeStarting: 0
-  - WaveConfig: {fileID: 11400000, guid: 8088859c40bab10419d4630e52e9bbc4, type: 2}
-    queueBehavior: 1
-    WaitSecondsBeforeStarting: 0
-  - WaveConfig: {fileID: 11400000, guid: 8d79213fffde5054eb40fac6017c5e1e, type: 2}
+  - WaveConfig: {fileID: 11400000, guid: db7d24b43c9dc424cad541ba481cba24, type: 2}
     queueBehavior: 0
     WaitSecondsBeforeStarting: 5
+  - WaveConfig: {fileID: 11400000, guid: 58f08da046b0aec4ab1f1ac4cacaecc7, type: 2}
+    queueBehavior: 0
+    WaitSecondsBeforeStarting: 20
+  - WaveConfig: {fileID: 11400000, guid: 52ab5041fd69446409a398cca7984dee, type: 2}
+    queueBehavior: 1
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: 52ab5041fd69446409a398cca7984dee, type: 2}
+    queueBehavior: 1
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: fd9d79f43ed9976419af3ab97bac448b, type: 2}
+    queueBehavior: 1
+    WaitSecondsBeforeStarting: 0
   WaitBeforeStartingNextLevel: 15

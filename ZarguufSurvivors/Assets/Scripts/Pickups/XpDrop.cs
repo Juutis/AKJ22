@@ -13,6 +13,13 @@ public class XpDrop : MonoBehaviour
     private int xpDropAmount;
     public int XpDropAmount {get {return xpDropAmount;}}
 
+    void Start()
+    {
+        #if UNITY_EDITOR
+        Initialize(10);
+        #endif
+    }
+
     public void Initialize(int xpDrop)
     {
         xpDropAmount = xpDrop;

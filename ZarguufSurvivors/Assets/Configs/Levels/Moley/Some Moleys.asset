@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65e8576ef6c53c247828708d8d160a4c, type: 3}
-  m_Name: 10 Moleys Circle Interval
+  m_Name: Some Moleys
   m_EditorClassIdentifier: Assembly-CSharp::SpawnWave
   enemyConfig: {fileID: 11400000, guid: 7d14e596fa9bbde4f936b2cbe3c0eb35, type: 2}
   formation: 0

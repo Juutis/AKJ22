@@ -16,6 +16,11 @@ MonoBehaviour:
   sprites:
   - {fileID: -5539365546426808617, guid: ec2d8fad810e8a648a652577c6891389, type: 3}
   - {fileID: 631730601, guid: ec2d8fad810e8a648a652577c6891389, type: 3}
-  minSpeed: 2
-  maxSpeed: 3
+  minSpeed: 4
+  maxSpeed: 6
   colliderRadius: 0.5
+  isFlying: 0
+  moveStrategy: 0
+  runThroughDistance: 0
+  xpDrop: 5
+  damageDoneToPlayer: 5
