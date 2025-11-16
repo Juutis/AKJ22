@@ -132,6 +132,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9de4faab390bbdb47af27fe5cc46902c, type: 2}
   - {fileID: 11400000, guid: 95d9324d74508b3489e6005583e3ce12, type: 2}
   - {fileID: 11400000, guid: d59cbe209ae61e74e8249a1c7b256816, type: 2}
+  - {fileID: 11400000, guid: 68a71f2ff32abf04c8672381a521cff2, type: 2}
+  - {fileID: 11400000, guid: 28fb6ad0c92f05441a85d187f888d8a8, type: 2}
+  - {fileID: 11400000, guid: cdc33b44f6d620c4e85cafed48bc8d5d, type: 2}
   waveManagerPrefab: {fileID: 5110123023583604088, guid: 210a052e7be1c1b458e00680530aaa8b, type: 3}
   waveContainer: {fileID: 2652499596382200116}
   parentPrefab: {fileID: 2984533718738365294, guid: 5ddca7e7b91dd6c439568e538e8ace02, type: 3}
