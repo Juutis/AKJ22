@@ -29,7 +29,7 @@ public class ChainLightningWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentLevel = levels[Math.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.ChainLightningProjectile))];
+        currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.ChainLightningProjectile))];
         if (Time.time - lastShoot >= currentLevel.cooldown)
         {
             Shoot();

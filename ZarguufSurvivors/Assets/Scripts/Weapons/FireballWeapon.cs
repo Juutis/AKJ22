@@ -22,7 +22,7 @@ public class FireballWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentLevel = levels[Math.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.Fireball))];
+        currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.Fireball))];
         if (Time.time - lastShoot >= currentLevel.cooldown)
         {
             Shoot();

@@ -27,7 +27,7 @@ public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
     // Update is called once per frame
     void Update()
     {
-        currentLevel = levels[Math.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.ProtectionScroll))];
+        currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.ProtectionScroll))];
         if (Time.time - lastShoot >= currentLevel.cooldown && projectiles.Count < currentLevel.maxProjectiles)
         {
             Shoot();
@@ -53,7 +53,7 @@ public class ProtectionScrollWeapon : MonoBehaviour, IWeapon
 
         for (int i = 0; i < projectiles.Count; i++)
         {
-            projectiles[i].transform.position = player.transform.position + Quaternion.Euler(0, 0, 360 / projectiles.Count * i) * Vector2.up * projectileDistance;
+            projectiles[i].transform.position = player.transform.position + Quaternion.Euler(0, 0, 360 / projectiles.Count * i) * Vector2.up * currentLevel.projectileDistance;
         }
     }
 

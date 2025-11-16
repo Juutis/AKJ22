@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f3fc084724ec74e9a8552803ef9703, type: 3}
   m_Name: SkillChainLightning
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
-  skillType: 0
+  skillType: 4
   icon: {fileID: 3742693228195874173, guid: fb71df7c97ca63446a566d1434b79805, type: 3}
   currentLevel: 0
   title: Chain lightning

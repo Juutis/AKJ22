@@ -24,7 +24,7 @@ public class PoisonCauldronWeapon : MonoBehaviour, IWeapon
     // Update is called once per frame
     void Update()
     {
-        currentLevel = levels[Math.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.PoisonCauldron))];
+        currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.PoisonCauldron))];
         if (Time.time - lastShoot >= currentLevel.cooldown)
         {
             Shoot();

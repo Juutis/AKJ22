@@ -22,7 +22,7 @@ public class MagicMissileWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentLevel = levels[Math.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.MagicMissile))];
+        currentLevel = levels[Mathf.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.MagicMissile))];
         if (Time.time - lastShoot >= currentLevel.cooldown)
         {
             Shoot();
@@ -34,7 +34,7 @@ public class MagicMissileWeapon : MonoBehaviour
         GameObject newProjectile = ProjectilePoolManager.main.GetPool(ProjectileType.MagicMissile).Get();
         newProjectile.GetComponent<StraightFlyingProjectile>().Init(player.MoveDir, currentLevel.projectileSpeed, currentLevel.damage);
 
-        Vector2 randomPos2 = Random.insideUnitCircle.normalized * 0.2f;
+        Vector2 randomPos2 = UnityEngine.Random.insideUnitCircle.normalized * 0.2f;
         Vector3 randomPos = new Vector3(randomPos2.x, randomPos2.y, 0);
         Vector3 offsetPos = new Vector3(player.MoveDir.x, player.MoveDir.y, 0) * 0.5f;
 
@@ -43,7 +43,7 @@ public class MagicMissileWeapon : MonoBehaviour
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class MagicMissileLevel
 {
     public float cooldown;
