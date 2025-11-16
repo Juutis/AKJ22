@@ -13,11 +13,17 @@ public class XpDrop : MonoBehaviour
     private int xpDropAmount;
     public int XpDropAmount {get {return xpDropAmount;}}
 
+    private bool initiated = false;
+
+    [SerializeField]
+    private int xpAmount = 5;
+
     void Start()
     {
-        #if UNITY_EDITOR
-        Initialize(10);
-        #endif
+        if (!initiated)
+        {
+            Initialize(xpAmount);
+        }
     }
 
     public void Initialize(int xpDrop)
@@ -30,7 +36,8 @@ public class XpDrop : MonoBehaviour
                 xpDropTier = tier;
             }
         }
-        spriteRenderer.sprite = xpDropTier.Sprite;
+        xpDropTier.Sprite.SetActive(true);
+        initiated = true;
     }
 
     public void Kill()
@@ -42,6 +49,6 @@ public class XpDrop : MonoBehaviour
 [System.Serializable]
 public class XpDropTier
 {
-    public Sprite Sprite;
+    public GameObject Sprite;
     public int MinimumXp = 0;
 }

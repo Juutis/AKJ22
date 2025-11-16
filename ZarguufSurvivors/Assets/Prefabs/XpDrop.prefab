@@ -47,11 +47,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XpDrop
   tiers:
-  - Sprite: {fileID: -2489928273761787490, guid: 22f444f69be87dd4182037af0a4f316e, type: 3}
+  - Sprite: {fileID: 4452323200386676847}
     MinimumXp: 0
-  - Sprite: {fileID: -2489928273761787490, guid: 22f444f69be87dd4182037af0a4f316e, type: 3}
-    MinimumXp: 5
+  - Sprite: {fileID: 7133923046588460648}
+    MinimumXp: 10
+  - Sprite: {fileID: 6851937395138208610}
+    MinimumXp: 30
   spriteRenderer: {fileID: 2575368162534635290}
+  xpAmount: 5
 --- !u!58 &675219325689971469
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -150,8 +153,23 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8989771255441731973, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
   m_PrefabInstance: {fileID: 6881393446345836191}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4452323200386676847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7112954840734646000, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
+  m_PrefabInstance: {fileID: 6881393446345836191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6712938431362589403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 168527707314480196, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
+  m_PrefabInstance: {fileID: 6881393446345836191}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6851937395138208610 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 29667162952607229, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
+  m_PrefabInstance: {fileID: 6881393446345836191}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7133923046588460648 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4359299549270223095, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
   m_PrefabInstance: {fileID: 6881393446345836191}
   m_PrefabAsset: {fileID: 0}
