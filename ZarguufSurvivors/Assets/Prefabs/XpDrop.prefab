@@ -49,9 +49,9 @@ MonoBehaviour:
   tiers:
   - Sprite: {fileID: 4452323200386676847}
     MinimumXp: 0
-  - Sprite: {fileID: 7133923046588460648}
-    MinimumXp: 10
   - Sprite: {fileID: 6851937395138208610}
+    MinimumXp: 10
+  - Sprite: {fileID: 7133923046588460648}
     MinimumXp: 30
   spriteRenderer: {fileID: 2575368162534635290}
   xpAmount: 5

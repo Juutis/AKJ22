@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 7479346812773260293}
   - component: {fileID: 7072956184761086256}
   m_Layer: 0
-  m_Name: blingy 3
+  m_Name: blingy 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &102630325193593217
 Transform:
   m_ObjectHideFlags: 0
@@ -126,12 +126,12 @@ GameObject:
   - component: {fileID: 3304560011352252558}
   - component: {fileID: 2181363385873572516}
   m_Layer: 0
-  m_Name: blingy 2
+  m_Name: blingy 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7048730775580771473
 Transform:
   m_ObjectHideFlags: 0
@@ -258,8 +258,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7988084025307779522}
-  - {fileID: 7048730775580771473}
   - {fileID: 102630325193593217}
+  - {fileID: 7048730775580771473}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7112954840734646000
@@ -279,7 +279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7988084025307779522
 Transform:
   m_ObjectHideFlags: 0
