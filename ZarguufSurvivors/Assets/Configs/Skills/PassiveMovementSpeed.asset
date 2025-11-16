@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PassiveMovementSpeed
   m_EditorClassIdentifier: Assembly-CSharp::SkillConfig
   skillCategory: 1
-  skillType: 8
+  skillType: 9
   icon: {fileID: -7060935714447605527, guid: 762e922203ae95246ba171c5bae6546e, type: 3}
   currentLevel: 0
   title: Movement Speed

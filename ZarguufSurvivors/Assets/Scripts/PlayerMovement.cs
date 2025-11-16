@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -97,18 +98,20 @@ public class PlayerMovement : MonoBehaviour
 
         int magnet = SkillManager.main.GetMagnetSkillLevel();
 
-        if (magnet > 0 && Time.time - magnetCD > lastMagnet)
+        if (magnet > 0 && (Time.time - lastMagnet > magnetCD))
         {
             float magnetRange = 2f + 0.3f * magnet;
             Collider2D[] pickups = Physics2D.OverlapCircleAll(transform.position, magnetRange, LayerMask.GetMask("Pickupable"));
 
             foreach (Collider2D pickup in pickups)
             {
-                if (pickup.gameObject.TryGetComponent<XpDrop>(out XpDrop xpd))
+                if (pickup.gameObject.TryGetComponent(out XpDrop xpd))
                 {
                     xpd.GoToPlayer();
                 }
             }
+
+            lastMagnet = Time.time;
         }
     }
 
@@ -130,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
         int currentXpGained = Mathf.RoundToInt(xpGained * SkillManager.main.GetXPBoostMultiplier());
         currentPlayerXp += currentXpGained;
         totalPlayerXp += currentXpGained;
-        
+
         if (currentPlayerXp >= requiredPlayerXp)
         {
             currentPlayerXp = 0;
