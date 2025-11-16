@@ -49,6 +49,7 @@ public class LevelManager : MonoBehaviour
     private bool isPaused = false;
 
     public bool IsPaused { get { return isPaused; } }
+    public bool IsFinished { get {return finished; }}
 
     void Start()
     {
@@ -169,6 +170,8 @@ public class LevelManager : MonoBehaviour
         nextLevelIndex += 1;
         return level;
     }
+
+
 }
 
 

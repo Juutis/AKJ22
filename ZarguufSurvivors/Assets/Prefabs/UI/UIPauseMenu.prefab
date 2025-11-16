@@ -2026,6 +2026,7 @@ MonoBehaviour:
   animator: {fileID: 2473619992376501399}
   deathImage: {fileID: 21300000, guid: eb271b19862e43840a604d68cda72074, type: 3}
   pauseImage: {fileID: 21300000, guid: 64cea9b283f3fb04e80e6906119b0773, type: 3}
+  winImage: {fileID: 21300000, guid: 6a43a9744186b0e4ea6398b7cda488b4, type: 3}
   imgFlair: {fileID: 6431833341849391497}
   txtTitle: {fileID: 5374864526006254588}
   txtMessage: {fileID: 7244832690790520477}

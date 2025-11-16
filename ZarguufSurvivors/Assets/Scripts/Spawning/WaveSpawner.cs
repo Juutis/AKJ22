@@ -86,6 +86,7 @@ public class WaveSpawner : MonoBehaviour
 
         var mob = SpawnableMobPool.main.Get();
         mob.Initialize(wave.EnemyConfig, amountSpawned, waveIndex, spawnContainer, indexInGroup, groupSize);
+        MessageBus.Publish(new MobWasSpawnedEvent(1));
 
         if (wave.Formation == SpawnFormation.CircleAroundPlayer)
         {
@@ -144,7 +145,6 @@ public class WaveSpawner : MonoBehaviour
         }
         if (wave.Timing == SpawnTiming.Instant)
         {
-            //Debug.Log($"Spawing {wave.Amount} mobs instantly...");
             for (int i = 0; i < wave.Amount; i += 1)
             {
                 SpawnMob();
@@ -172,4 +172,15 @@ public enum WaveStatus
     Waiting,
     Spawning,
     Finished
+}
+
+
+
+public struct MobWasSpawnedEvent : IEvent
+{
+    public int Number;
+    public MobWasSpawnedEvent(int number)
+    {
+        Number = number;
+    }
 }

@@ -182,8 +182,6 @@ public class SkillManager : MonoBehaviour
 
                 toBeRemoved.ForEach(x => skillsThisRun.Remove(x));
             }
-
-            Debug.Log($"Skill leveled! Total skills in {category} is {list.Count}. Is category full? {hasFullSkills}");
         }
     }
 
