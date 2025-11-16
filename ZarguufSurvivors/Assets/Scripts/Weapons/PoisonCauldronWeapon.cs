@@ -4,20 +4,18 @@ using UnityEngine;
 public class PoisonCauldronWeapon : MonoBehaviour, IWeapon
 {
     [SerializeField]
-    private float cooldown;
-    [SerializeField]
-    private float projectileSize;
-    [SerializeField]
-    private float spawnRange;
+    private List<PoisonCauldronLevel> levels;
 
     private float lastShoot;
     private PlayerMovement player;
 
     private ProjectilePool pool;
+    private PoisonCauldronLevel currentLevel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentLevel = levels[0];
         lastShoot = 0;
         player = transform.parent.parent.GetComponent<PlayerMovement>();
         pool = ProjectilePoolManager.main.GetPool(ProjectileType.PoisonCauldron);
@@ -26,7 +24,8 @@ public class PoisonCauldronWeapon : MonoBehaviour, IWeapon
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - lastShoot >= cooldown)
+        currentLevel = levels[Math.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.PoisonCauldron))];
+        if (Time.time - lastShoot >= currentLevel.cooldown)
         {
             Shoot();
         }
@@ -43,11 +42,20 @@ public class PoisonCauldronWeapon : MonoBehaviour, IWeapon
             return;
         }
 
-        projectile.Init(this, Random.insideUnitCircle * spawnRange, projectileSize);
+        projectile.Init(this, Random.insideUnitCircle * currentLevel.spawnRange, currentLevel.projectileSize, currentLevel.damage);
     }
 
     public void Kill(GameObject obj)
     {
         ProjectilePoolManager.main.GetPool(ProjectileType.PoisonCauldron).Kill(obj);
     }
+}
+
+[System.Serializable]
+public class PoisonCauldronLevel
+{
+    public float cooldown;
+    public float projectileSize;
+    public float spawnRange;
+    public float damage;
 }

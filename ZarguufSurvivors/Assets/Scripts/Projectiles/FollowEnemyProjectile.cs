@@ -9,6 +9,7 @@ public class FollowEnemyProjectile : MonoBehaviour
     private Transform target;
     private float cooldown = 1;
     private float lastHit;
+    private float damage;
 
     private DamageTracker damageTracker = new DamageTracker(100.0f);
 
@@ -18,19 +19,20 @@ public class FollowEnemyProjectile : MonoBehaviour
 
     }
 
-    public void Init(Transform target, float cooldown)
+    public void Init(Transform target, float cooldown, float damage)
     {
         lifeStart = Time.time;
         this.target = target;
         lastHit = Time.time;
         this.cooldown = cooldown;
+        this.damage = damage;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = target.position;
-        
+
         if (Time.time - lifeStart >= lifetime) {
             ProjectilePoolManager.main.GetPool(projectileType).Kill(gameObject);
         }
@@ -41,9 +43,8 @@ public class FollowEnemyProjectile : MonoBehaviour
             {
                 if (damageTracker.CanHurt(dmg))
                 {
-                    var damageToDo = 1;
-                    applyDamage(dmg, damageToDo);
-                    UIManager.main.ShowPoppingText($"{damageToDo}", Color.red, transform.position);
+                    applyDamage(dmg, damage);
+                    UIManager.main.ShowPoppingText($"{damage}", Color.red, transform.position);
                 }
             }
         }

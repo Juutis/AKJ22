@@ -1,26 +1,21 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class FireCurseWeapon : MonoBehaviour
 {
     [SerializeField]
-    private float cooldown;
-    [SerializeField]
-    private float projectileRange;
-    [SerializeField]
-    private float lifetime;
-    [SerializeField]
-    private float dotCooldown;
-    [SerializeField]
-    private GameObject projectilePrefab;
+    private List<FireCurseLevel> levels;
 
     private float lastShoot;
     private float startTime;
     private PlayerMovement player;
     private ProjectilePool pool;
+    private FireCurseLevel currentLevel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentLevel = levels[0];
         lastShoot = 0;
         player = transform.parent.parent.GetComponent<PlayerMovement>();
         pool = ProjectilePoolManager.main.GetPool(ProjectileType.FireCurseProjectile);
@@ -29,7 +24,8 @@ public class FireCurseWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - lastShoot >= cooldown)
+        currentLevel = levels[Math.Min(levels.Count - 1, SkillManager.main.GetSkillLevel(SkillType.FireCurseProjectile))];
+        if (Time.time - lastShoot >= currentLevel.cooldown)
         {
             Shoot();
         }
@@ -37,7 +33,7 @@ public class FireCurseWeapon : MonoBehaviour
 
     private void Shoot()
     {
-        Collider2D enemy = Physics2D.OverlapCircle(player.transform.position, projectileRange, LayerMask.GetMask("Enemy Damage Receiver"));
+        Collider2D enemy = Physics2D.OverlapCircle(player.transform.position, currentLevel.projectileRange, LayerMask.GetMask("Enemy Damage Receiver"));
 
         if (enemy != null)
         {
@@ -50,9 +46,19 @@ public class FireCurseWeapon : MonoBehaviour
                 pool.Kill(newProjectile);
             }
 
-            projectile.Init(enemy.transform, dotCooldown);
+            projectile.Init(enemy.transform, currentLevel.dotCooldown, currentLevel.damage);
         }
 
         lastShoot = Time.time;
     }
+}
+
+[System.Serializable]
+public class FireCurseLevel
+{
+    public float cooldown;
+    public float projectileRange;
+    public float lifetime;
+    public float dotCooldown;
+    public float damage;
 }

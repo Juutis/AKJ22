@@ -58,7 +58,10 @@ public class SkillManager : MonoBehaviour
 
 public enum SkillType
 {
-    StaticProjectile,
-    Cauldron,
-    ProtectionScroll
+    MagicMissile,
+    Fireball,
+    ProtectionScroll,
+    PoisonCauldron,
+    ChainLightningProjectile,
+    FireCurseProjectile
 }
