@@ -13,5 +13,20 @@ MonoBehaviour:
   m_Name: BossGobboMayhem
   m_EditorClassIdentifier: Assembly-CSharp::Level
   Name: Level 1
-  spawnWaves: []
-  WaitBeforeStartingNextLevel: 5
+  spawnWaves:
+  - WaveConfig: {fileID: 11400000, guid: 407dcb8e71f872345898d3ffbb166202, type: 2}
+    queueBehavior: 0
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: 6acd0db5a17ba8b4f98990c027b14931, type: 2}
+    queueBehavior: 0
+    WaitSecondsBeforeStarting: 10
+  - WaveConfig: {fileID: 11400000, guid: 6acd0db5a17ba8b4f98990c027b14931, type: 2}
+    queueBehavior: 0
+    WaitSecondsBeforeStarting: 20
+  - WaveConfig: {fileID: 11400000, guid: 262ddc6446f77e44e932caaad34f673f, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: bdb0c0798613271479120c2704eb7ea5, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 0
+  WaitBeforeStartingNextLevel: 10
