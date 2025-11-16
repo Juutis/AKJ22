@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a5ed57fd0500a42b750879695a1488, type: 3}
+  m_Name: BossGobboMayhem
+  m_EditorClassIdentifier: Assembly-CSharp::Level
+  Name: Level 1
+  spawnWaves:
+  - WaveConfig: {fileID: 11400000, guid: 407dcb8e71f872345898d3ffbb166202, type: 2}
+    queueBehavior: 0
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: 6acd0db5a17ba8b4f98990c027b14931, type: 2}
+    queueBehavior: 0
+    WaitSecondsBeforeStarting: 10
+  - WaveConfig: {fileID: 11400000, guid: 6acd0db5a17ba8b4f98990c027b14931, type: 2}
+    queueBehavior: 0
+    WaitSecondsBeforeStarting: 20
+  - WaveConfig: {fileID: 11400000, guid: 262ddc6446f77e44e932caaad34f673f, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: bdb0c0798613271479120c2704eb7ea5, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 0
+  WaitBeforeStartingNextLevel: 10

@@ -6,8 +6,9 @@ public class ChainProjectile : MonoBehaviour
 {
     [SerializeField]
     private ProjectileType projectileType;
+
     [SerializeField]
-    private LineRenderer lineRenderer;
+    private ParticleSystem effect;
 
     private ProjectilePool pool;
     private float jumpRange;
@@ -37,11 +38,11 @@ public class ChainProjectile : MonoBehaviour
         inited = true;
         hasJumped = false;
         this.damage = damage;
+        PlayEffect();
     }
 
     void OnEnable()
     {
-        lineRenderer.SetPositions(new Vector3[] { new Vector3(9999, 9999), new Vector3(9999, 9999) });
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -57,9 +58,6 @@ public class ChainProjectile : MonoBehaviour
         {
             return;
         }
-
-        // TODO: start or target == null
-        lineRenderer.SetPositions(new Vector3[] { start.position, target.position });
 
         if (!hasJumped && (Time.time - startTime > jumpDelay) && (jumps > 0))
         {
@@ -78,6 +76,20 @@ public class ChainProjectile : MonoBehaviour
         }
     }
 
+    private void PlayEffect()
+    {
+        effect.transform.position = start.position;
+        effect.Emit(3);
+        effect.transform.position = Vector2.Lerp(start.position, target.position, 0.25f);
+        effect.Emit(3);
+        effect.transform.position = Vector2.Lerp(start.position, target.position, 0.5f);
+        effect.Emit(3);
+        effect.transform.position = Vector2.Lerp(start.position, target.position, 0.75f);
+        effect.Emit(3);
+        effect.transform.position = target.position;
+        effect.Emit(3);
+    }
+
     private void Jump()
     {
         hasJumped = true;
@@ -92,7 +104,7 @@ public class ChainProjectile : MonoBehaviour
 
         foreach (Collider2D enemy in enemies)
         {
-            if (previousTargets.Any(x => transform.gameObject.GetInstanceID() == enemy.gameObject.GetInstanceID()))
+            if (previousTargets.Any(x => x.transform.gameObject.GetInstanceID() == enemy.gameObject.GetInstanceID()))
             {
                 continue;
             }

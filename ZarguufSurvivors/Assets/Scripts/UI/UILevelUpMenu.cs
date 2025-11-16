@@ -51,7 +51,7 @@ public class UILevelUpMenu : MonoBehaviour
         isOpen = true;
         animator.Play("uiLevelUpMenuShow");
         Time.timeScale = 0f;
-        LevelManager.main.IsPaused = true;
+        LevelManager.main.Pause();
     }
 
     public void AfterHide()
@@ -63,7 +63,7 @@ public class UILevelUpMenu : MonoBehaviour
         uiSkills = new();
         skillConfigs = new();
         Time.timeScale = 1f;
-        LevelManager.main.IsPaused = false;
+        LevelManager.main.Unpause();
         isOpen = false;
     }
 

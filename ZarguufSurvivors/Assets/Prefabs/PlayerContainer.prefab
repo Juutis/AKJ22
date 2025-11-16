@@ -253,8 +253,9 @@ GameObject:
   - component: {fileID: 3841527745968113318}
   - component: {fileID: 31289948695099533}
   - component: {fileID: 3720327046936812888}
-  - component: {fileID: 6571438965499115732}
   - component: {fileID: 8968572300941725217}
+  - component: {fileID: 6571438965499115732}
+  - component: {fileID: 8429340109334905684}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -351,6 +352,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachinePixelPerfect
+--- !u!114 &8968572300941725217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5803769626414779012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a5e46f5a4f0794db016d211f67d9ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenShake
 --- !u!114 &6571438965499115732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +381,7 @@ MonoBehaviour:
   AmplitudeGain: 1
   FrequencyGain: 1
   m_NoiseOffsets: {x: -809.2947, y: 538.57324, z: 125.60498}
---- !u!114 &8968572300941725217
+--- !u!114 &8429340109334905684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -377,9 +390,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5803769626414779012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16a5e46f5a4f0794db016d211f67d9ed, type: 3}
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScreenShake
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineConfiner2D
+  BoundingShape2D: {fileID: 0}
+  Damping: 0.5
+  SlowingDistance: 5
+  OversizeWindow:
+    Enabled: 0
+    MaxWindowSize: 0
+    Padding: 0
+  m_LegacyMaxWindowSize: -2
 --- !u!1 &6047789168619499643
 GameObject:
   m_ObjectHideFlags: 0

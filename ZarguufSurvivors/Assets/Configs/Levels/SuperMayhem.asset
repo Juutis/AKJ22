@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a5ed57fd0500a42b750879695a1488, type: 3}
+  m_Name: SuperMayhem
+  m_EditorClassIdentifier: Assembly-CSharp::Level
+  Name: ULTIMATE MAYHEM
+  spawnWaves:
+  - WaveConfig: {fileID: 11400000, guid: f8d998ae1f53aad459800599e466881c, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: 4a1fe16824fae324ca23ef4e17885348, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: a0537dc3de71ab142b461349a3fe68d6, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: 5a16d641e26fdb24cb0bd8359bbbab9d, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: bdb0c0798613271479120c2704eb7ea5, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 0
+  - WaveConfig: {fileID: 11400000, guid: e0f2a22f596db2d4c9ddefcf5df4c714, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 10
+  - WaveConfig: {fileID: 11400000, guid: cf6656d27be181740b7478cd6d07524a, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 20
+  - WaveConfig: {fileID: 11400000, guid: 598f4ddc36532f54fb3c1584a712869d, type: 2}
+    queueBehavior: 2
+    WaitSecondsBeforeStarting: 0
+  WaitBeforeStartingNextLevel: 10
