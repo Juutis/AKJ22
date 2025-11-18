@@ -62,7 +62,7 @@ public class StraightFlyingProjectile : MonoBehaviour
 
         if (collider != null && collider.TryGetComponent<Damageable>(out Damageable dmg))
         {
-            if (damageTracker.CanHurt(dmg))
+            if (dmg != null && damageTracker != null && damageTracker.CanHurt(dmg))
             {
                 applyDamage(dmg, damage);
                 UIManager.main.ShowPoppingText($"{damage}", Color.red, transform.position);

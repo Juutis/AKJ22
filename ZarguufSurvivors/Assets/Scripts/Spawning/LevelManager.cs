@@ -55,6 +55,7 @@ public class LevelManager : MonoBehaviour
     {
         //playerTransform = Player.main.Transform;
         Begin();
+        Debug.Log("Version 1.1");
     }
 
     public void Pause()

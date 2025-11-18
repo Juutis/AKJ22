@@ -98,6 +98,10 @@ public class ChainProjectile : MonoBehaviour
         hasJumped = true;
 
         // TODO: Closest enemy?
+        if (start == null)
+        {
+            return;
+        }
         Collider2D[] enemies = Physics2D.OverlapCircleAll(start.position, jumpRange, LayerMask.GetMask("Enemy Damage Receiver"));
 
         if (enemies.Length == 0)

@@ -103,6 +103,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 103957343299500554, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 168527707314480196, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -143,6 +147,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2181363385873572516, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4359299549270223095, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -150,6 +158,10 @@ PrefabInstance:
     - target: {fileID: 6256814226712782748, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
       propertyPath: m_Name
       value: Gobbonium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072956184761086256, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7112954840734646000, guid: 24b6b03d5c85de949ae5011e9cc9d3bf, type: 3}
       propertyPath: m_IsActive

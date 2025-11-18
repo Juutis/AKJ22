@@ -25,12 +25,12 @@ public class XpDrop : MonoBehaviour
     {
         if (!initiated)
         {
-            Initialize(xpAmount);
+            Initialize(xpAmount, player, transform.parent, transform.position);
         }
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+
     }
 
-    public void Initialize(int xpDrop)
+    public void Initialize(int xpDrop, Transform playerTransform, Transform parent, Vector2 position)
     {
         xpDropAmount = xpDrop;
         foreach (var tier in tiers)
@@ -42,7 +42,10 @@ public class XpDrop : MonoBehaviour
         }
         xpDropTier.Sprite.SetActive(true);
         initiated = true;
+        player = playerTransform;
         XpDropManager.Instance.Drops.Add(this);
+        transform.SetParent(parent);
+        transform.position = position;
     }
 
     public void Update()

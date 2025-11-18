@@ -64,9 +64,10 @@ public class SpawnableMob : MonoBehaviour
     public void Kill()
     {
         // reset mob stats like health etc. here
-        var xpDrop = Instantiate(xpDropPrefab);
+        /*var xpDrop = Instantiate(xpDropPrefab);
         xpDrop.transform.position = transform.position;
-        xpDrop.Initialize(config.XpDrop);
+        xpDrop.Initialize(config.XpDrop);*/
+        MessageBus.Publish(new XpDropIsCreatedEvent(config.XpDrop, transform.position));
         SpawnableMobPool.main.Kill(this);
     }
 
